@@ -1,0 +1,60 @@
+{
+  "earned": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07"
+  ],
+  "medals": [
+    {
+      "id": "m01",
+      "name": "Разведчик неба",
+      "level": "gold",
+      "sortie": 1
+    },
+    {
+      "id": "m02",
+      "name": "Летающий танк",
+      "level": "gold",
+      "sortie": 2
+    },
+    {
+      "id": "m03",
+      "name": "Бумажный ас",
+      "level": "silver",
+      "sortie": 3
+    },
+    {
+      "id": "m04",
+      "name": "Ночной разведчик",
+      "level": "gold",
+      "sortie": 4
+    },
+    {
+      "id": "m05",
+      "name": "Киноархивист",
+      "level": "gold",
+      "sortie": 5
+    },
+    {
+      "id": "m06",
+      "name": "Инженер",
+      "level": "gold",
+      "sortie": 6
+    },
+    {
+      "id": "m07",
+      "name": "Знаток снаряжения",
+      "level": "bronze",
+      "sortie": 7
+    }
+  ],
+  "streak": 5,
+  "totalRanks": 8,
+  "totalMedals": 15,
+  "nextSortie": 8,
+  "ammo": 41124
+}

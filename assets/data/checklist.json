@@ -1,0 +1,58 @@
+{
+  "_description": "Лист заданий Макара: что ещё нужно донести на лендинг",
+  "_usage": "checklist.js делает HEAD-запрос на каждый probe. Есть файл — пункт закрыт сам. Отметку «сделал» ставит сам Макар в localStorage.",
+  "_note": "probe — путь, который ждёт лендинг. Положил файл по этому пути — пункт стал зелёным, код менять не нужно.",
+  "groups": [
+    {
+      "id": "gear",
+      "sortie": 7,
+      "title": "СНАРЯЖЕНИЕ ЛЁТЧИКА",
+      "subtitle": "Вылет № 7 · Знаток снаряжения",
+      "lead": "Найди фотографию каждого предмета и расскажи голосом, зачем он лётчику нужен. Бронза — четыре предмета. Серебра добавит ответ, какой предмет ты взял бы первым и почему. Золота — все шесть.",
+      "items": [
+        {"id": "planshet", "title": "Лётный планшет", "what": "Найди фото и объясни, как пилот вёл самолёт по карте", "probe": "assets/img/gear/planshet.jpg", "voice": "assets/media/voice/makar-gear-planshet.mp3"},
+        {"id": "karta", "title": "Карта и карандаши", "what": "Найди фото и объясни, зачем нужны карта и карандаш", "probe": "assets/img/gear/karta.jpg", "voice": "assets/media/voice/makar-gear-karta.mp3"},
+        {"id": "pistolet", "title": "Пистолет ТТ", "what": "Найди фото и объясни, зачем пилоту личное оружие", "probe": "assets/img/gear/pistolet.jpg", "voice": "assets/media/voice/makar-gear-pistolet.mp3"},
+        {"id": "nz", "title": "НЗ — неприкосновенный запас", "what": "Найди фото и объясни, что клали в НЗ и на сколько дней", "probe": "assets/img/gear/nz.jpg", "voice": "assets/media/voice/makar-gear-nz.mp3"},
+        {"id": "shlem", "title": "Шлем и очки", "what": "Найди фото и объясни, от чего они защищают", "probe": "assets/img/gear/shlem.jpg", "voice": "assets/media/voice/makar-gear-shlem.mp3"},
+        {"id": "parashut", "title": "Парашют", "what": "Найди фото и объясни, почему парашют называют последним другом", "probe": "assets/img/gear/parashut.jpg", "voice": "assets/media/voice/makar-gear-parashut.mp3"}
+      ]
+    },
+    {
+      "id": "chronicle",
+      "sortie": 10,
+      "title": "ХРОНИКА САМОЛЁТОВ",
+      "subtitle": "Проект «От Ил-2 до Су-57»",
+      "lead": "Три самолёта, на которых держится вся история проекта. Найди фото каждого и скажи, чем он отличается от остальных.",
+      "items": [
+        {"id": "pe2", "title": "Фото По-2", "what": "Поищи самолёт, на котором летал Похмельцев", "probe": "assets/img/chronicle/pe2.jpg"},
+        {"id": "tu160", "title": "Фото Ту-160 «Белый лебедь»", "what": "Самый большой боевой самолёт, который летает сегодня", "probe": "assets/img/chronicle/tu160.jpg"},
+        {"id": "su57", "title": "Фото Су-57", "what": "Главный герой проекта — и точка, к которой мы летим от Ил-2", "probe": "assets/img/chronicle/su57.jpg"}
+      ]
+    },
+    {
+      "id": "voices",
+      "sortie": 8,
+      "title": "ГОЛОС ЭСКАДРИЛЬИ",
+      "subtitle": "Вылет № 8 · Голос эскадрильи",
+      "lead": "Проект звучит. Стих и песня — твои голоса на лендинге.",
+      "items": [
+        {"id": "stihi", "title": "Зачитай стих о лётчиках", "what": "Запиши на телефон, как ты читаешь — без подсказки", "probe": "assets/media/stihi-makar.mp3"},
+        {"id": "pesnya", "title": "Спой песню с дядей Глебой", "what": "Дуэтом: ты и дядя Глеб", "probe": "assets/media/pesnya-makar.mp3"}
+      ]
+    },
+    {
+      "id": "exhibits",
+      "sortie": 9,
+      "title": "МУЗЕЙНЫЕ ЭКСПОНАТЫ",
+      "subtitle": "Вылет № 9 · Музейный рейд",
+      "lead": "Ты был в музее и видел настоящие вещи. Сфотографируй их и расскажи, что это такое.",
+      "items": [
+        {"id": "znachok", "title": "Знак «Гвардия»", "what": "Сфотографируй и расскажи, кто его носил", "probe": "assets/img/exhibits/znachok.jpg"},
+        {"id": "pilotka", "title": "Пилотка", "what": "Сфотографируй и расскажи, кто её носил", "probe": "assets/img/exhibits/pilotka.jpg"},
+        {"id": "gilzy", "title": "Гильзы", "what": "Сфотографируй и скажи, чьи это гильзы", "probe": "assets/img/exhibits/gilzy.jpg"},
+        {"id": "tkan", "title": "Кусочек шинели", "what": "Сфотографируй и расскажи, чья это шинель", "probe": "assets/img/exhibits/tkan.jpg"}
+      ]
+    }
+  ]
+}

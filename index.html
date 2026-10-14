@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Крылья Победы. От Ил-2 до Су-57 — проект Макара Захаренко</title>
+  <meta name="description" content="Исследовательский проект ученика 3 класса Макара Захаренко: значение военной авиации от Великой Отечественной войны до наших дней.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 19.5,11.5 29.5,11.5 21.5,17.5 24.5,27.5 16,21.5 7.5,27.5 10.5,17.5 2.5,11.5 12.5,11.5' fill='%23ff5b23'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/toast.css">
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="pre-inner">
+      <svg class="pre-plane" viewBox="0 0 64 64" aria-hidden="true"><polygon points="32,4 36,26 58,34 38,38 40,54 32,48 24,54 26,38 6,34 28,26" fill="currentColor"/></svg>
+      <div class="pre-title">ЗАПУСК ДВИГАТЕЛЯ</div>
+      <div class="pre-bar"><span id="preBar"></span></div>
+      <div class="pre-pct" id="prePct">0%</div>
+      <button id="startEngine" type="button" class="pre-start">ЗАПУСТИТЬ ДВИГАТЕЛЬ</button>
+      <div class="pre-hint">нажми, чтобы завести мотор</div>
+    </div>
+  </div>
+
+
+  <div id="scrollbar" aria-hidden="true"><span></span></div>
+  <div id="menuScrim" aria-hidden="true"></div>
+
+  <header id="topbar">
+    <a class="brand" href="#hero">
+      <svg viewBox="0 0 32 32" class="brand-star" aria-hidden="true"><polygon points="16,2 19.5,11.5 29.5,11.5 21.5,17.5 24.5,27.5 16,21.5 7.5,27.5 10.5,17.5 2.5,11.5 12.5,11.5"/></svg>
+      <span>КРЫЛЬЯ<b>ПОБЕДЫ</b></span>
+    </a>
+    <nav id="mainNav">
+      <a href="#briefing">Брифинг</a>
+      <a href="#flightTimeline">Вылеты</a>
+      <a href="#chronicle">Хроника</a>
+      <a href="#heroes">Герои</a>
+      <a href="#origami">Ангар</a>
+      <a href="#anatomy">Самолёт</a>
+      <a href="#quiz">Тест</a>
+      <a href="#training">Тренажёр</a>
+    </nav>
+    <div class="top-actions">
+      <div id="miniPlayer" class="mini-player">
+        <button id="prevTrack" type="button" class="mp-btn" title="Предыдущий трек">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button id="soundToggle" type="button" class="mp-btn mp-play" title="Фоновая музыка">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="mp-icon-play"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" class="mp-icon-pause" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button id="nextTrack" type="button" class="mp-btn" title="Следующий трек">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+        <div class="mp-track-info">
+          <span id="trackName" class="mp-track-name">Высоцкий</span>
+          <div class="mp-progress-wrap">
+            <div id="mpProgress" class="mp-progress"></div>
+            <input id="mpSeek" type="range" min="0" max="100" value="0" class="mp-seek" title="Перемотка">
+          </div>
+          <span id="mpTime" class="mp-time">0:00</span>
+        </div>
+      </div>
+      <button id="burger" type="button" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="hero">
+      <canvas id="skyFx" aria-hidden="true"></canvas>
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video active" id="heroVidA" data-src="assets/media/hero-il2-1.mp4" muted playsinline preload="none" poster="assets/img/hero-poster.webp"></video>
+        <video class="hero-video" id="heroVidB" data-src="assets/media/hero-il2-2.mp4" muted playsinline preload="none"></video>
+        <div class="hero-tint"></div>
+      </div>
+      <div class="hero-content rv">
+        <p class="eyebrow">Исследовательский проект · Люберцы · 2026</p>
+        <h1>КРЫЛЬЯ<br><i>ПОБЕДЫ</i></h1>
+        <p class="hero-sub">От Ил-2 до Су-57 — как авиация приближала и бережёт Победу</p>
+        <p class="hero-author">Макар Захаренко, ученик 3 класса<br>МОУ Гимназия № 16 «Интерес»</p>
+        <div class="hero-cta">
+          <a class="btn btn-accent" href="#briefing">НАЧАТЬ МИССИЮ</a>
+          <a class="btn btn-ghost" href="#quiz">КАКОЙ ТЫ ПИЛОТ?</a>
+        </div>
+      </div>
+      <div class="radar" aria-hidden="true"><span></span></div>
+      <div class="hero-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v14m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+    </section>
+
+    <section id="briefing">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">БРИФИНГ МИССИИ</p>
+          <h2>ЦЕЛЬ ПРОЕКТА</h2>
+        </header>
+        <div class="grid-3">
+          <article class="panel hud rv">
+            <h3>ЦЕЛЬ</h3>
+            <p>Выяснить, какое значение имела военная авиация для Победы в Великой Отечественной войне и почему сильные самолёты нужны стране сегодня.</p>
+          </article>
+          <article class="panel hud rv">
+            <h3>ГИПОТЕЗА</h3>
+            <p>Без господства в небе не было бы Победы на земле. Самолёты были одним из главных инструментов Победы.</p>
+          </article>
+          <article class="panel hud rv">
+            <h3>ЗАДАЧИ</h3>
+            <ul>
+              <li>Изучить легендарные самолёты войны</li>
+              <li>Узнать героев-лётчиков и их подвиги</li>
+              <li>Понять, как авиация помогала фронту</li>
+              <li>Сравнить машины ВОВ с современными</li>
+            </ul>
+          </article>
+        </div>
+        <blockquote class="idea-line rv">Инженеры и герои во все времена превозмогали себя и совершали невозможное — ради славы народа, безопасности страны и победы над неприятелем.</blockquote>
+      </div>
+    </section>
+
+    <section id="flightTimeline" class="flight-timeline-section">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ДНЕВНИК ПОЛЁТОВ</p>
+          <h2>15 ВЫЛЕТОВ МАКАРА</h2>
+          <p class="sec-note">Каждый вылет — новое задание и новая медаль. Выполняй — заполняй лендинг — становись Лётчиком-асом!</p>
+        </header>
+        <div class="flight-timeline" id="flightTimeline">
+          <div class="ft-item done" data-flight="1"><span class="ft-num">01</span><span class="ft-name">Разведка неба</span><span class="ft-status">✅</span></div>
+          <div class="ft-item done" data-flight="2"><span class="ft-num">02</span><span class="ft-name">Летающий танк</span><span class="ft-status">✅</span></div>
+          <div class="ft-item active" data-flight="3"><span class="ft-num">03</span><span class="ft-name">Бумажный ангар</span><span class="ft-status">⏳</span></div>
+          <div class="ft-item" data-flight="4"><span class="ft-num">04</span><span class="ft-name">Ночные ведьмы</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="5"><span class="ft-num">05</span><span class="ft-name">Киноархивист</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="6"><span class="ft-num">06</span><span class="ft-name">Инженер</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="7"><span class="ft-num">07</span><span class="ft-name">Знаток снаряжения</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="8"><span class="ft-num">08</span><span class="ft-name">Голос эскадрильи</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="9"><span class="ft-num">09</span><span class="ft-name">Музейный рейд</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="10"><span class="ft-num">10</span><span class="ft-name">Мост поколений</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="11"><span class="ft-num">11</span><span class="ft-name">Моторист</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="12"><span class="ft-num">12</span><span class="ft-name">Штурман</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="13"><span class="ft-num">13</span><span class="ft-name">Моделист</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="14"><span class="ft-num">14</span><span class="ft-name">Оратор</span><span class="ft-status">—</span></div>
+          <div class="ft-item" data-flight="15"><span class="ft-num">15</span><span class="ft-name">Золотая звезда</span><span class="ft-status">—</span></div>
+        </div>
+        <div class="map-block rv">
+          <h3 class="map-title">КАРТА ВОЕННЫХ ДЕЙСТВИЙ</h3>
+          <p class="map-desc">Генеральный штаб Красной Армии, 1941 г. — район боевых действий, где летали наши лётчики</p>
+          <div class="map-wrap">
+            <img src="assets/img/timeline/map-1941.webp" alt="Военная карта 1941 года — Генеральный штаб Красной Армии" loading="lazy" class="map-img">
+            <svg class="map-overlay" viewBox="0 0 1000 620" aria-label="Маршруты вылетов Макара">
+              <defs>
+                <marker id="arrowR" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="var(--accent)"/></marker>
+                <marker id="arrowG" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="var(--hud)"/></marker>
+                <marker id="arrowY" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="var(--gold)"/></marker>
+                <marker id="arrowN" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="var(--night)"/></marker>
+                <marker id="arrowP" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7" fill="#ff6ba8"/></marker>
+                <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- Flight 1: Разведка неба — route from base to target area -->
+              <g class="flight-path" data-flight="1">
+                <path d="M180,350 Q300,280 420,310 Q500,330 560,280" fill="none" stroke="rgba(255,91,35,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q300,280 420,310 Q500,330 560,280" fill="none" stroke="var(--accent)" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowR)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="180" cy="350" r="10" fill="var(--accent)" opacity="1" stroke="rgba(255,91,35,0.4)" stroke-width="4"/><text x="180" y="378" text-anchor="middle" fill="var(--accent)" font-size="12" font-weight="700">БАЗА</text>
+                <circle cx="560" cy="280" r="10" fill="var(--accent)" opacity="1" stroke="rgba(255,91,35,0.4)" stroke-width="4"/><text x="560" y="265" text-anchor="middle" fill="var(--accent)" font-size="12" font-weight="700">ЦЕЛЬ</text>
+                <text x="370" y="280" text-anchor="middle" fill="var(--accent)" font-size="11" font-weight="700" opacity="1">Вылет №1</text>
+              </g>
+              <!-- Flight 2: Летающий танк — route to front line -->
+              <g class="flight-path" data-flight="2">
+                <path d="M180,350 Q250,420 380,440 Q500,460 650,400 Q720,370 780,340" fill="none" stroke="rgba(93,240,182,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q250,420 380,440 Q500,460 650,400 Q720,370 780,340" fill="none" stroke="var(--hud)" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowG)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="780" cy="340" r="10" fill="var(--hud)" opacity="1" stroke="rgba(93,240,182,0.4)" stroke-width="4"/><text x="780" y="325" text-anchor="middle" fill="var(--hud)" font-size="12" font-weight="700">ФРОНТ</text>
+                <text x="480" y="462" text-anchor="middle" fill="var(--hud)" font-size="11" font-weight="700" opacity="1">Вылет №2</text>
+              </g>
+              <!-- Flight 3: Бумажный ангар — короткий маршрут рядом с базой -->
+              <g class="flight-path" data-flight="3">
+                <path d="M180,350 Q150,430 130,492" fill="none" stroke="rgba(240,178,60,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q150,430 130,492" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowY)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="130" cy="492" r="10" fill="var(--gold)" stroke="rgba(240,178,60,0.4)" stroke-width="4"/>
+                <text x="130" y="517" text-anchor="middle" fill="var(--gold)" font-size="12" font-weight="700">АНГАР</text>
+                <text x="172" y="470" text-anchor="start" fill="var(--gold)" font-size="11" font-weight="700">Вылет №3</text>
+              </g>
+              <!-- Flight 4: Ночной разведчик — ночной бомбардировщик уходит вверх, к вражеской цели -->
+              <g class="flight-path" data-flight="4">
+                <path d="M180,350 Q300,190 480,160 Q680,130 880,150" fill="none" stroke="rgba(154,167,255,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q300,190 480,160 Q680,130 880,150" fill="none" stroke="var(--night)" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowN)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="880" cy="150" r="10" fill="var(--night)" stroke="rgba(154,167,255,0.4)" stroke-width="4"/><text x="880" y="132" text-anchor="middle" fill="var(--night)" font-size="12" font-weight="700" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">НОЧНАЯ ЦЕЛЬ</text>
+                <text x="480" y="126" text-anchor="middle" fill="var(--night)" font-size="11" font-weight="700" opacity="1" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">Вылет №4 · Ночные ведьмы</text>
+              </g>
+              <!-- Flight 5: Киноархивист — короткий вылет в киноархив -->
+              <g class="flight-path" data-flight="5">
+                <path d="M180,350 Q120,300 100,240" fill="none" stroke="rgba(91,143,255,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q120,300 100,240" fill="none" stroke="#5b8fff" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowN)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="100" cy="240" r="10" fill="#5b8fff" stroke="rgba(91,143,255,0.4)" stroke-width="4"/><text x="104" y="222" text-anchor="middle" fill="#5b8fff" font-size="12" font-weight="700" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">КИНОАРХИВ</text>
+                <text x="150" y="300" text-anchor="middle" fill="#5b8fff" font-size="11" font-weight="700" opacity="1" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">Вылет №5</text>
+              </g>
+              <!-- Flight 6: Инженер — маршрут вдоль фюзеляжа к центру машины -->
+              <g class="flight-path" data-flight="6">
+                <path d="M180,350 Q230,330 300,330 Q380,330 470,300" fill="none" stroke="rgba(255,107,168,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q230,330 300,330 Q380,330 470,300" fill="none" stroke="#ff6ba8" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowP)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="470" cy="300" r="10" fill="#ff6ba8" stroke="rgba(255,107,168,0.4)" stroke-width="4"/><text x="478" y="286" text-anchor="middle" fill="#ff6ba8" font-size="12" font-weight="700" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">ДВИГАТЕЛЬ</text>
+                <text x="300" y="352" text-anchor="middle" fill="#ff6ba8" font-size="11" font-weight="700" opacity="1" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">Вылет №6 · Инженер</text>
+              </g>
+              <!-- Flight 7: Знаток снаряжения — маршрут к снабжению на аэродроме -->
+              <g class="flight-path" data-flight="7">
+                <path d="M180,350 Q120,420 90,500" fill="none" stroke="rgba(120,230,190,0.3)" stroke-width="8" stroke-linecap="round"/>
+                <path d="M180,350 Q120,420 90,500" fill="none" stroke="#78e6be" stroke-width="4" stroke-dasharray="10 5" marker-end="url(#arrowG)" filter="url(#glow)" stroke-linecap="round"/>
+                <circle cx="90" cy="500" r="10" fill="#78e6be" stroke="rgba(120,230,190,0.4)" stroke-width="4"/><text x="96" y="484" text-anchor="middle" fill="#78e6be" font-size="12" font-weight="700" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">СКЛАД</text>
+                <text x="128" y="452" text-anchor="middle" fill="#78e6be" font-size="11" font-weight="700" opacity="1" stroke="rgba(10,14,20,.85)" stroke-width="3" paint-order="stroke">Вылет №7</text>
+              </g>
+              <!-- Легенда -->
+              <g class="map-legend">
+                <rect x="640" y="430" width="344" height="172" rx="6" fill="rgba(16,22,31,.9)" stroke="var(--line)" stroke-width="1"/>
+                <g class="map-legend-row" data-flight="1">
+                  <line x1="655" y1="452" x2="695" y2="452" stroke="var(--accent)" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="456" fill="var(--muted)" font-size="11">Вылет №1 — Разведка неба</text>
+                </g>
+                <g class="map-legend-row" data-flight="2">
+                  <line x1="655" y1="475" x2="695" y2="475" stroke="var(--hud)" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="479" fill="var(--muted)" font-size="11">Вылет №2 — Летающий танк</text>
+                </g>
+                <g class="map-legend-row" data-flight="3">
+                  <line x1="655" y1="498" x2="695" y2="498" stroke="var(--gold)" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="502" fill="var(--muted)" font-size="11">Вылет №3 — Бумажный ангар</text>
+                </g>
+                <g class="map-legend-row" data-flight="4">
+                  <line x1="655" y1="521" x2="695" y2="521" stroke="var(--night)" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="525" fill="var(--muted)" font-size="11">Вылет №4 — Ночные ведьмы</text>
+                </g>
+                <g class="map-legend-row" data-flight="5">
+                  <line x1="655" y1="544" x2="695" y2="544" stroke="#5b8fff" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="548" fill="var(--muted)" font-size="11">Вылет №5 — Киноархив</text>
+                </g>
+                <g class="map-legend-row" data-flight="6">
+                  <line x1="655" y1="567" x2="695" y2="567" stroke="#ff6ba8" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="571" fill="var(--muted)" font-size="11">Вылет №6 — Инженер</text>
+                </g>
+                <g class="map-legend-row" data-flight="7">
+                  <line x1="655" y1="590" x2="695" y2="590" stroke="#78e6be" stroke-width="3" stroke-dasharray="6 3"/>
+                  <text x="705" y="594" fill="var(--muted)" font-size="11">Вылет №7 — Снаряжение</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chronicle">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 01 · РАЗВЕДКА НЕБА</p>
+          <h2>ТРИ САМОЛЁТА ВОЙНЫ</h2>
+          <p class="sec-note">Макар нашёл фото и описания трёх легендарных самолётов</p>
+        </header>
+        <div class="stats grid-3 rv">
+          <div class="stat"><b data-count="110000">0</b><span>боевых самолётов построила страна за войну</span></div>
+          <div class="stat"><b data-count="36183">0</b><span>штурмовиков Ил-2 — мировой рекорд</span></div>
+          <div class="stat"><b data-count="59">0</b><span>побед лучшего аса Александра Покрышкина</span></div>
+        </div>
+        <header class="sec-head rv" style="margin-top:clamp(50px,8vw,90px)">
+          <p class="eyebrow">ВЫЛЕТ № 02 · ЛЕТАЮЩИЙ ТАНК</p>
+          <h2>ХРОНИКА: ОТ ИЛ-2 ДО СУ-57</h2>
+          <p class="sec-note">Макар посмотрел видео про Ил-2 и изучил историю авиации</p>
+        </header>
+        <ol class="timeline">
+          <li class="tl-item rv">
+            <div class="tl-year">1941</div>
+            <div class="tl-card panel hud"><h3>ИЛ-2 «ЛЕТАЮЩИЙ ТАНК»</h3><p>Бронированный штурмовик — самый массовый боевой самолёт в истории. Фашисты звали его «чёрная смерть».</p><img class="tl-img" src="assets/img/chronicle/il2.jpg" alt="Штурмовик Ил-2 — летающий танк" loading="lazy"></div>
+          </li>
+          <li class="tl-item rv">
+            <div class="tl-year">1941</div>
+            <div class="tl-card panel hud"><h3>ПО-2 · «НОЧНЫЕ ВЕДЬМЫ»</h3><p>Тихий учебный У-2 стал ночным бомбардировщиком. Женский полк немцы прозвали «ночными ведьмами» — они панически боялись их тихого «шороха» в небе.</p><img class="tl-img" src="assets/img/chronicle/po2.jpg" alt="Учебный По-2 — самолёт «ночных ведьм»" loading="lazy"></div>
+          </li>
+          <li class="tl-item rv">
+            <div class="tl-year">1943</div>
+            <div class="tl-card panel hud"><h3>ЯК-3 — ЛЮБИМЕЦ ЛЁТЧИКОВ</h3><p>Лёгкий юркий истребитель. На Як-3 воевал ас № 1 Александр Покрышкин. Немцам приказывали не вступать в бой с «яками» без крайней нужды.</p><img class="tl-img" src="assets/img/chronicle/yak3.jpg" alt="Истребитель Як-3" loading="lazy"></div>
+          </li>
+          <li class="tl-item rv">
+            <div class="tl-year">1945</div>
+            <div class="tl-card panel hud"><h3>ПЕ-2 И ТУ-2 — ДО БЕРЛИНА</h3><p>Скоростные бомбардировщики прокладывали дорогу танкам и пехоте, разбомбив укрепления врага до самого Берлина.</p><small>SLOT · assets/img/chronicle/pe2.jpg</small></div>
+          </li>
+          <li class="tl-item rv">
+            <div class="tl-year">Сегодня</div>
+            <div class="tl-card panel hud"><h3>ТУ-160 «БЕЛЫЙ ЛЕБЕДЬ»</h3><p>Самый большой сверхзвуковой бомбардировщик в мире. Его полёт — это гарантия, что войну к нам не принесут.</p><small>SLOT · assets/img/chronicle/tu160.jpg</small></div>
+          </li>
+          <li class="tl-item rv">
+            <div class="tl-year">Сегодня</div>
+            <div class="tl-card panel hud"><h3>СУ-57 — ПЯТОЕ ПОКОЛЕНИЕ</h3><p>Незаметный для радаров истребитель. Наследник «летающих танков»: та же задача — охранять небо Родины.</p><small>SLOT · assets/img/chronicle/su57.jpg</small></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="origami">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 03 · БУМАЖНЫЙ АНГАР</p>
+          <h2>БУМАЖНЫЙ АВИАПАРК</h2>
+          <p class="sec-note">Собери эскадрилью дома: три модели из листа А4 — истребитель, бомбардировщик, планер</p>
+        </header>
+        <div class="tabs rv" id="origamiTabs">
+          <nav class="tab-nav">
+            <button class="active" data-tab="fighter">ИСТРЕБИТЕЛЬ</button>
+            <button data-tab="bomber">БОМБАРДИРОВЩИК</button>
+            <button data-tab="glider">ПЛАНЕР-РАЗВЕДЧИК</button>
+          </nav>
+          <div class="tab-body panel hud">
+            <div class="tab-pane active" data-pane="fighter">
+              <div class="origami-steps">
+                <div class="origami-step"><svg viewBox="0 0 120 120"><rect x="20" y="20" width="80" height="80" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="20" x2="60" y2="100" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/><text x="60" y="14" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="700">ось</text></svg><span class="step-num">1</span><p>Согни лист вдоль пополам и разогни — получилась ось.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,20 20,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,20 100,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="20" y="60" width="80" height="40" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/></svg><span class="step-num">2</span><p>Загни верхние углы к оси.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 30,55 60,55" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,15 90,55 60,55" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="30" y="55" width="60" height="45" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/><text x="60" y="10" text-anchor="middle" fill="var(--hud)" font-size="9">острый нос</text></svg><span class="step-num">3</span><p>Ещё раз загни к оси — нос стал острым.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,10 25,100 60,90 95,100" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1.5"/><line x1="60" y1="10" x2="60" y2="90" stroke="var(--hud)" stroke-width="1" stroke-dasharray="2 2"/></svg><span class="step-num">4</span><p>Согни модель пополам по оси.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,10 30,90 60,80" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,10 90,50 60,80" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><path d="M90,50 L100,45" stroke="var(--hud)" stroke-width="1" marker-end="url(#arrow)"/></svg><span class="step-num">5</span><p>Отогни крыло вниз чуть выше центра корпуса.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,10 25,65 60,80" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,10 95,65 60,80" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><line x1="60" y1="10" x2="60" y2="80" stroke="var(--accent)" stroke-width="1"/><path d="M95,65 L105,60" stroke="var(--accent)" stroke-width="1.5"/><path d="M105,60 L105,55" stroke="var(--accent)" stroke-width="1.5"/><text x="60" y="100" text-anchor="middle" fill="var(--muted)" font-size="9">↑ второе крыло</text></svg><span class="step-num">6</span><p>Отогни второе крыло точно так же.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,10 25,65 60,80" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,10 95,65 60,80" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><line x1="25" y1="65" x2="18" y2="56" stroke="var(--accent)" stroke-width="2"/><polygon points="18,56 14,48 22,52" fill="var(--accent)"/><line x1="95" y1="65" x2="102" y2="56" stroke="var(--accent)" stroke-width="2"/><polygon points="102,56 106,48 98,52" fill="var(--accent)"/><text x="60" y="100" text-anchor="middle" fill="var(--gold)" font-size="9">↑ стабилизаторы</text><text x="60" y="112" text-anchor="middle" fill="var(--muted)" font-size="8">загни вверх</text></svg><span class="step-num">7</span><p>Кончики крыльев подними вверх — стабилизаторы.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" rx="8" fill="rgba(255,91,35,.05)" stroke="none"/><polygon points="60,20 15,75 60,90 105,75" fill="rgba(255,91,35,.15)" stroke="var(--accent)" stroke-width="2"/><polygon points="15,75 8,68" stroke="var(--accent)" stroke-width="2" fill="none"/><polygon points="105,75 112,68" stroke="var(--accent)" stroke-width="2" fill="none"/><path d="M60,90 L60,105" stroke="var(--accent)" stroke-width="2"/><path d="M50,100 L70,100" stroke="var(--accent)" stroke-width="1.5"/><text x="60" y="16" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="700">ГОТОВ!</text></svg><span class="step-num">8</span><p>Запускай резким движением прямо вперёд!</p></div>
+              </div>
+            </div>
+            <div class="tab-pane" data-pane="bomber">
+              <div class="origami-steps">
+                <div class="origami-step"><svg viewBox="0 0 120 120"><rect x="20" y="20" width="80" height="80" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="20" x2="60" y2="100" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/></svg><span class="step-num">1</span><p>Согни лист вдоль пополам и разогни.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,20 20,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,20 100,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="20" y="60" width="80" height="40" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/></svg><span class="step-num">2</span><p>Загни верхние углы к центру.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,50 20,60 100,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="20" y="60" width="80" height="40" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/><path d="M60,20 L60,50" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrow)"/><text x="60" y="14" text-anchor="middle" fill="var(--hud)" font-size="9">вниз ↓</text></svg><span class="step-num">3</span><p>Загни острый нос вниз, до середины листа.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,45 30,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,45 90,60 60,60" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="30" y="60" width="60" height="40" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/><circle cx="60" cy="42" r="4" fill="var(--gold)" stroke="none"/><text x="78" y="44" fill="var(--gold)" font-size="8">уголок</text></svg><span class="step-num">4</span><p>Снова загни верхние углы — оставь маленький уголок торчать.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,40 30,60 60,100 90,60" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1.5"/><circle cx="60" cy="55" r="5" fill="var(--gold)" stroke="none"/></svg><span class="step-num">5</span><p>Зафиксируй нос уголком.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 25,90 60,80 95,90" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,15 15,55 60,70" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,15 105,55 60,70" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/></svg><span class="step-num">6</span><p>Сложи пополам по оси, отогни широкие крылья.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 20,65 60,85 100,65" fill="rgba(255,91,35,.1)" stroke="var(--accent)" stroke-width="2"/><text x="60" y="105" text-anchor="middle" fill="var(--muted)" font-size="9">нос тупой ✓</text></svg><span class="step-num">7</span><p>Проверь: нос тупой и тяжёлый — так и надо.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 20,65 60,85 100,65" fill="rgba(255,91,35,.15)" stroke="var(--accent)" stroke-width="2"/><path d="M60,85 Q55,100 50,110" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/><text x="60" y="118" text-anchor="middle" fill="var(--accent)" font-size="10" font-weight="700">ПЛАНИРУЕТ</text></svg><span class="step-num">8</span><p>Запускай плавно, сверху вниз — он планирует грузно, как настоящий.</p></div>
+              </div>
+            </div>
+            <div class="tab-pane" data-pane="glider">
+              <div class="origami-steps">
+                <div class="origami-step"><svg viewBox="0 0 120 120"><rect x="20" y="20" width="80" height="50" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="20" x2="60" y2="70" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/><text x="60" y="110" text-anchor="middle" fill="var(--muted)" font-size="9">половина А4</text></svg><span class="step-num">1</span><p>Возьми половину листа А4 (разрежь по длинной стороне).</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><rect x="20" y="20" width="80" height="50" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="60" y1="20" x2="60" y2="70" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3 3"/></svg><span class="step-num">2</span><p>Согни вдоль пополам и разогни.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,20 20,55 60,55" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><polygon points="60,20 100,55 60,55" fill="rgba(255,91,35,.12)" stroke="var(--accent)" stroke-width="1.5"/><rect x="20" y="55" width="80" height="15" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3"/></svg><span class="step-num">3</span><p>Загни углы к оси всего один раз.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 25,70 60,65 95,70" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1.5"/></svg><span class="step-num">4</span><p>Сложи пополам по оси.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 15,50 60,65" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,15 105,50 60,65" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,15 40,70 60,65 80,70" fill="rgba(255,91,35,.08)" stroke="var(--accent)" stroke-width="1"/><text x="60" y="10" text-anchor="middle" fill="var(--hud)" font-size="9">длинные узкие</text></svg><span class="step-num">5</span><p>Отогни очень длинные узкие крылья.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 15,50 60,65" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><polygon points="60,15 105,50 60,65" fill="rgba(93,240,182,.1)" stroke="var(--hud)" stroke-width="1.5"/><path d="M15,50 L12,44" stroke="var(--gold)" stroke-width="2"/><path d="M105,50 L108,44" stroke="var(--gold)" stroke-width="2"/><text x="60" y="105" text-anchor="middle" fill="var(--gold)" font-size="9"> ↻ задняя кромка вверх</text></svg><span class="step-num">6</span><p>Слегка прогни заднюю кромку крыльев вверх.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 15,50 60,65 105,50" fill="rgba(93,240,182,.15)" stroke="var(--hud)" stroke-width="2"/><path d="M60,65 Q58,85 55,100" stroke="var(--muted)" stroke-width="1" fill="none" stroke-dasharray="3 2"/><text x="60" y="115" text-anchor="middle" fill="var(--muted)" font-size="9">мягко, без броска</text></svg><span class="step-num">7</span><p>Отпусти из руки спокойно, без броска.</p></div>
+                <div class="origami-step"><svg viewBox="0 0 120 120"><polygon points="60,15 15,50 60,65 105,50" fill="rgba(93,240,182,.2)" stroke="var(--hud)" stroke-width="2"/><path d="M60,65 Q58,80 55,95" stroke="var(--hud)" stroke-width="1.5" fill="none"/><path d="M55,95 Q52,105 50,110" stroke="var(--hud)" stroke-width="1" fill="none" stroke-dasharray="2 2"/><text x="60" y="118" text-anchor="middle" fill="var(--hud)" font-size="10" font-weight="700">ТИХО, КАК ПО-2</text></svg><span class="step-num">8</span><p>Он летит медленно и тихо — как По-2 ночью!</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="makar-report panel hud rv">
+          <div class="makar-report-head">
+            <span class="radio-who">МАКАР</span>
+            <p class="makar-report-title">Лётные испытания — замеры дальности</p>
+          </div>
+          <p class="makar-report-note">Курсант Макар сложил эскадрилью и снял на видео запуск самолётиков с замерами дальности. Штаб зачёл эти данные в вылет №3.</p>
+          <video controls preload="none" playsinline src="assets/media/makar-origami-dalnost.mp4"></video>
+        </div>
+      </div>
+    </section>
+
+    <section id="heroes">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 04 · НОЧНЫЕ ВЕДЬМЫ</p>
+          <h2>ГЕРОИ НЕБА</h2>
+          <p class="sec-note">Портреты Покрышкина, Маресьева, Гастелло, «Ночных ведьм» и Ильи Сизова найдены и присланы Макаром из своего архива. Штаб ждёт голосовой доклад курсанта: чем он знаменит и чему нас научил</p>
+        </header>
+        <div class="dossiers grid-3" id="dossierGrid">
+          <button class="dossier panel hud rv" data-hero="pokryshkin" data-voice="assets/media/voice/makar-hero-pokryshkin.mp3">
+            <span class="slot" data-file="assets/img/heroes/pokryshkin.jpg" data-focus="72% center" data-alt="Александр Покрышкин"></span>
+            <b>Александр Покрышкин</b><i>первый трижды Герой Советского Союза</i>
+          </button>
+          <button class="dossier panel hud rv" data-hero="maresev" data-voice="assets/media/voice/makar-hero-marsev.mp3">
+            <span class="slot" data-file="assets/img/heroes/marseev.jpg" data-focus="50% 12%" data-alt="Алексей Маресьев"></span>
+            <b>Алексей Маресьев</b><i>вернулся в небо без обеих ног</i>
+          </button>
+          <button class="dossier panel hud rv" data-hero="gastello" data-voice="assets/media/voice/makar-hero-gastello.mp3">
+            <span class="slot" data-file="assets/img/heroes/gastello.jpg" data-focus="50% 6%" data-alt="Николай Гастелло"></span>
+            <b>Николай Гастелло</b><i>«огненный таран», июнь 1941</i>
+          </button>
+          <button class="dossier panel hud rv" data-hero="witches" data-voice="assets/media/voice/makar-hero-witches.mp3">
+            <span class="slot" data-file="assets/img/heroes/witches.jpg" data-focus="50% 50%" data-alt="Героини советского неба — лётчицы ночных бомбардировщиков"></span>
+            <b>«Ночные ведьмы»</b><i>женский ночной бомбардировочный полк</i>
+          </button>
+          <button class="dossier panel hud rv" data-hero="modern" data-voice="assets/media/voice/makar-hero-sizov.mp3">
+            <span class="slot" data-file="assets/img/heroes/sizov.jpg" data-focus="40% 50%" data-alt="Илья Сизов — Герой Российской Федерации"></span>
+            <b>Илья Сизов</b><i>Герой России, защитник острова Змеиный</i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="cinema">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 05 · КИНОАРХИВИСТ</p>
+          <h2>НЕБО В КИНО</h2>
+          <p class="sec-note">Макар смотрит фильмы о войне и заполняет киноархив проекта</p>
+        </header>
+        <div class="cinema-grid">
+          <figure class="clip panel hud rv film-card" data-film="Лётчик" data-voice="assets/media/voice/makar-vylet5-otchet-1.mp3">
+            <div class="film-poster"><img src="assets/img/films/letchik.webp" alt="Постер фильма «Лётчик»" loading="lazy"><span class="film-year">2021</span></div>
+            <figcaption><b>Лётчик</b><span>О лётчике-штурмовике, попавшем к немцам</span><span class="film-note">Просмотрен · голос Макара</span></figcaption>
+          </figure>
+          <figure class="clip panel hud rv film-card" data-film="В бой идут одни старики" data-voice="assets/media/voice/makar-vylet5-otchet-2.mp3">
+            <div class="film-poster"><img src="assets/img/films/stariki.webp" alt="Постер фильма «В бой идут одни старики»" loading="lazy"><span class="film-year">1974</span></div>
+            <figcaption><b>В бой идут одни «старики»</b><span>Леонид Быков — о летчиках-истребителях</span><span class="film-note">Просмотрен · голос Макара</span></figcaption>
+          </figure>
+          <figure class="clip panel hud rv film-card" data-film="Повесть о настоящем человеке" data-voice="assets/media/voice/makar-vylet5-otchet-3.mp3">
+            <div class="film-poster"><img src="assets/img/films/povest.webp" alt="Постер фильма «Повесть о настоящем человеке»" loading="lazy"><span class="film-year">1948</span></div>
+            <figcaption><b>Повесть о настоящем человеке</b><span>История Алексея Маресьева</span><span class="film-note">Просмотрен · голос Макара</span></figcaption>
+          </figure>
+          <figure class="clip panel hud rv film-card film-quiet" data-film="Есть только МиГ">
+            <div class="film-poster"><img src="assets/img/films/est-mig.webp" alt="Постер фильма «Есть только МиГ»" loading="lazy"><span class="film-year">2022</span></div>
+            <figcaption><b>Есть только МиГ</b><span>Современный фильм о лётчиках</span><span class="film-note film-note-wait">Просмотрен · ожидает голоса</span></figcaption>
+          </figure>
+        </div>
+        <p class="cinema-foot rv">Нажми на фильм — и Макар расскажет, что он узнал и что его удивило. Нажми ещё раз, чтобы остановить.</p>
+      </div>
+    </section>
+
+    <section id="anatomy">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 06 · ИНЖЕНЕР</p>
+          <h2>УСТРОЙСТВО САМОЛЁТА</h2>
+          <p class="sec-note">Жми на точки прицела — изучи каждую часть самолёта Ил-2</p>
+        </header>
+        <div class="anatomy-layout">
+          <div class="anat-stage panel hud rv">
+            <svg id="planeSvg" viewBox="0 0 400 560" role="img" aria-label="Схема штурмовика Ил-2 сверху">
+              <defs>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ff5b23" stop-opacity=".35"/>
+                  <stop offset="100%" stop-color="#ff5b23" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <ellipse cx="200" cy="280" rx="185" ry="260" fill="none" stroke="#223047" stroke-dasharray="3 7"/>
+              <line x1="200" y1="10" x2="200" y2="550" stroke="#223047" stroke-dasharray="3 7"/>
+              <g id="p-fus" class="part">
+                <path d="M200,22 C210,30 216,50 218,80 L220,140 L222,280 C222,340 220,400 216,440 L212,460 C208,470 204,475 200,478 C196,475 192,470 188,460 L184,440 C180,400 178,340 178,280 L180,140 L182,80 C184,50 190,30 200,22 Z"/>
+              </g>
+              <g id="p-wing" class="part">
+                <path d="M196,170 L52,210 L40,230 L38,240 L42,248 L190,252 Z"/>
+                <path d="M204,170 L348,210 L360,230 L362,240 L358,248 L210,252 Z"/>
+                <rect x="82" y="236" width="22" height="6" rx="2"/>
+                <rect x="296" y="236" width="22" height="6" rx="2"/>
+                <line x1="52" y1="210" x2="190" y2="220" stroke="#46586f" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="348" y1="210" x2="210" y2="220" stroke="#46586f" stroke-width="1" stroke-dasharray="4 3"/>
+              </g>
+              <g id="p-tail" class="part">
+                <path d="M198,440 L130,468 L122,482 L196,476 Z"/>
+                <path d="M202,440 L270,468 L278,482 L204,476 Z"/>
+                <path d="M197,420 L203,420 L202,500 L198,500 Z"/>
+              </g>
+              <g id="p-cockpit" class="part">
+                <ellipse cx="200" cy="118" rx="12" ry="28"/>
+                <line x1="200" y1="90" x2="200" y2="146" stroke="#46586f" stroke-width="1"/>
+              </g>
+              <g id="p-gear" class="part">
+                <circle cx="148" cy="238" r="10"/><circle cx="252" cy="238" r="10"/>
+                <line x1="148" y1="226" x2="148" y2="238"/><line x1="252" y1="226" x2="252" y2="238"/>
+                <circle cx="200" cy="468" r="5"/>
+              </g>
+              <g id="p-prop" class="part">
+                <circle cx="200" cy="28" r="10"/>
+                <path d="M142,28 Q200,14 258,28" fill="none"/>
+                <path d="M146,36 Q200,48 254,36" fill="none"/>
+                <rect x="190" y="52" width="20" height="12" rx="3" fill="none" stroke="#46586f" stroke-width="1.5"/>
+              </g>
+              <g id="hotspots"></g>
+            </svg>
+            <aside class="anat-info panel hud rv" id="anatInfo">
+              <h3 id="anatTitle">ВЫБЕРИ УЗЕЛ НА СХЕМЕ</h3>
+              <p id="anatText">Шесть точек прицела — шесть главных частей самолёта Ил-2. Нажми на любую, чтобы получить доклад инженера.</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gear">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 07 · ЗНАТОК СНАРЯЖЕНИЯ</p>
+          <h2>ЭКИПИРОВКА ЛЁТЧИКА</h2>
+          <p class="sec-note">Наведи или коснись предмета — что с собой берёт пилот Ил-2</p>
+        </header>
+        <div class="gear-grid">
+          <article class="gear-item panel hud rv" data-voice="assets/media/voice/makar-gear-planshet.mp3"><div class="slot" data-file="assets/img/gear/planshet.jpg" data-alt="Лётный планшет пилота"></div><h3>ЛЁТНЫЙ ПЛАНШЕТ</h3><p>Колено летчика: на планшете крепится карта маршрута. Правой рукой штурвал — левой ведёт курс по карте.</p></article>
+          <article class="gear-item panel hud rv" data-voice="assets/media/voice/makar-gear-karta.mp3"><div class="slot" data-file="assets/img/gear/karta.jpg" data-alt="Карта и карандаши лётчика"></div><h3>КАРТА И КАРАНДАШИ</h3><p>Навигатор без GPS: маршрут, цель, обратный путь. Карандаш химический — пишет вверх ногами и в дождь.</p></article>
+          <article class="gear-item panel hud rv" data-voice="assets/media/voice/makar-gear-pistolet.mp3"><div class="slot" data-file="assets/img/gear/pistolet.jpg" data-alt="Пистолет ТТ — личное оружие пилота"></div><h3>ПИСТОЛЕТ (ТТ / НАГАН)</h3><p>Личное оружие пилота: защита на случай вынужденной посадки на территории врага.</p></article>
+          <article class="gear-item panel hud rv gear-quiet"><div class="slot" data-file="assets/img/gear/nz.jpg" data-alt="Неприкосновенный запас пилота"></div><h3>НЗ РАЦИОН</h3><p>Неприкосновенный запас: концентраты, шоколад, таблетки против укачивания. Хватает на несколько дней автономного выживания.</p></article>
+          <article class="gear-item panel hud rv" data-voice="assets/media/voice/makar-gear-shlem.mp3"><div class="slot" data-file="assets/img/gear/shlem.jpg" data-alt="Шлем и очки лётчика"></div><h3>ШЛЕМ И ОЧКИ</h3><p>На высоте минус 40: шлем греет, очки спасают от ледяного ветра открытой кабины По-2.</p></article>
+          <article class="gear-item panel hud rv" data-voice="assets/media/voice/makar-gear-parashut.mp3"><div class="slot" data-file="assets/img/gear/parashut.jpg" data-alt="Парашют пилота"></div><h3>ПАРАШЮТ</h3><p>Последний друг лётчика. Советские парашюты системы Котельникова спасли тысячи пилотов.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="voices">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 08 · ГОЛОС ЭСКАДРИЛЬИ</p>
+          <h2>ГОЛОСА НЕБА</h2>
+          <p class="sec-note">Макар читает стихи и поёт песни о лётчиках</p>
+        </header>
+        <div class="grid-2">
+          <div class="voice panel hud rv">
+            <h3>СТИХИ О ЛЁТЧИКАХ</h3>
+            <audio controls preload="none"><source src="assets/media/stihi-makar.mp3" type="audio/mpeg"></audio>
+            <small>SLOT · assets/media/stihi-makar.mp3</small>
+          </div>
+          <div class="voice panel hud rv">
+            <h3>ПЕСНЯ С ДЯДЕЙ ГЛЕБОМ</h3>
+            <audio controls preload="none"><source src="assets/media/pesnya-makar.mp3" type="audio/mpeg"></audio>
+            <small>SLOT · assets/media/pesnya-makar.mp3</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exhibits">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 09 · МУЗЕЙНЫЙ РЕЙД</p>
+          <h2>ЭКСПОНАТЫ УРОКА</h2>
+          <p class="sec-note">Макар побывал в музее и принёс в класс живую память о войне</p>
+        </header>
+        <div class="gear-grid four">
+          <figure class="exhibit panel hud rv">
+            <div class="slot" data-file="assets/img/exhibits/znachok.jpg"></div>
+            <figcaption><b>ЗНАК «ГВАРДИЯ»</b><span>такой знак сорвали фашисты с советской лётчицы — как в видео из нашего архива</span></figcaption>
+          </figure>
+          <figure class="exhibit panel hud rv">
+            <div class="slot" data-file="assets/img/exhibits/pilotka.jpg"></div>
+            <figcaption><b>ПИЛОТКА</b><span>форменный головной убор, как у героев проекта</span></figcaption>
+          </figure>
+          <figure class="exhibit panel hud rv">
+            <div class="slot" data-file="assets/img/exhibits/gilzy.jpg"></div>
+            <figcaption><b>ГИЛЬЗЫ</b><span>следы тех самых боёв</span></figcaption>
+          </figure>
+          <figure class="exhibit panel hud rv">
+            <div class="slot" data-file="assets/img/exhibits/tkan.jpg"></div>
+            <figcaption><b>КУСОЧЕК ШИНЕЛИ</b><span>солдатская ткань — можно потрогать руками</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="expedition">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 10 · МОСТ ПОКОЛЕНИЙ</p>
+          <h2>СРАВНЕНИЕ ЭПОХ</h2>
+          <p class="sec-note">Макар сравнивает Ил-2 и Су-57 — как авиация менялась за 80 лет</p>
+        </header>
+        <div class="grid-2">
+          <div class="exp-col">
+            <h3 class="col-title rv">МУЗЕИ И ВЫЕЗДЫ</h3>
+            <ul class="exp-list">
+              <li class="panel hud rv done">
+                <b>Храм вооружённых сил, Кубинка — 3 октября 2026</b>
+                <span>Макар с семьёй побывал в музее: реконструкция военных событий, экспонаты техники, полевой телефон и подлинные архивы. А в кабине истребителя МиГ-21 сидел уже как настоящий пилот.</span>
+                <div class="exp-media">
+                  <figure>
+                    <img src="assets/media/museum-2026/museum-mig21-cockpit.jpg" alt="Макар в кабине истребителя МиГ-21 с номером 24" loading="lazy">
+                    <figcaption>В кабине МиГ-21 — там, где сидит пилот</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/media/museum-2026/museum-recon-leaders.jpg" alt="Макар рядом с реконструкцией военачальников" loading="lazy">
+                    <figcaption>Реконструкция: Макар среди военачальников</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/media/museum-2026/museum-field-phone.jpg" alt="Макар разговаривает по полевому телефону" loading="lazy">
+                    <figcaption>У полевого телефона — техника, на которой держалась связь</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="assets/media/museum-2026/museum-navy-flot.jpg" alt="Диорама кораблей Северного флота с зенитной пушкой" loading="lazy">
+                    <figcaption>Корабли Северного флота — они тоже охраняли небо</figcaption>
+                  </figure>
+                  <figure class="exp-video">
+                    <video controls preload="none" playsinline src="assets/media/museum-2026/museum-recon-video.mp4"></video>
+                    <figcaption>Военная реконструкция — своими глазами</figcaption>
+                  </figure>
+                </div>
+                <a href="#radiogram">Доклад в журнале →</a>
+              </li>
+            </ul>
+          </div>
+          <div class="exp-col">
+            <h3 class="col-title rv">КИНОАРХИВ ПРОЕКТА</h3>
+            <ul class="exp-list">
+              <li class="panel hud rv"><b>Повесть о настоящем человеке</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
+              <li class="panel hud rv"><b>В бой идут одни старики</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
+              <li class="panel hud rv"><b>Лётчик</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
+              <li class="panel hud rv planned"><b>Фильм проекта</b><span>Запланировано к просмотру</span><span class="soon">СКОРО</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="wrap wrap-narrow">
+        <header class="sec-head rv">
+          <p class="eyebrow">ИНТЕРАКТИВ ДЛЯ ВСЕХ</p>
+          <h2>КАКОЙ ТЫ ПИЛОТ?</h2>
+          <p class="sec-note">Шесть вопросов — и ты узнаешь свою машину. Сможешь пройти любой посетитель!</p>
+        </header>
+        <div class="quiz-box panel hud rv" id="quizBox"></div>
+      </div>
+    </section>
+
+    <section id="training">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ИНТЕРАКТИВ ДЛЯ ВСЕХ</p>
+          <h2>ПОРАЗИ ВРАГА</h2>
+          <p class="sec-note">Немецкий истребитель Messerschmitt. Наводи прицел и бей — звучат очереди и остаются пробоины. Сможет любой посетитель!</p>
+        </header>
+        <div class="target-wrap">
+          <img loading="lazy" class="target-img" src="assets/img/messerschmitt.webp" alt="Немецкий истребитель Messerschmitt">
+          <div class="win" id="trainWin">
+            <h3>САМОЛЁТ ПОДБИТ!</h3>
+            <p>Отличная стрельба, лётчик «Сокол» — враг обезврежен.</p>
+            <button class="btn btn-accent" id="trainReset" type="button">ЕЩЁ РАЗ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="squadron">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ЭСКАДРИЛЬЯ «РАСТИ СЕМЬЯ»</p>
+          <h2>ПУТЬ МАКАРА</h2>
+          <p class="sec-note">Каждые 2 медали = следующее звание. Выполняй вылеты, заполняй лендинг — расти до «Лётчика-аса»!</p>
+        </header>
+        <div class="rank-progress">
+          <div class="rank-progress-head"><span>ПРОГРЕСС ЭСКАДРИЛЬИ</span><span id="rankCount">1 / 8 ЗВАНИЙ</span></div>
+          <div class="rank-bar"><i style="--p:12.5%"></i></div>
+          <p class="rank-next" id="nextRankInfo" style="color:var(--muted);font-size:.82rem;margin-top:8px"></p>
+          <p class="rank-streak" id="streakCount" style="color:var(--amber);font-size:.82rem;margin-top:4px;display:none"></p>
+        </div>
+        <div class="rank-grid">
+          <article class="rank-card panel hud rv is-earned has-video" data-step="01" data-video="assets/media/rank-kursant.mp4">
+            <span class="step">01</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/kurssant.webp" alt="Макар — Курсант">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+              <video data-src="assets/media/rank-kursant.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state done">✓ ПОЛУЧЕНО</span>
+            <b>Курсант</b>
+              <i>Старт кампании. Нужна 1 медаль — любая.</i>
+          </article>
+          <article class="rank-card panel hud rv is-earned has-video" data-step="02" data-video="assets/media/rank-ml-leitenant.mp4">
+            <span class="step">02</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/ml-leitenant.webp" alt="Макар — Младший лейтенант">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-ml-leitenant.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state done">✓ ПОЛУЧЕНО</span>
+            <b>Младший лейтенант</b>
+              <i>Нужно 2 медали: «Разведчик неба», «Летающий танк».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="03" data-video="assets/media/rank-leitenant.mp4">
+            <span class="step">03</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/leitenant.webp" alt="Макар — Лейтенант">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-leitenant.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Лейтенант</b>
+              <i>Нужно 4 медали: «Бумажный ас», «Ночной разведчик».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="04" data-video="assets/media/rank-st-leitenant.mp4">
+            <span class="step">04</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/st-leitenant.webp" alt="Макар — Старший лейтенант">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-st-leitenant.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Старший лейтенант</b>
+              <i>Нужно 6 медалей: «Киноархивист», «Инженер».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="05" data-video="assets/media/rank-kapitan.mp4">
+            <span class="step">05</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/kapitan.webp" alt="Макар — Капитан">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-kapitan.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Капитан</b>
+              <i>Нужно 8 медалей: «Знаток снаряжения», «Голос эскадрильи».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="06" data-video="assets/media/rank-maior.mp4">
+            <span class="step">06</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/maior.webp" alt="Макар — Майор">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-maior.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Майор</b>
+              <i>Нужно 10 медалей: «Музейный рейд», «Мост поколений».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="07" data-video="assets/media/rank-podpolkovnik.mp4">
+            <span class="step">07</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/podpolkovnik.webp" alt="Макар — Подполковник">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-podpolkovnik.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Подполковник</b>
+              <i>Нужно 12 медалей: «Моторист», «Штурман».</i>
+          </article>
+          <article class="rank-card panel hud rv is-locked has-video" data-step="08" data-video="assets/media/rank-letchik-as.mp4">
+            <span class="step">08</span>
+            <span class="rank-photo">
+              <img loading="lazy" src="assets/img/ranks/letchik-as.webp" alt="Макар — Лётчик-ас">
+              <span class="lock"><svg class="lock" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+    <video data-src="assets/media/rank-letchik-as.mp4" muted playsinline preload="none"></video>
+            </span>
+            <span class="state lock">ЗАКРЫТО</span>
+            <b>Лётчик-ас</b>
+              <i>ФИНАЛ: 14 медалей, 90% золотых. «Моделист», «Оратор», «Золотая звезда».</i>
+          </article>
+</div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ЛЕТОПИСЬ ЭСКАДРИЛЬИ «РАСТИ СЕМЬЯ»</p>
+          <h2>НАГРАДЫ МАКАРА</h2>
+          <p class="sec-note" id="awardProgress"></p>
+        </header>
+        <div class="medal-grid" id="medalGrid"></div>
+      </div>
+    </section>
+
+    <section id="radiogram">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ЖУРНАЛ РАДИОСВЯЗИ</p>
+          <h2>ПЕРЕГОВОРЫ ЭСКАДРИЛЬИ</h2>
+          <p class="sec-note">Голосовые переговоры штаба и эскадрильи «Расти семья» — задания, отчёты и подтверждения</p>
+        </header>
+        <button class="radio-toggle" id="radioToggle" aria-expanded="false">
+          <span class="radio-toggle-icon">&#9654;</span> Показать переговоры
+          <span class="radio-toggle-hint">46 голосовых сообщений и видео</span>
+        </button>
+        <div class="radio-log" id="radioLog">
+          <div class="radio-divider"><span>УСТАНОВКА СВЯЗИ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Установка связи с курсантом</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet0-ustanovka-svyazi.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Позывной курсанта: «Бессмертный»</p>
+                <audio controls preload="none" src="assets/media/voice/makar-callsign.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ПОСВЯЩЕНИЕ В КУРСАНТЫ · ПРИСЯГА</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Приказ о присяге курсанта</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-prisyaga-prikaz.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Текст присяги курсанта</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-prisyaga-tekst.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отговорки Макара</p>
+                <audio controls preload="none" src="assets/media/voice/makar-prisyaga-otgovorki.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Первая попытка присяги</p>
+                <audio controls preload="none" src="assets/media/voice/makar-prisyaga-pervaya-popytka.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Присяга не принята — переделай</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-prisyaga-ne-prinyata.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Присяга принята — Макар клянётся!</p>
+                <audio controls preload="none" src="assets/media/voice/makar-prisyaga-prinyata.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Видео присяги Макара</p>
+                <video controls preload="none" src="assets/media/Prisyaga_Makar_video.mp4"></video>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Присяга принята — добро пожаловать в эскадрилью!</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-prisyaga-prinyata.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №1 · РАЗВЕДКА НЕБА</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №1</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet1-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №1</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet1-otchet.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Подтверждение от штаба — Вылет №1</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet1-podtverzhdenie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №2 · ЛЕТАЮЩИЙ ТАНК</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №2</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet2-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №2 (часть 1)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet2-otchet-1.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Подтверждение от штаба и личный кабинет</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet2-podtverzhdenie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №2 (часть 2)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet2-otchet-2.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>РАЗВЕДКА СРОКОВ · ПУТЬ К ПОБЕДЕ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Радиограмма «Сроки Победы»</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-radiogramma-sroki-pobedy.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №3 · АНГАР ОРИГАМИ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №3</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet3-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Уточнение от штаба — Вылет №3</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet3-utochnenie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Нелётная погода — напоминание №1</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-nelletnaya-pogoda-1.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Нелётная погода — напоминание №2</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-nelletnaya-pogoda-2.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Нелётная погода — напоминание №3</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-nelletnaya-pogoda-3.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад Макара — Вылет №3 (видео: замеры дальности)</p>
+                <video controls preload="none" playsinline src="assets/media/makar-origami-dalnost.mp4"></video>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Бумажный ас»</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet3-prinyato.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Комментарий штаба о качестве видео</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet3-kommentari.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Выходной в музее — Храм вооружённых сил, Кубинка</p>
+                <p class="radio-note">3 октября 2026. Макар с семьёй: реконструкция военных событий, экспонаты техники, полевой телефон, архивы. Фото из кабины МиГ-21.</p>
+                <div class="radio-gallery">
+                  <img src="assets/media/museum-2026/museum-mig21-cockpit.jpg" alt="Макар в кабине МиГ-21" loading="lazy">
+                  <img src="assets/media/museum-2026/museum-recon-leaders.jpg" alt="Реконструкция военачальников" loading="lazy">
+                  <img src="assets/media/museum-2026/museum-field-phone.jpg" alt="Полевой телефон" loading="lazy">
+                  <img src="assets/media/museum-2026/museum-navy-flot.jpg" alt="Корабли Северного флота" loading="lazy">
+                </div>
+                <video controls preload="none" playsinline src="assets/media/museum-2026/museum-recon-video.mp4"></video>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №4 · НОЧНЫЕ ВЕДЬМЫ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №4 «Ночные ведьмы»</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet4-otchet-nochnye-vedy.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Ночной разведчик», золото</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 5 октября 2026.</p>
+                <p class="radio-note">Принят полный доклад: 3 факта о Ночных ведьмах, имена пилотов и найденное фото полка. Уровень — золото. Курсант «Бессмертный» получает звание Лейтенант: у него 4 медали. Начислено 9 743 боеприпаса.</p>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №5 · КИНОАРХИВИСТ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №5 «Киноархив»</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet5-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №5 «Киноархив» (часть 1)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet5-otchet-1.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №5 «Киноархив» (часть 2)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet5-otchet-2.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт Макара — Вылет №5 «Киноархив» (часть 3)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet5-otchet-3.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отзыв Макара «Как на меня повлиял фильм» (часть 4)</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet5-otchet-4.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Ответ штаба по отчёту — Вылет №5</p>
+                <p class="radio-text">Хорошая работа, Макар! Здорово, что ты вспомнил детали о фильме «Лётчик».<br>Я немного огорчён, что ты не стал смотреть новый фильм «Повесть о настоящем человеке» и делать выводы по нему, как мы договаривались по телефону.<br>Для золота осталось только написать отзыв «Как на меня повлиял этот фильм» — 3–5 предложений.</p>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отзыв Макара — текстом в чат</p>
+                <p class="radio-text">1) Он похож на меня тем, что такой же упёртый, как я.<br>2) Он пример для всех, потому что его организм был на грани, но он добрался до своих.<br>3) В команде он всегда поддерживал напарника: когда того ранили, говорил ему — «Ты хороший лётчик, ты долетишь».</p>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Киноархивист», золото</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 9 октября 2026.</p>
+                <p class="radio-note">Просмотрены все три фильма: «Лётчик», «В бой идут одни старики», «Повесть о настоящем человеке». Прислан доклад и письменный отзыв. Уровень — золото. Начислено 9 869 боеприпасов.</p>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №6 · ИНЖЕНЕР</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №6 «Устройство самолёта»</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet6-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — двигатель АМ-38 и винт</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-prop.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — бронированная кабина</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-cockpit.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — крылья и оружие</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-wing.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — шасси</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-gear.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — бронированный фюзеляж</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-fus.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Доклад по частям самолёта — хвостовое оперение</p>
+                <audio controls preload="none" src="assets/media/voice/makar-anatomy-tail.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Инженер», золото</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 10 октября 2026.</p>
+                <p class="radio-note">Разобраны все шесть частей Ил-2: двигатель, кабина, крылья с оружием, шасси, фюзеляж и хвост. Каждая часть объяснена голосом и теперь озвучивается прямо на схеме самолёта. Уровень — золото. Начислено 9 888 боеприпасов.</p>
+              </div>
+            </div>
+          </article>
+          <div class="radio-divider"><span>ВЫЛЕТ №7 · ЗНАТОК СНАРЯЖЕНИЯ</span></div>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание от штаба — Вылет №7 «Экипировка пилота»</p>
+                <audio controls preload="none" src="assets/media/voice/shtab-vylet7-zadanie.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Снаряжение: лётный планшет</p>
+                <audio controls preload="none" src="assets/media/voice/makar-gear-planshet.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Снаряжение: карандаши и карта</p>
+                <audio controls preload="none" src="assets/media/voice/makar-gear-karta.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Снаряжение: пистолет ТТ</p>
+                <audio controls preload="none" src="assets/media/voice/makar-gear-pistolet.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Снаряжение: шлем лётчика</p>
+                <audio controls preload="none" src="assets/media/voice/makar-gear-shlem.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Снаряжение: парашют</p>
+                <audio controls preload="none" src="assets/media/voice/makar-gear-parashut.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side cmd">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Знаток снаряжения», бронза</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 11 октября 2026.</p>
+                <p class="radio-note">Пять предметов снаряжения принесены вместе с фотографиями и голосом: планшет, карта и карандаши, пистолет, шлем, парашют. Задание засчитано на бронзу. До серебра не хватает ответа: какой предмет Макар взял бы с собой первым и почему. До золота — фотографии и голоса по неприкосновенному запасу. Начислено 5 187 боеприпасов. Фото предметов встали в раздел «Экипировка лётчика», голоса озвучиваются по клику на карточку.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pilotPage">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ЛЁТНАЯ КНИЖКА · ЛИЧНАЯ СТРАНИЦА</p>
+          <h2>ЧЕМУ МАКАР ХОЧЕТ НАУЧИТЬСЯ</h2>
+          <p class="sec-note">Цели, которые Макар записал себе в лётную книжку от руки в начале проекта — к каждой ведёт один из пятнадцати вылетов</p>
+        </header>
+        <div class="pilot-page rv">
+          <div class="pilot-page-goals">
+            <article class="goal-item panel hud">
+              <span class="goal-label">ПОЗЫВНОЙ</span>
+              <b class="goal-value">Бессмертный</b>
+              <i>Курсант эскадрильи «Расти семья» — позывной можно услышать в журнале радиосвязи.</i>
+            </article>
+            <article class="goal-item panel hud">
+              <span class="goal-label">ЧЕМУ ХОЧЕТ НАУЧИТЬСЯ</span>
+              <b class="goal-value">Узнать о подвигах лётчиков и различать самолёты</b>
+              <i>Именно эту цель Макар записал в лётную книжку в начале проекта — и к ней ведёт каждый вылет.</i>
+            </article>
+            <article class="goal-item panel hud">
+              <span class="goal-label">ЦЕЛЬ — ЗВАНИЕ</span>
+              <b class="goal-value">Лётчик-ас</b>
+              <i>Финальное звание эскадрильи: 14 медалей, из них 90% золотого уровня.</i>
+            </article>
+            <article class="goal-item panel hud">
+              <span class="goal-label">БОЛЬШОЙ ПРИЗ</span>
+              <b class="goal-value">Наушники</b>
+              <i>Главный трофей, за который Макар копит боеприпасы в обменном пункте штурмана Сокола.</i>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ЛИСТ ЗАДАНИЙ · КОНСТРУКТОР ПРОЕКТА</p>
+          <h2>ЧТО ОСТАЛОСЬ СОБРАТЬ</h2>
+          <p class="sec-note">Лендинг растёт вместе с проектом: каждый твой материал занимает своё место. Зелёная галочка значит, что материал уже на сайте</p>
+        </header>
+        <div id="checklistBody" class="checklist-wrap"></div>
+      </div>
+    </section>
+
+    <section id="finale">
+      <canvas id="finaleFx" aria-hidden="true"></canvas>
+      <div class="wrap wrap-narrow">
+        <p class="eyebrow rv">ГЛАВНЫЙ ВЫВОД ПРОЕКТА</p>
+        <p class="finale-quote rv">Слава инженерам, создавшим <b>крылья Победы!</b></p>
+        <p class="finale-sub rv">Слава лётчикам, поднимавшимся в небо за Родину! Их мужество и изобретательность — навсегда в нашей памяти.<br>Мы наследуем их славу — и продолжаем их дело.<br>Спасибо за внимание! Готов ответить на вопросы.</p>
+        <a class="btn btn-accent rv" href="#quiz">ПРОЙТИ ОТБОР: КАКОЙ ТЫ ПИЛОТ?</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="foot-motto">Слава инженерам и лётчикам — крыльям Победы!</p>
+    <p>МОУ Гимназия № 16 «Интерес» · Макар Захаренко, 3 класс · научный руководитель: И.В. Хлыстова · Люберцы, 2026</p>
+    <p class="foot-note">Проект подготовлен семьёй для школьной исследовательской конференции. Материалы кинохроники и музыки используются в некоммерческих образовательных целях.</p>
+    <p class="foot-note">Фоновая музыка: В. Высоцкий — «Як-истребитель», «Воздушный бой» (кнопка в шапке сайта).</p>
+  </footer>
+
+  <div id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-window panel hud">
+      <button class="modal-close" type="button" data-close aria-label="Закрыть">×</button>
+      <div class="modal-photo slot" id="modalPhoto"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modalRank"></p>
+        <h3 id="modalName"></h3>
+        <p id="modalBio"></p>
+        <div class="slot media" id="modalVideo" data-file="iframe VK-видео о герое"></div>
+      </div>
+    </div>
+  </div>
+
+  <button id="toTop" type="button" aria-label="Наверх" title="Наверх">↑</button>
+  <div id="reticle" aria-hidden="true">
+    <svg viewBox="0 0 46 46" width="46" height="46">
+      <circle cx="23" cy="23" r="16" fill="none" stroke="rgba(255,90,35,.9)" stroke-width="1.5"/>
+      <circle cx="23" cy="23" r="2" fill="rgba(255,90,35,.9)"/>
+      <line x1="23" y1="2" x2="23" y2="14" stroke="rgba(255,90,35,.9)" stroke-width="1.5"/>
+      <line x1="23" y1="32" x2="23" y2="44" stroke="rgba(255,90,35,.9)" stroke-width="1.5"/>
+      <line x1="2" y1="23" x2="14" y2="23" stroke="rgba(255,90,35,.9)" stroke-width="1.5"/>
+      <line x1="32" y1="23" x2="44" y2="23" stroke="rgba(255,90,35,.9)" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div id="gate" class="gate">
+    <div class="gate-box panel hud">
+      <p class="eyebrow">ЭСКАДРИЛЬЯ «РАСТИ СЕМЬЯ»</p>
+      <h2>Вход по коду</h2>
+      <p class="sec-note">Сайт для Макара и семьи. Введите код доступа.</p>
+      <input id="gateCode" type="password" inputmode="numeric" autocomplete="off" placeholder="••••">
+      <button id="gateBtn" type="button" class="btn">Открыть</button>
+      <p id="gateErr" class="gate-err"></p>
+    </div>
+  </div>
+  <script src="assets/js/engine.js"></script>
+  <script src="assets/js/gate.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/voice.js"></script>
+  <script src="assets/js/checklist.js"></script>
+  <script src="assets/js/toast.js"></script>
+  <script src="assets/js/ammo.js"></script>
+  <script src="assets/js/squadron.js"></script>
+  <script src="assets/js/sokol.js"></script>
+  <script src="assets/js/microtasks.js"></script>
+  <script src="assets/js/medals.js"></script>
+  <script src="assets/js/ranks.js"></script>
+  <script src="assets/js/mg.js"></script>
+  <script src="assets/js/training.js"></script>
+  <script src="assets/js/reticle.js"></script>
+  <script src="assets/js/facts.js"></script>
+
+</body>
+</html>

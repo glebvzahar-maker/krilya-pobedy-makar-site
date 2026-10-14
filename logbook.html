@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бортовой журнал — Лётная книжка Макара Захаренко</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=PT+Serif:wght@400;700&display=swap');
+  :root {
+    --red: #b71c1c; --gold: #c9a227; --dark: #1a1a1a;
+    --cream: #f5f0e1; --brown: #5d4037; --olive: #4a5a3c;
+    --line: #8b7355;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A5 portrait; margin: 12mm 15mm; }
+  body { font-family:'PT Serif','Times New Roman',serif; background:#e8e0d0; color:var(--dark); line-height:1.5; }
+  .page { width:148mm; min-height:210mm; margin:10mm auto; padding:15mm; background:var(--cream); border:1px solid #ccc; page-break-after:always; position:relative; overflow:hidden; }
+  .page::before { content:''; position:absolute; top:0;left:0;right:0;bottom:0; background:repeating-linear-gradient(0deg,transparent,transparent 23px,rgba(139,115,85,0.08) 23px,rgba(139,115,85,0.08) 24px); pointer-events:none; }
+
+  /* COVER */
+  .cover { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; min-height:180mm; border:3px double var(--gold); padding:20mm 10mm; }
+  .cover h1 { font-family:'Playfair Display',serif; font-size:22pt; font-weight:900; color:var(--red); letter-spacing:3px; text-transform:uppercase; margin-bottom:4mm; line-height:1.2; }
+  .cover h2 { font-family:'Playfair Display',serif; font-size:13pt; font-weight:700; color:var(--dark); letter-spacing:2px; margin-bottom:6mm; }
+  .cover-line { width:60%; height:2px; background:var(--gold); margin:4mm auto; }
+  .cover-photo { width:50mm; height:65mm; border:2px solid var(--gold); margin:6mm auto; display:flex; align-items:center; justify-content:center; background:#e0d8c8; }
+  .cover-photo-label { font-size:8pt; color:#888; text-align:center; font-style:italic; }
+  .cover-squadron { font-size:11pt; color:var(--brown); margin-top:5mm; letter-spacing:1px; }
+  .cover-project { font-size:9pt; color:#666; margin-top:3mm; font-style:italic; }
+  .cover-date { font-size:9pt; color:#888; margin-top:6mm; }
+
+  /* SECTION TITLE */
+  .section-title { font-family:'Playfair Display',serif; font-size:14pt; text-align:center; color:var(--red); margin-bottom:5mm; text-transform:uppercase; letter-spacing:1.5px; border-bottom:2px solid var(--gold); padding-bottom:3mm; }
+
+  /* OATH */
+  .oath-title { font-family:'Playfair Display',serif; font-size:16pt; text-align:center; color:var(--red); margin-bottom:6mm; text-transform:uppercase; letter-spacing:2px; }
+  .oath-text { font-size:11pt; line-height:2; text-align:justify; margin-bottom:8mm; padding:5mm; border:1px solid var(--line); background:rgba(255,255,255,0.3); }
+  .oath-text em { color:var(--red); font-weight:700; }
+  .oath-signature { display:flex; justify-content:space-between; margin-top:10mm; font-size:10pt; }
+  .oath-signature .line { border-bottom:1px solid var(--dark); width:50mm; display:inline-block; margin-left:3mm; }
+
+  /* RANK TABLE */
+  .rank-table { width:100%; border-collapse:collapse; font-size:9pt; margin-top:4mm; }
+  .rank-table th { background:var(--red); color:white; padding:2.5mm 2mm; text-align:center; font-size:8pt; text-transform:uppercase; letter-spacing:0.5px; }
+  .rank-table td { border:1px solid var(--line); padding:2.5mm 2mm; text-align:center; vertical-align:middle; }
+  .rank-table tr:nth-child(even) { background:rgba(201,162,39,0.06); }
+  .rank-table .rank-name { font-weight:700; text-align:left; color:var(--brown); }
+  .rank-table .rank-req { color:#666; font-size:8pt; }
+  .rank-check { width:8mm; height:8mm; border:1px solid var(--line); display:inline-block; }
+
+  /* MEDALS */
+  .medals-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:4mm; }
+  .medal-cell { border:1.5px solid var(--line); padding:3mm; text-align:center; min-height:55mm; display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,0.2); }
+  .medal-num { font-size:7pt; color:#888; margin-bottom:1mm; text-transform:uppercase; letter-spacing:1px; }
+  .medal-name { font-size:9pt; font-weight:700; color:var(--brown); margin-bottom:2mm; line-height:1.2; }
+  .medal-stamp { width:35mm; height:35mm; border:1.5px dashed var(--line); display:flex; align-items:center; justify-content:center; margin:2mm 0; background:rgba(255,255,255,0.4); }
+  .medal-stamp-label { font-size:7pt; color:#aaa; text-align:center; font-style:italic; }
+  .medal-level { font-size:7.5pt; color:#666; margin-top:1mm; }
+  .medal-level span { display:inline-block; width:3mm; height:3mm; border-radius:50%; margin:0 0.5mm; vertical-align:middle; border:0.5px solid rgba(0,0,0,0.2); }
+  .medal-level .bronze { background:#cd7f32; }
+  .medal-level .silver { background:#c0c0c0; }
+  .medal-level .gold { background:#ffd700; }
+  .medal-date-line { font-size:7.5pt; color:#888; margin-top:1mm; width:100%; border-bottom:0.5px dotted #ccc; padding-bottom:0.5mm; }
+
+  /* SORTIE LOG */
+  .sortie-table { width:100%; border-collapse:collapse; font-size:8.5pt; margin-top:3mm; }
+  .sortie-table th { background:var(--olive); color:white; padding:2mm; text-align:center; font-size:7.5pt; text-transform:uppercase; letter-spacing:0.3px; }
+  .sortie-table td { border:1px solid var(--line); padding:2mm; vertical-align:top; height:10mm; }
+  .sortie-num { font-weight:700; text-align:center; width:8mm; color:var(--brown); }
+  .sortie-name { font-weight:600; color:var(--dark); }
+  .sortie-result { width:18mm; text-align:center; }
+  .sortie-result-circle { display:inline-block; width:5mm; height:5mm; border-radius:50%; border:1px solid var(--line); margin:0 1mm; vertical-align:middle; }
+  .sortie-result-circle.bronze { border-color:#cd7f32; }
+  .sortie-result-circle.silver { border-color:#c0c0c0; }
+  .sortie-result-circle.gold { border-color:#ffd700; }
+
+  /* MAP */
+  .map-container { width:100%; border:2px solid var(--line); margin-top:3mm; background:rgba(255,255,255,0.3); }
+  .map-container svg { width:100%; height:auto; }
+  .map-legend { font-size:7.5pt; color:#666; margin-top:2mm; display:flex; gap:4mm; flex-wrap:wrap; }
+  .map-legend-item { display:flex; align-items:center; gap:1mm; }
+  .map-legend-dot { width:3mm; height:3mm; border-radius:50%; display:inline-block; }
+
+  /* NOTES */
+  .notes-page-title { font-family:'Playfair Display',serif; font-size:13pt; text-align:center; color:var(--red); margin-bottom:4mm; text-transform:uppercase; letter-spacing:1px; }
+  .notes-lines { margin-top:3mm; }
+  .notes-line { border-bottom:1px solid rgba(139,115,85,0.2); height:8mm; width:100%; }
+  .notes-prompt { font-size:9pt; color:var(--brown); font-style:italic; margin-bottom:2mm; padding:2mm 3mm; border-left:2px solid var(--gold); background:rgba(201,162,39,0.05); }
+
+  /* CERTIFICATE */
+  .cert-page { text-align:center; padding:15mm 10mm; }
+  .cert-border { border:3px double var(--gold); padding:10mm; min-height:160mm; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .cert-title { font-family:'Playfair Display',serif; font-size:18pt; color:var(--red); text-transform:uppercase; letter-spacing:2px; margin-bottom:5mm; }
+  .cert-text { font-size:11pt; line-height:1.8; margin:3mm 0; }
+  .cert-rank { font-family:'Playfair Display',serif; font-size:16pt; font-weight:700; color:var(--gold); margin:4mm 0; text-transform:uppercase; letter-spacing:1px; }
+  .cert-signatures { display:flex; justify-content:space-between; width:80%; margin-top:10mm; font-size:9pt; }
+  .cert-sig-block { text-align:center; }
+  .cert-sig-line { border-bottom:1px solid var(--dark); width:40mm; margin:2mm auto; }
+
+  /* INSTRUCTIONS */
+  .instructions { font-size:8pt; color:#888; font-style:italic; padding:3mm; border:1px dashed #ccc; margin-top:3mm; background:rgba(255,255,255,0.3); }
+  .instructions strong { color:var(--brown); font-style:normal; }
+
+  /* WING DIVIDER */
+  .wing-divider { display:flex; align-items:center; gap:3mm; margin:4mm 0; }
+  .wing-divider::before,.wing-divider::after { content:''; flex:1; height:1px; background:var(--gold); }
+  .wing-divider svg { width:16px; height:16px; fill:var(--gold); }
+  .page-divider { text-align:center; font-size:8pt; color:#aaa; margin:3mm 0; letter-spacing:2px; text-transform:uppercase; }
+
+  @media print { body{background:white;} .page{margin:0;border:none;box-shadow:none;page-break-after:always;} }
+</style>
+</head>
+<body>
+
+<!-- ===== 1. ТИТУЛ ===== -->
+<div class="page">
+  <div class="cover">
+    <div style="width:60px;height:60px;margin-bottom:8mm;">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><polygon points="50,5 61,35 95,35 68,57 79,90 50,70 21,90 32,57 5,35 39,35" fill="#b71c1c" stroke="#c9a227" stroke-width="2"/></svg>
+    </div>
+    <h1>Бортовой журнал</h1>
+    <h2>Лётчика-курсанта</h2>
+    <div class="cover-line"></div>
+    <div class="cover-photo"><span class="cover-photo-label">ФОТО ПИЛОТА<br>(вклеить сюда)</span></div>
+    <div class="cover-squadron">МАКАР ЗАХАРЕНКО</div>
+    <div class="cover-project">Эскадрилья «РАСТИ СЕМЬЯ»</div>
+    <div class="cover-line" style="width:40%"></div>
+    <div class="cover-project">«КРЫЛЬЯ ПОБЕДЫ: ОТ ИЛ-2 ДО СУ-57»</div>
+    <div class="cover-date">Зачислен в эскадрилью: «____» ____________ 2026 г.<br>Номер зачёта: ____________</div>
+  </div>
+</div>
+
+<!-- ===== 2. ЛИЧНАЯ СТРАНИЦА ===== -->
+<div class="page">
+  <div class="section-title">Личная страница лётчика</div>
+  <div style="margin-top:4mm;">
+    <div style="font-size:10pt;color:var(--brown);font-weight:700;margin-bottom:2mm;">Полное имя:</div>
+    <div style="border-bottom:1px solid var(--dark);width:100%;height:7mm;margin-bottom:4mm;"></div>
+    <div style="font-size:10pt;color:var(--brown);font-weight:700;margin-bottom:2mm;">Дата рождения:</div>
+    <div style="border-bottom:1px solid var(--dark);width:60mm;height:7mm;margin-bottom:4mm;"></div>
+    <div style="font-size:10pt;color:var(--brown);font-weight:700;margin-bottom:2mm;">Позывной:</div>
+    <div style="border-bottom:1px solid var(--dark);width:60mm;height:7mm;margin-bottom:4mm;"></div>
+    <div style="font-size:10pt;color:var(--brown);font-weight:700;margin-bottom:2mm;">Текущее звание:</div>
+    <div style="border-bottom:1px solid var(--dark);width:60mm;height:7mm;margin-bottom:4mm;"></div>
+    <div style="font-size:10pt;color:var(--brown);font-weight:700;margin-bottom:2mm;">Количество медалей:</div>
+    <div style="border-bottom:1px solid var(--dark);width:30mm;height:7mm;margin-bottom:4mm;"></div>
+  </div>
+  <div class="wing-divider" style="margin-top:6mm;">
+    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+  </div>
+  <div style="margin-top:4mm;">
+    <div class="notes-prompt">Чему я хочу научиться за время обучения?</div>
+    <div class="notes-lines"><div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div></div>
+    <div class="notes-prompt" style="margin-top:4mm;">Моя цель — получить звание:</div>
+    <div style="border-bottom:1px solid var(--dark);width:100%;height:8mm;"></div>
+    <div class="notes-prompt" style="margin-top:4mm;">Самый большой приз, который я хочу получить:</div>
+    <div class="notes-lines"><div class="notes-line"></div><div class="notes-line"></div></div>
+  </div>
+  <div class="page-divider">— стр. 2 —</div>
+</div>
+
+<!-- ===== 3. КЛЯТВА ===== -->
+<div class="page">
+  <div class="oath-title">Клятва курсанта</div>
+  <div class="wing-divider">
+    <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+  </div>
+  <div class="oath-text">
+    Я, <strong>Макар Захаренко</strong>, торжественно клянусь:<br><br>
+    — честно выполнять боевые задания;<br>
+    — не бросать начатое на полпути;<br>
+    — быть храбрым и настойчивым, как советские лётчики;<br>
+    — довести дело до <em>ПОБЕДЫ!</em><br><br>
+    <em>КЛЯНУСЬ! КЛЯНУСЬ! КЛЯНУСЬ!</em>
+  </div>
+  <div class="oath-signature">
+    <div>Курсант: <span class="line"></span></div>
+    <div>Дата: <span class="line"></span></div>
+  </div>
+  <div style="margin-top:15mm;"><div class="page-divider">— стр. 3 —</div></div>
+</div>
+
+<!-- ===== 4. КОЛЛЕКЦИЯ МЕДАЛЕЙ (1-9) ===== -->
+<div class="page">
+  <div class="section-title">Коллекция медалей</div>
+  <div class="medals-grid">
+    <div class="medal-cell"><div class="medal-num">Медаль №01</div><div class="medal-name">Разведчик неба</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №02</div><div class="medal-name">Летающий танк</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №03</div><div class="medal-name">Бумажный ас</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №04</div><div class="medal-name">Ночной разведчик</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №05</div><div class="medal-name">Киноархивист</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №06</div><div class="medal-name">Инженер</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №07</div><div class="medal-name">Знаток снаряжения</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №08</div><div class="medal-name">Голос эскадрильи</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №09</div><div class="medal-name">Музейный рейд</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+  </div>
+  <div class="instructions"><strong>Как заполнять:</strong> Распечатайте медали на плотной бумаге. Вырежьте по контуру. Приклейте на двусторонний скотч в ячейку. Кружок уровня закрасьте карандашом.</div>
+  <div class="page-divider">— стр. 4 —</div>
+</div>
+
+<!-- ===== 5. КОЛЛЕКЦИЯ МЕДАЛЕЙ (10-15) ===== -->
+<div class="page">
+  <div class="section-title">Коллекция медалей (продолжение)</div>
+  <div class="medals-grid">
+    <div class="medal-cell"><div class="medal-num">Медаль №10</div><div class="medal-name">Мост поколений</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №11</div><div class="medal-name">Моторист</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №12</div><div class="medal-name">Штурман</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №13</div><div class="medal-name">Моделист</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell"><div class="medal-num">Медаль №14</div><div class="medal-name">Оратор</div><div class="medal-stamp"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+    <div class="medal-cell" style="border-color:var(--gold);border-width:2px;"><div class="medal-num" style="color:var(--gold);">Медаль №15 ★</div><div class="medal-name" style="color:var(--red);">Золотая звезда</div><div class="medal-stamp" style="border-color:var(--gold);border-width:2px;"><span class="medal-stamp-label">Вклеить<br>медаль</span></div><div class="medal-level"><span class="bronze"></span><span class="silver"></span><span class="gold"></span></div><div class="medal-date-line">Дата: ___________</div></div>
+  </div>
+  <div class="instructions"><strong>Медаль №15 «Золотая звезда»</strong> — особая медаль. Вручается только за полностью завершённый проект. Вклеивается после защиты проекта.</div>
+  <div class="page-divider">— стр. 5 —</div>
+</div>
+
+<!-- ===== 6. ЖУРНАЛ ВЫЛЕТОВ (1-8) ===== -->
+<div class="page">
+  <div class="section-title">Журнал боевых вылетов</div>
+  <table class="sortie-table">
+    <thead><tr><th style="width:8mm">№</th><th style="text-align:left;width:35mm">Задание</th><th style="width:22mm">Дата</th><th style="width:25mm">Результат</th><th style="text-align:left">Заметки</th></tr></thead>
+    <tbody>
+      <tr><td class="sortie-num">01</td><td class="sortie-name">Разведка неба</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">02</td><td class="sortie-name">Летающий танк</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">03</td><td class="sortie-name">Ангар Оригами</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">04</td><td class="sortie-name">Ночные ведьмы</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">05</td><td class="sortie-name">Киноархив</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">06</td><td class="sortie-name">Устройство самолёта</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">07</td><td class="sortie-name">Экипировка пилота</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">08</td><td class="sortie-name">Голос эскадрильи</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="instructions"><strong>Как заполнять:</strong> Закрасьте кружок нужного цвета (бронза / серебро / золото). Запишите дату вылета и заметки.</div>
+  <div class="page-divider">— стр. 6 —</div>
+</div>
+
+<!-- ===== 7. ЖУРНАЛ ВЫЛЕТОВ (9-15) ===== -->
+<div class="page">
+  <div class="section-title">Журнал боевых вылетов (продолжение)</div>
+  <table class="sortie-table">
+    <thead><tr><th style="width:8mm">№</th><th style="text-align:left;width:35mm">Задание</th><th style="width:22mm">Дата</th><th style="width:25mm">Результат</th><th style="text-align:left">Заметки</th></tr></thead>
+    <tbody>
+      <tr><td class="sortie-num">09</td><td class="sortie-name">Музейный рейд</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">10</td><td class="sortie-name">Мост поколений</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">11</td><td class="sortie-name">Моторист</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">12</td><td class="sortie-name">Штурман</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">13</td><td class="sortie-name">Моделист</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">14</td><td class="sortie-name">Оратор</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+      <tr><td class="sortie-num">15</td><td class="sortie-name">Золотая звезда</td><td></td><td class="sortie-result"><span class="sortie-result-circle bronze"></span><span class="sortie-result-circle silver"></span><span class="sortie-result-circle gold"></span></td><td></td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:6mm;text-align:center;">
+    <div class="wing-divider"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div style="font-size:9pt;color:var(--brown);font-style:italic;margin-top:3mm;">«Каждый вылет — шаг к Победе»</div>
+  </div>
+  <div class="page-divider">— стр. 7 —</div>
+</div>
+
+<!-- ===== 8. КАРТА ВЫЛЕТОВ ===== -->
+<div class="page">
+  <div class="section-title">Карта боевых перелётов</div>
+  <div class="map-container" style="position:relative;line-height:0;">
+    <img src="map.jpeg" alt="Карта боевых перелётов" style="width:100%;height:auto;display:block;">
+    <svg viewBox="0 0 2362 1426" style="position:absolute;top:0;left:0;width:100%;height:100%;" xmlns="http://www.w3.org/2000/svg">
+      <!-- Маршрут Макара — линия (координаты на реальной карте 2362×1426) -->
+      <path d="M1850,420 L1520,580 L1250,520 L1050,490 L820,600 L620,430" fill="none" stroke="#ff5b23" stroke-width="10" stroke-dasharray="18,8" opacity="0.9"/>
+
+      <!-- БАЗА -->
+      <circle cx="1850" cy="420" r="18" fill="#b71c1c" stroke="#fff" stroke-width="4"/>
+      <text x="1850" y="395" text-anchor="middle" font-size="28" fill="#b71c1c" font-weight="bold" font-family="PT Serif,serif">БАЗА</text>
+
+      <!-- 01 -->
+      <circle cx="1740" cy="470" r="13" fill="#cd7f32" stroke="#fff" stroke-width="3"/>
+      <text x="1740" y="460" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">01</text>
+
+      <!-- 02 -->
+      <circle cx="1630" cy="530" r="13" fill="#cd7f32" stroke="#fff" stroke-width="3"/>
+      <text x="1630" y="520" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">02</text>
+
+      <!-- 03 -->
+      <circle cx="1520" cy="560" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1520" y="550" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">03</text>
+
+      <!-- 04 -->
+      <circle cx="1400" cy="550" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1400" y="540" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">04</text>
+
+      <!-- 05 -->
+      <circle cx="1300" cy="530" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1300" y="520" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">05</text>
+
+      <!-- 06 -->
+      <circle cx="1200" cy="510" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1200" y="500" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">06</text>
+
+      <!-- 07 -->
+      <circle cx="1100" cy="500" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1100" y="490" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">07</text>
+
+      <!-- 08 -->
+      <circle cx="1000" cy="495" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="1000" y="485" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">08</text>
+
+      <!-- 09 -->
+      <circle cx="920" cy="510" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="920" y="500" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">09</text>
+
+      <!-- 10 -->
+      <circle cx="860" cy="540" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="860" y="530" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">10</text>
+
+      <!-- 11 -->
+      <circle cx="800" cy="570" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="800" y="560" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">11</text>
+
+      <!-- 12 -->
+      <circle cx="750" cy="540" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="750" y="530" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">12</text>
+
+      <!-- 13 -->
+      <circle cx="710" cy="500" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="710" y="490" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">13</text>
+
+      <!-- 14 -->
+      <circle cx="660" cy="460" r="13" fill="#c0c0c0" stroke="#fff" stroke-width="3"/>
+      <text x="660" y="450" text-anchor="middle" font-size="20" fill="#fff" font-weight="bold" font-family="PT Serif,serif">14</text>
+
+      <!-- 15 ★ ФИНАЛ -->
+      <circle cx="620" cy="430" r="18" fill="#ffd700" stroke="#b71c1c" stroke-width="4"/>
+      <text x="620" y="420" text-anchor="middle" font-size="24" fill="#b71c1c" font-weight="bold" font-family="PT Serif,serif">15 ★</text>
+    </svg>
+  </div>
+  <div class="map-legend">
+    <div class="map-legend-item"><span class="map-legend-dot" style="background:#cd7f32"></span> Бронза</div>
+    <div class="map-legend-item"><span class="map-legend-dot" style="background:#c0c0c0"></span> Серебро</div>
+    <div class="map-legend-item"><span class="map-legend-dot" style="background:#ffd700"></span> Финал (золото)</div>
+    <div class="map-legend-item"><span class="map-legend-dot" style="background:#b71c1c"></span> База (Москва)</div>
+  </div>
+  <div class="instructions"><strong>Как использовать:</strong> По мере выполнения вылетов закрашивайте точки нужным цветом.</div>
+  <div class="page-divider">— стр. 8 —</div>
+</div>
+
+<!-- ===== 9. ТАБЕЛЬ РАНГОВ ===== -->
+<div class="page">
+  <div class="section-title">Табель рангов</div>
+  <table class="rank-table">
+    <thead><tr><th style="width:8mm">№</th><th style="text-align:left">Звание</th><th style="width:20mm">Нужно медалей</th><th style="width:15mm">Получено</th><th style="width:25mm">Дата присвоения</th><th style="width:15mm">✓</th></tr></thead>
+    <tbody>
+      <tr><td class="sortie-num">01</td><td class="rank-name">Курсант</td><td class="rank-req">0 (начальный)</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">02</td><td class="rank-name">Мл. лейтенант</td><td class="rank-req">2 медали</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">03</td><td class="rank-name">Лейтенант</td><td class="rank-req">4 медали</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">04</td><td class="rank-name">Ст. лейтенант</td><td class="rank-req">6 медалей</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">05</td><td class="rank-name">Капитан</td><td class="rank-req">8 медалей</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">06</td><td class="rank-name">Майор</td><td class="rank-req">10 медалей</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">07</td><td class="rank-name">Подполковник</td><td class="rank-req">12 медалей</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+      <tr><td class="sortie-num">08</td><td class="rank-name">Лётчик-ас</td><td class="rank-req">14 медалей + 90% золотых</td><td></td><td></td><td><div class="rank-check"></div></td></tr>
+    </tbody>
+  </table>
+  <div class="instructions"><strong>Инструкция:</strong> Отмечайте галочкой звание при наборе нужного количества медалей. Заполняйте дату присвоения. После каждого звания — заполните соответствующий аттестат.</div>
+  <div class="page-divider">— стр. 9 —</div>
+</div>
+
+<!-- ===== 10. АТТЕСТАТЫ (8 шт.) ===== -->
+
+<!-- Аттестат 1: Курсант -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №1</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">КУРСАНТ</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, Макар! Ты торжественно принял клятву курсанта и зачислен в эскадрилью «РАСТИ СЕМЬЯ». Ты поклялся честно выполнять боевые задания, не бросать начатое на полпути и быть храбрым, как советские лётчики. Это начало великого пути!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 1 —</div>
+</div>
+
+<!-- Аттестат 2: Мл. лейтенант -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №2</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">МЛАДШИЙ ЛЕЙТЕНАНТ</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, Макар! Ты успешно выполнил первые боевые задания и заслужил первые медали эскадрильи. Ты получил <strong>2 медали</strong> — это первые шаги к званию Лётчика-аса. Твоя настойчивость и трудолюбие впечатляют! Продолжай в том же духе!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 2 —</div>
+</div>
+
+<!-- Аттестат 3: Лейтенант -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №3</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">ЛЕЙТЕНАНТ</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, младший лейтенант Макар! Ты собрал уже <strong>4 медали</strong> эскадрильи! Ты изучил самолёты Великой Отечественной войны, узнал о подвигах ночных ведьм, освоил бумажное самолётостроение и многое другое. Твой путь — это путь настоящего лётчика!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 3 —</div>
+</div>
+
+<!-- Аттестат 4: Ст. лейтенант -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №4</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">СТАРШИЙ ЛЕЙТЕНАНТ</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, лейтенант Макар! <strong>6 медалей</strong> в твоей коллекции! Ты уже прошёл половину пути и знаешь о авиации больше, чем многие взрослые. Ты изучил устройство самолёта, экипировку пилота и даже выступил с голосом эскадрильи. Ты настоящий боец!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 4 —</div>
+</div>
+
+<!-- Аттестат 5: Капитан -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №5</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">КАПИТАН</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, старший лейтенант Макар! <strong>8 медалей</strong> — больше половины! Ты стал настоящим знатоком авиации: ты знаешь, как устроен самолёт, чем вооружён пилот и как работает мотор. Ты посетил музей и провёл сравнение Ил-2 и Су-57. Твой энтузиазм вдохновляет!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 5 —</div>
+</div>
+
+<!-- Аттестат 6: Майор -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №6</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">МАЙОР</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, капитан Макар! <strong>10 медалей</strong> — ты настоящий ас! Ты уже многому научился: разведке, истории, инженерии и даже ораторскому искусству. Ты продолжаешь покорять небо знаний. Осталось совсем немного до вершины — звания Лётчика-аса!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 6 —</div>
+</div>
+
+<!-- Аттестат 7: Подполковник -->
+<div class="page cert-page">
+  <div class="cert-border">
+    <div style="font-size:8pt;color:#888;letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">Аттестат №7</div>
+    <div class="cert-title">Лётный аттестат</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:14pt;">ПОДПОЛКОВНИК</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, майор Макар! <strong>12 медалей</strong> — ты почти у цели! Ты прошёл сложнейшие задания: создал презентацию, построил модель самолёта и подготовился к выступлению перед комиссией. Ты доказал, что можешь быть настойчивым, умным и храбрым. До звания Лётчика-аса — всего два шага!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 7 —</div>
+</div>
+
+<!-- Аттестат 8: Лётчик-ас -->
+<div class="page cert-page">
+  <div class="cert-border" style="border-color:var(--gold);border-width:3px;">
+    <div style="font-size:8pt;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:3mm;">★ Аттестат №8 ★</div>
+    <div class="cert-title" style="color:var(--gold);">★ ЛЁТНЫЙ АТТЕСТАТ ★</div>
+    <div class="wing-divider" style="width:60%;margin:3mm auto;"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>
+    <div class="cert-text">Настоящим удостоверяется, что</div>
+    <div class="cert-rank">МАКАР ЗАХАРЕНКО</div>
+    <div style="margin:3mm 0;"><div style="font-size:9pt;color:#666;">Присвоено звание:</div><div class="cert-rank" style="font-size:16pt;">★ ЛЁТЧИК-АС ★</div></div>
+    <div class="cert-text" style="font-size:10pt;text-align:left;line-height:1.7;">
+      Поздравляем, подполковник Макар! Ты завершил полный курс обучения в эскадрильи «РАСТИ СЕМЬЯ» и получил <strong>14 или более медалей</strong>, из которых <strong>не менее 90% — золотых</strong>!<br><br>
+      Ты прошёл все 15 боевых вылетов: от разведки неба до защиты проекта перед классом. Ты изучил историю авиации, устройство самолётов, экипировку пилотов, научился выступать публично и создал собственную презентацию.<br><br>
+      Ты — настоящий лётчик-ас! Твой подвиг — это труд, настойчивость и знания. Гордись этим званием!<br><br>
+      <strong>Ты заслужил главный приз:</strong> полёт в аэродинамической трубе / авиасимулятор / экскурсию на аэродром / посещение музея ВВС в Монино!
+    </div>
+    <div style="margin-top:4mm;font-size:9pt;color:#666;">Дата присвоения: «____» __________ 2026 г.</div>
+    <div class="cert-signatures" style="margin-top:8mm;">
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Командир эскадрильи</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Дядя Глеб</div></div>
+      <div class="cert-sig-block"><div style="font-size:8pt;color:#666;">Родитель</div><div class="cert-sig-line"></div><div style="font-size:8pt;color:#888;">Евгений</div></div>
+    </div>
+  </div>
+  <div class="page-divider">— аттестат 8 (финальный) —</div>
+</div>
+
+<!-- ===== 11. МОЙ ЛЮБИМЫЙ САМОЛЁТ ===== -->
+<div class="page">
+  <div class="notes-page-title">Мой любимый самолёт</div>
+  <div class="notes-prompt">Нарисуй или опиши свой любимый самолёт из проекта. Почему он тебе понравился?</div>
+  <div style="border:1.5px dashed var(--line);height:80mm;margin-top:4mm;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.3);">
+    <span style="font-size:9pt;color:#aaa;font-style:italic;">Место для рисунка или фото</span>
+  </div>
+  <div class="notes-lines" style="margin-top:4mm;">
+    <div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div>
+  </div>
+  <div class="page-divider">— стр. 10 —</div>
+</div>
+
+<!-- ===== 12. МОИ ЗАМЕТКИ ПИЛОТА ===== -->
+<div class="page">
+  <div class="notes-page-title">Мои заметки пилота</div>
+  <div class="notes-prompt">Запиши сюда, что нового ты узнал во время вылетов. Что было интересным? Что запомнилось больше всего?</div>
+  <div class="notes-lines">
+    <div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div>
+    <div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div>
+    <div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div>
+    <div class="notes-line"></div><div class="notes-line"></div><div class="notes-line"></div>
+  </div>
+  <div class="page-divider">— стр. 11 —</div>
+</div>
+
+</body>
+</html>
