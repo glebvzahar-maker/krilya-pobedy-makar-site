@@ -1336,11 +1336,24 @@
 
     <section id="finale">
       <canvas id="finaleFx" aria-hidden="true"></canvas>
+      <canvas id="finaleBoom" aria-hidden="true"></canvas>
       <div class="wrap wrap-narrow">
         <p class="eyebrow rv">ГЛАВНЫЙ ВЫВОД ПРОЕКТА</p>
         <p class="finale-quote rv">Слава инженерам, создавшим <b>крылья Победы!</b></p>
         <p class="finale-sub rv">Слава лётчикам, поднимавшимся в небо за Родину! Их мужество и изобретательность — навсегда в нашей памяти.<br>Мы наследуем их славу — и продолжаем их дело.<br>Спасибо за внимание! Готов ответить на вопросы.</p>
-        <a class="btn btn-accent rv" href="#quiz">ПРОЙТИ ОТБОР: КАКОЙ ТЫ ПИЛОТ?</a>
+        <div class="accept-block rv">
+          <button id="acceptBtn" class="btn btn-accent accept-btn" type="button">ПРИНЯТЬ ПРОЕКТ КОМИССИЕЙ</button>
+          <p class="accept-hint">Нажимает комиссия после защиты — и на экране появляется отметка о приёмке</p>
+        </div>
+        <div id="verdict" class="verdict panel hud" hidden>
+          <div class="verdict-stamp">
+            <span class="verdict-stamp-mark">ПРИНЯТО</span>
+          </div>
+          <h3 class="verdict-title">Проект принят комиссией</h3>
+          <p class="verdict-body">Исследовательский проект ученика 3 класса <b>Макара Захаренко</b><br>«Крылья Победы. От Ил-2 до Су-57»</p>
+          <p class="verdict-date" id="verdictDate"></p>
+          <p class="verdict-note">Работа зачтена. Макар — курсант эскадрильи «Расти семья».</p>
+        </div>
       </div>
     </section>
 
@@ -1404,6 +1417,7 @@
   <script src="assets/js/training.js"></script>
   <script src="assets/js/reticle.js"></script>
   <script src="assets/js/facts.js"></script>
+  <script src="assets/js/finale.js"></script>
 
 </body>
 </html>

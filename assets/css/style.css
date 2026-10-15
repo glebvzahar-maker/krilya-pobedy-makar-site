@@ -616,6 +616,62 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 
 #finale { text-align: center; overflow: hidden; }
 #finaleFx { position: absolute; inset: 0; width: 100%; height: 100%; }
+#finaleBoom { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+/* Приёмка проекта комиссией */
+.accept-block { margin-top: 8px; }
+.accept-btn { position: relative; z-index: 3; }
+.accept-hint { margin: 12px auto 0; max-width: 460px; font-size: .82rem; line-height: 1.5; color: var(--muted); }
+.accept-btn.done {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  cursor: default;
+  opacity: 1;
+}
+
+.verdict {
+  position: relative;
+  z-index: 4;
+  margin: 30px auto 0;
+  max-width: 560px;
+  padding: 30px 26px 26px;
+  text-align: center;
+  animation: verdictIn .7s cubic-bezier(.2, .9, .25, 1) both;
+}
+@keyframes verdictIn {
+  from { opacity: 0; transform: translateY(22px) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+.verdict-stamp {
+  display: inline-block;
+  padding: 9px 22px;
+  border: 3px solid var(--accent);
+  border-radius: 4px;
+  transform: rotate(-6deg);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(19px, 3.4vw, 28px);
+  letter-spacing: .14em;
+  opacity: .95;
+  animation: stampHit .55s cubic-bezier(.3, 1.6, .5, 1) .28s both;
+}
+@keyframes stampHit {
+  from { transform: rotate(-22deg) scale(2.4); opacity: 0; }
+  to { transform: rotate(-6deg) scale(1); opacity: .95; }
+}
+.verdict-title { margin: 20px 0 12px; }
+.verdict-body { color: var(--muted); line-height: 1.65; }
+.verdict-body b { color: var(--text); }
+.verdict-date {
+  margin: 16px 0 0;
+  font-family: var(--font-display);
+  font-size: .92rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+}
+.verdict-note { margin: 10px 0 0; font-size: .84rem; color: var(--muted); }
+
 .finale-quote {
   font-size: clamp(30px, 5.4vw, 62px);
   line-height: 1.15;
