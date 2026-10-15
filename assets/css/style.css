@@ -622,13 +622,10 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 .accept-block { margin-top: 8px; }
 .accept-btn { position: relative; z-index: 3; }
 .accept-hint { margin: 12px auto 0; max-width: 460px; font-size: .82rem; line-height: 1.5; color: var(--muted); }
-.accept-btn.done {
-  background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-  cursor: default;
-  opacity: 1;
-}
+/* Приёмка уже была — кнопка предлагает посмотреть салют заново */
+.accept-btn.replay { background: transparent; color: var(--gold); border: 2px solid rgba(240, 178, 60, .6); }
+.accept-btn.replay:hover { background: rgba(240, 178, 60, .12); color: var(--gold); border-color: var(--gold); }
+.accept-btn:disabled { cursor: wait; }
 
 .verdict {
   position: relative;
