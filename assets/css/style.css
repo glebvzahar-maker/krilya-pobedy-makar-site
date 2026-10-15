@@ -594,6 +594,19 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 .clip:hover { border-color: var(--accent); }
 
 .voice audio { width: 100%; margin-top: 16px; accent-color: var(--accent); }
+
+/* Блок стихотворения в разделе «Голоса неба» */
+.voice-poem { margin-bottom: 22px; }
+.voice-poem-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px; }
+.voice-poem-head h3 { margin: 0; }
+.voice-poem-author { margin: 6px 0 0; font-size: .78rem; letter-spacing: .06em; color: var(--muted); }
+.voice-poem-text { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.16rem; line-height: 1.75; color: var(--text); }
+.voice-poem-text p { margin: 0 0 14px; }
+.voice-poem-text p:last-child { margin-bottom: 0; }
+.voice-poem-player { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.voice-poem-label { margin: 0 0 8px; font-size: .74rem; letter-spacing: .1em; color: var(--gold); }
+.voice-poem-note { margin: 12px 0 0; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.voice-goal { margin: 12px 0 10px; font-size: .88rem; line-height: 1.5; color: var(--muted); }
 .voice small { display: block; margin-top: 10px; color: var(--muted); font-size: 11px; letter-spacing: .08em; }
 .vysotsky { margin-top: 24px; }
 .vysotsky h3 { color: var(--gold); font-size: 16px; margin-bottom: 8px; }

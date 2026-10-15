@@ -6,7 +6,8 @@
     "04",
     "05",
     "06",
-    "07"
+    "07",
+    "08"
   ],
   "medals": [
     {
@@ -50,11 +51,17 @@
       "name": "Знаток снаряжения",
       "level": "bronze",
       "sortie": 7
+    },
+    {
+      "id": "m08",
+      "name": "Голос эскадрильи",
+      "level": "bronze",
+      "sortie": 8
     }
   ],
-  "streak": 5,
+  "streak": 6,
   "totalRanks": 8,
   "totalMedals": 15,
-  "nextSortie": 8,
-  "ammo": 41124
+  "nextSortie": 9,
+  "ammo": 46311
 }
