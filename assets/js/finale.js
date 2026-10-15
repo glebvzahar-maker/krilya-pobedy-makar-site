@@ -9,7 +9,6 @@
 (function () {
   'use strict';
 
-  const KEY = 'makarFinaleVerdict';
   const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const PALETTE = [
@@ -252,7 +251,7 @@
   const ACCEPT_LABEL = 'ПРИНЯТЬ ПРОЕКТ КОМИССИЕЙ';
   const REPLAY_LABEL = 'ПОВТОРИТЬ САЛЮТ';
   const HINT_IDLE = 'Нажимает комиссия после защиты — и на экране появляется отметка о приёмке';
-  const HINT_REPLAY = 'Салют можно посмотреть сколько угодно раз — кнопка работает при каждом обновлении страницы';
+  const HINT_REPLAY = 'Салют уже показан — можно посмотреть его ещё раз. При обновлении страницы приёмка сбросится';
 
   /* Звук салюта. Громкость фоновой музыки на время гасим почти полностью,
      иначе две дорожки бьются друг о друга и обе звучат грязно — те же
@@ -289,8 +288,12 @@
     if (m && !m.paused) m.volume = MUSIC_VOL;
   }
 
-  /* Дату не пересчитываем: приёмка уже была, повторный салют — это просто
-     повтор просмотра. Иначе печать меняла бы дату на каждом запуске. */
+  /* Приёмка живёт только в памяти вкладки. Ничего не пишем в localStorage:
+     комиссия открывает лендинг — и каждый раз видит чистую кнопку
+     «Принять проект». Если приёмка переживала перезагрузку, комиссия
+     приходила бы на уже отмеченный проект, а сам салют нельзя было бы
+     посмотреть заново. Повтор внутри одной сессии (кнопка «Повторить
+     салют») для этого и оставлен. */
   let acceptedDate = null;
 
   function label(btn, hint) {
@@ -306,7 +309,6 @@
 
     if (!acceptedDate) {
       acceptedDate = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-      try { localStorage.setItem(KEY, acceptedDate); } catch (e) { /* приватный режим */ }
     }
     if (dateEl) dateEl.textContent = acceptedDate;
 
@@ -315,18 +317,6 @@
     if (window.showToast) {
       window.showToast('Комиссия приняла проект!', 'Макар Захаренко, «Крылья Победы. От Ил-2 до Су-57»');
     }
-  }
-
-  function restore() {
-    let saved = null;
-    try { saved = localStorage.getItem(KEY); } catch (e) { /* нет доступа */ }
-    if (!saved) return;
-    acceptedDate = saved;
-    const panel = document.getElementById('verdict');
-    const dateEl = document.getElementById('verdictDate');
-    if (!panel) return;
-    if (dateEl) dateEl.textContent = saved;
-    panel.hidden = false;
   }
 
   function init() {
@@ -343,6 +333,9 @@
     /* Кнопка не блокируется навсегда: после перезагрузки страницы приёмку
        можно посмотреть снова. Блокируется только на время салюта, чтобы
        случайный второй клик не запустил вторую волну поверх первой. */
+    /* Надпись меняется сразу, как только встала печать, а блокировка держится
+       до конца салюта: иначе кнопка секунд девять остаётся с надписью
+       «Принять проект», хотя на неё уже нажали. */
     btn.addEventListener('click', function () {
       if (btn.disabled) return;
       btn.disabled = true;
@@ -354,15 +347,16 @@
         return;
       }
       start(4200);
-      setTimeout(stamp, 420);
       setTimeout(function () {
+        stamp();
         label(btn, hint);
+      }, 420);
+      setTimeout(function () {
         btn.disabled = false;
         restoreMusic();
       }, 9800);
     });
 
-    restore();
     label(btn, hint);
   }
 
