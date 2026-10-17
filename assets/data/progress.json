@@ -55,7 +55,7 @@
     {
       "id": "m08",
       "name": "Голос эскадрильи",
-      "level": "bronze",
+      "level": "silver",
       "sortie": 8
     }
   ],
@@ -63,5 +63,5 @@
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 9,
-  "ammo": 46311
+  "ammo": 48124
 }
