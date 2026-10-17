@@ -606,6 +606,32 @@
     });
   });
 
+  /* ── «Где был Макар»: переходы по карточкам ──
+     Нативный переход по якорю здесь промахивается: пока идёт плавная
+     прокрутка, ленивые картинки выше подгружаются, высота страницы меняется
+     и секция уезжает на 400-500 px. Поэтому считаем позицию сами и делаем
+     ещё два прохода — на случай, если вёрстка осела после загрузки. */
+  function jumpTo(hash) {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const go = function () {
+      const top = target.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+    go();
+    setTimeout(go, 350);
+    setTimeout(go, 900);
+  }
+  $$('.wb-jump, .wb-film-links a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      const h = a.getAttribute('href');
+      if (!h || h.charAt(0) !== '#') return;
+      e.preventDefault();
+      try { history.replaceState(null, '', h); } catch (err) { /* старый браузер */ }
+      jumpTo(h);
+    });
+  });
+
   /* ── Лента вылетов: статусы берём из progress.json ──
      Дядя Глеба подтверждает вылет → правит medals и nextSortie в
      progress.json → пушит. Здесь плашки перестраиваются сами. */

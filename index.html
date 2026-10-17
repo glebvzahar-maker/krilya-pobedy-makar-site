@@ -574,6 +574,11 @@
           </figure>
         </div>
 
+        <figure class="muzej-recon panel hud rv">
+          <video controls preload="none" playsinline src="assets/media/museum-2026/museum-recon-video.mp4"></video>
+          <figcaption><b>ВОЕННАЯ РЕКОНСТРУКЦИЯ</b><span>Макар смотрел своими глазами, как сражалась оборона Москвы</span></figcaption>
+        </figure>
+
         <div class="muzej-report panel hud rv">
           <div class="muzej-report-head">
             <h3>ДОКЛАД МАКАРА О МУЗЕЕ</h3>
@@ -611,7 +616,7 @@
           </figure>
           <figure class="exhibit panel hud rv">
             <div class="slot" data-file="assets/img/exhibits/gilzy.jpg"></div>
-            <figcaption><b>ГИЛЬЗА</b><span>Макар добыл настоящую: капсула целая — значит патрон боевой. Осталось её сфотографировать</span></figcaption>
+            <figcaption><b>ГИЛЬЗА</b><span>Макар добыл настоящую: капсула целая — значит патрон боевой. Ждём фотографию</span></figcaption>
           </figure>
           <figure class="exhibit panel hud rv">
             <div class="slot" data-file="assets/img/exhibits/tkan.jpg"></div>
@@ -621,56 +626,86 @@
       </div>
     </section>
 
-    <section id="expedition">
+    <section id="whereabouts">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ГДЕ БЫЛ МАКАР</p>
+          <h2>МАРШРУТЫ И ФИЛЬМЫ</h2>
+          <p class="sec-note">Всё, где Макар побывал и что он посмотрел. Нажми на карточку — лендинг покажет подробности</p>
+        </header>
+        <div class="wb-grid">
+          <a class="wb-card panel hud rv wb-jump" href="#exhibits">
+            <span class="wb-photo">
+              <img src="assets/img/places/hram-kubinka.webp" alt="Главный храм Вооружённых сил в Кубинке на закате" loading="lazy">
+            </span>
+            <span class="wb-body">
+              <b>ХРАМ ВООРУЖЁННЫХ СИЛ, КУБИНКА</b>
+              <span>3 октября 2026 · реконструкция обороны Москвы, экспонаты техники и подлинные архивы</span>
+              <span class="wb-go">МУЗЕЙНЫЙ РЕЙД · ВЫЛЕТ № 9 →</span>
+            </span>
+          </a>
+          <div class="wb-card panel hud rv wb-films">
+            <span class="wb-body">
+              <b>КИНОАРХИВ ПРОЕКТА</b>
+              <span>Четыре фильма о войне и лётчиках. Нажми — лендинг покажет, что Макар узнал</span>
+              <span class="wb-film-links">
+                <a href="#cinema">Повесть о настоящем человеке</a>
+                <a href="#cinema">В бой идут одни «старики»</a>
+                <a href="#cinema">Лётчик</a>
+                <a href="#cinema">Есть только МиГ</a>
+              </span>
+              <span class="wb-go">НЕБО В КИНО · ВЫЛЕТ № 5 →</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section id="expedition">
       <div class="wrap">
         <header class="sec-head rv">
           <p class="eyebrow">ВЫЛЕТ № 10 · МОСТ ПОКОЛЕНИЙ</p>
           <h2>СРАВНЕНИЕ ЭПОХ</h2>
-          <p class="sec-note">Макар сравнивает Ил-2 и Су-57 — как авиация менялась за 80 лет</p>
+          <p class="sec-note">Макар сравнивает Ил-2 и Су-57 — как авиация изменилась за восемьдесят лет</p>
         </header>
-        <div class="grid-2">
-          <div class="exp-col">
-            <h3 class="col-title rv">МУЗЕИ И ВЫЕЗДЫ</h3>
-            <ul class="exp-list">
-              <li class="panel hud rv done">
-                <b>Храм вооружённых сил, Кубинка — 3 октября 2026</b>
-                <span>Макар с семьёй побывал в музее: реконструкция военных событий, экспонаты техники, полевой телефон и подлинные архивы. А в кабине истребителя МиГ-21 сидел уже как настоящий пилот.</span>
-                <div class="exp-media">
-                  <figure>
-                    <img src="assets/media/museum-2026/museum-mig21-cockpit.jpg" alt="Макар в кабине истребителя МиГ-21 с номером 24" loading="lazy">
-                    <figcaption>В кабине МиГ-21 — там, где сидит пилот</figcaption>
-                  </figure>
-                  <figure>
-                    <img src="assets/media/museum-2026/museum-recon-leaders.jpg" alt="Макар рядом с реконструкцией военачальников" loading="lazy">
-                    <figcaption>Реконструкция: Макар среди военачальников</figcaption>
-                  </figure>
-                  <figure>
-                    <img src="assets/media/museum-2026/museum-field-phone.jpg" alt="Макар разговаривает по полевому телефону" loading="lazy">
-                    <figcaption>У полевого телефона — техника, на которой держалась связь</figcaption>
-                  </figure>
-                  <figure>
-                    <img src="assets/media/museum-2026/museum-navy-flot.jpg" alt="Диорама кораблей Северного флота с зенитной пушкой" loading="lazy">
-                    <figcaption>Корабли Северного флота — они тоже охраняли небо</figcaption>
-                  </figure>
-                  <figure class="exp-video">
-                    <video controls preload="none" playsinline src="assets/media/museum-2026/museum-recon-video.mp4"></video>
-                    <figcaption>Военная реконструкция — своими глазами</figcaption>
-                  </figure>
-                </div>
-                <a href="#radiogram">Доклад в журнале →</a>
-              </li>
-            </ul>
+        <div class="gen-grid">
+          <div class="gen-col gen-il2">
+            <h3 class="col-title rv">ИЛ-2 · 1942</h3>
+            <div class="gen-slot panel hud rv">
+              <div class="slot" data-file="assets/img/expedition/il2-compare.jpg"></div>
+              <p class="gen-slot-hint">Фото или схема Ил-2 для сравнения</p>
+            </div>
+            <ul class="gen-points rv"><li class="gen-empty">Что расскажет Макар</li></ul>
+            <div class="gen-voice rv">
+              <p class="gen-voice-label">Голос Макара</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet10-il2.mp3"></audio>
+            </div>
           </div>
-          <div class="exp-col">
-            <h3 class="col-title rv">КИНОАРХИВ ПРОЕКТА</h3>
-            <ul class="exp-list">
-              <li class="panel hud rv"><b>Повесть о настоящем человеке</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
-              <li class="panel hud rv"><b>В бой идут одни старики</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
-              <li class="panel hud rv"><b>Лётчик</b><span>Фильм проекта · посмотрен</span><span class="soon done">✓ ПРОСМОТРЕН</span></li>
-              <li class="panel hud rv planned"><b>Фильм проекта</b><span>Запланировано к просмотру</span><span class="soon">СКОРО</span></li>
-            </ul>
+          <div class="gen-col gen-su57">
+            <h3 class="col-title rv">СУ-57 · ПЯТОЕ ПОКОЛЕНИЕ</h3>
+            <div class="gen-slot panel hud rv">
+              <div class="slot" data-file="assets/img/expedition/su57-compare.jpg"></div>
+              <p class="gen-slot-hint">Фото или схема Су-57 для сравнения</p>
+            </div>
+            <ul class="gen-points rv"><li class="gen-empty">Что расскажет Макар</li></ul>
+            <div class="gen-voice rv">
+              <p class="gen-voice-label">Голос Макара</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet10-su57.mp3"></audio>
+            </div>
           </div>
         </div>
+        <div class="gen-vs panel hud rv">
+          <h3 class="col-title">ЧЕМ ОНИ РАЗНЫЕ</h3>
+          <p class="gen-vs-note">Здесь появятся различия, которые назовёт Макар. Задание вылета — пять различий с объяснением</p>
+          <div class="gen-vs-rows">
+            <div class="gen-vs-row"><span class="gen-vs-num">01</span><p class="gen-vs-empty">ожидает доклада</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">02</span><p class="gen-vs-empty">ожидает доклада</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">03</span><p class="gen-vs-empty">ожидает доклада</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">04</span><p class="gen-vs-empty">ожидает доклада</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">05</span><p class="gen-vs-empty">ожидает доклада</p></div>
+          </div>
+        </div>
+        <p class="gen-foot rv">Задание вылета: сравнить Ил-2 и Су-57 и объяснить, чем они разные. Пять различий с объяснением — серебро, добавишь наглядную таблицу — золото.</p>
       </div>
     </section>
 
