@@ -62,7 +62,7 @@
     {
       "id": "m09",
       "name": "Музейный рейд",
-      "level": "silver",
+      "level": "gold",
       "sortie": 9
     }
   ],
@@ -70,5 +70,5 @@
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 10,
-  "ammo": 55124
+  "ammo": 58124
 }

@@ -615,16 +615,25 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 /* Раздел «Экспонаты урока»: фотографии музея и доклад Макара */
 .muzej-gallery {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
   margin-top: 18px;
 }
 .muzej-shot { margin: 0; padding: 12px; }
 .muzej-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 1px solid var(--line); border-radius: 4px; background: #05080c; }
-.muzej-shot:nth-child(3) img { object-position: center 32%; }
+.muzej-shot:nth-child(4) img { object-position: center 30%; }
 .muzej-shot figcaption { padding: 14px 4px 4px; }
 .muzej-shot figcaption b { display: block; font-family: var(--font-display); font-size: .9rem; letter-spacing: .06em; color: var(--gold); margin-bottom: 6px; }
 .muzej-shot figcaption span { display: block; font-size: .84rem; line-height: 1.5; color: var(--muted); }
+
+.muzej-medal {
+  margin: 12px 0 0; padding: 11px 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(240, 178, 60, .08);
+  font-size: .88rem; line-height: 1.5; color: var(--muted);
+  max-width: 720px;
+}
+.muzej-medal b { color: var(--gold); }
 
 .muzej-report { margin-top: 20px; padding: 24px 26px 26px; }
 .muzej-report-head { border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 18px; }
@@ -638,6 +647,7 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 .muzej-facts li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
 .muzej-facts b { color: var(--text); }
 
+@media (max-width: 1080px) { .muzej-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 860px) {
   .muzej-gallery, .muzej-clips, .muzej-facts { grid-template-columns: 1fr; }
   .muzej-gallery { gap: 14px; }
