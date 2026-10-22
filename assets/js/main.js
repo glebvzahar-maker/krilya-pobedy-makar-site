@@ -561,7 +561,7 @@
   /* ── duck music when radio audio/video plays ── */
   var MUSIC_VOL = .45;
   var DUCK_FACTOR = .1; // 90% reduction
-  document.querySelectorAll('#radioLog audio, #radioLog video').forEach(function(el) {
+  document.querySelectorAll('#radioLog audio, #radioLog video, #mvGrid video').forEach(function(el) {
     el.addEventListener('play', function() {
       if (audioCtx && !audioCtx.paused) audioCtx.volume = MUSIC_VOL * DUCK_FACTOR;
     });

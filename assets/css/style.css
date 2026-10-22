@@ -1305,3 +1305,22 @@ section[id] { scroll-margin-top: 76px; }
 .gen-vs-empty { margin: 0; font-size: .86rem; font-style: italic; color: var(--muted); }
 .gen-foot { margin: 22px auto 0; max-width: 680px; text-align: center; font-size: .85rem; line-height: 1.55; color: var(--muted); }
 @media (max-width: 860px) { .gen-grid { grid-template-columns: 1fr; } }
+
+/* ── «Видео от Макара»: колонка с вертикальными роликами ──
+   Ролики вертикальные (9:16), поэтому карточка — узкая колонка, а не
+   широкая плитка. Колонка рассчитана на рост: новые видео добавляются
+   следующими карточками в .mv-grid. */
+.mv-grid { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 18px; }
+.mv-card { margin: 0; padding: 14px; width: min(100%, 300px); transition: transform .2s, border-color .2s; }
+.mv-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.mv-card video {
+  display: block; width: 100%; aspect-ratio: 9 / 16; background: #05080c;
+  border: 1px solid var(--line); border-radius: 4px;
+}
+.mv-card figcaption { padding: 14px 6px 2px; }
+.mv-card figcaption b { display: block; font-family: var(--font-display); font-size: .95rem; letter-spacing: .06em; color: var(--gold); margin-bottom: 7px; }
+.mv-card figcaption span { display: block; font-size: .86rem; line-height: 1.5; color: var(--muted); margin-top: 5px; }
+.mv-note { color: var(--hud) !important; font-size: .76rem !important; letter-spacing: .08em; }
+.mv-src { font-size: .72rem !important; opacity: .72; }
+.mv-foot { margin-top: 20px; text-align: center; color: var(--muted); font-size: .84rem; }
+@media (max-width: 480px) { .mv-card { width: 100%; } }
