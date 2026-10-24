@@ -1343,7 +1343,8 @@ section[id] { scroll-margin-top: 76px; }
 .gen-il2 .col-title { color: var(--gold); }
 .gen-su57 .col-title { color: var(--accent); }
 .gen-slot { padding: 12px; }
-.gen-slot .slot { aspect-ratio: 4 / 3; }
+.gen-slot .slot { aspect-ratio: 4 / 3; margin: 0; padding: 0; border-style: solid; background: #05080c; }
+.gen-slot .slot img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gen-slot-hint { margin: 11px 4px 2px; font-size: .78rem; line-height: 1.45; color: var(--muted); }
 .gen-points { list-style: none; display: grid; gap: 9px; margin: 16px 0 0; }
 .gen-points li {
@@ -1364,6 +1365,28 @@ section[id] { scroll-margin-top: 76px; }
 .gen-vs-empty { margin: 0; font-size: .86rem; font-style: italic; color: var(--muted); }
 .gen-foot { margin: 22px auto 0; max-width: 680px; text-align: center; font-size: .85rem; line-height: 1.55; color: var(--muted); }
 @media (max-width: 860px) { .gen-grid { grid-template-columns: 1fr; } }
+
+/* Доклад Макара по вылету № 10: две части голоса */
+.exp-report { margin-top: 18px; padding: 20px 22px; }
+.exp-report-title { font-family: var(--font-display); font-size: .95rem; letter-spacing: .12em; color: var(--gold); }
+.exp-report-note { margin-top: 6px; font-size: .84rem; color: var(--muted); }
+.exp-report-audio { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+.exp-part-label { margin: 0 0 8px; font-size: .74rem; letter-spacing: .1em; color: var(--hud); }
+.exp-part audio { width: 100%; accent-color: var(--accent); }
+@media (max-width: 700px) { .exp-report-audio { grid-template-columns: 1fr; } }
+
+/* Параметры самолётов: в каждом пункте — название и значение */
+.gen-points li b { display: inline-block; min-width: 108px; color: var(--gold); font-weight: 700; font-size: .78rem; letter-spacing: .04em; text-transform: uppercase; }
+@media (max-width: 480px) { .gen-points li b { display: block; margin-bottom: 4px; } }
+
+/* Страница лётной книжки с таблицей сравнения */
+.exp-journal { margin-top: 20px; padding: 20px 22px; display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 22px; align-items: center; }
+.exp-journal-photo { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #05080c; }
+.exp-journal-photo img { display: block; width: 100%; height: auto; }
+.exp-journal figcaption b { display: block; font-family: var(--font-display); font-size: .95rem; letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; }
+.exp-journal figcaption span { display: block; font-size: .88rem; line-height: 1.55; color: var(--muted); }
+.exp-journal .exp-journal-note { margin-top: 12px; font-size: .72rem !important; letter-spacing: .1em; color: var(--hud) !important; }
+@media (max-width: 860px) { .exp-journal { grid-template-columns: 1fr; } }
 
 /* ── «Видео от Макара»: колонка с вертикальными роликами ──
    Ролики вертикальные (9:16), поэтому карточка — узкая колонка, а не
