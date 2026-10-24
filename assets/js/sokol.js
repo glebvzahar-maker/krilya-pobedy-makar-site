@@ -651,7 +651,7 @@
         <button class="sokol-btn sokol-btn-primary" data-action="nextStep">🚀 ${hint.action}</button>
         <button class="sokol-btn" data-action="microtask">📋 Микро-задание</button>
         <button class="sokol-btn" data-action="ammo">🎯 Боевые припасы</button>
-        <button class="sokol-btn" data-action="squadron">✈️ Викторина Эскадрильи</button>
+        <button class="sokol-btn" data-action="squadron">📰 Новости эскадрильи</button>
         <button class="sokol-btn" data-action="help">❓ Как пользоваться</button>
         <button class="sokol-btn" data-action="about">ℹ️ Обо мне</button>
       </div>
@@ -775,8 +775,9 @@
       }
 
       case 'squadron': {
-        body.innerHTML = '<div id="squadronContent">Загрузка...</div>';
-        actions.innerHTML = '<button class="sokol-btn" data-action="back">← Назад</button>';
+        body.innerHTML = '<div id="squadronContent">Загрузка...</div>' +
+          '<div class="sokol-hint-text">Викторина из ста вопросов живёт отдельной секцией — там прогресс сохраняется, а за правильные ответы падают боеприпасы.</div>';
+        actions.innerHTML = '<button class="sokol-btn sokol-btn-primary" data-action="goQuiz">🎯 Перейти к викторине</button>';
         bindActions(actions);
 
         if (window.Squadron) {
@@ -789,7 +790,18 @@
             window.Squadron.render('squadronContent');
           }
         } else {
-          document.getElementById('squadronContent').innerHTML = '<p>Викторина загружается...</p>';
+          document.getElementById('squadronContent').innerHTML = '<p>Новости загружаются...</p>';
+        }
+        break;
+      }
+
+      case 'goQuiz': {
+        hidePanel();
+        if (typeof window.MakarJumpTo === 'function') {
+          window.MakarJumpTo('#quiz');
+        } else {
+          const target = document.getElementById('quiz');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         break;
       }
@@ -948,9 +960,19 @@
     loadProgress();
 
     setTimeout(() => {
-      const welcomeMsg = getWelcomeMessage();
-      showSpeech(null, welcomeMsg);
       setLastVisit();
+      /* Раньше панель открывалась сама и на телефоне закрывала варианты
+         ответа в викторине. На узких экранах не открываемся — значок
+         с вопросительным знаком остаётся, а панель вызывается по клику. */
+      const quizVisible = (function () {
+        const q = document.getElementById('quiz');
+        if (!q) return false;
+        const r = q.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+      })();
+      if (window.innerWidth > 860 && !quizVisible) {
+        showSpeech(null, getWelcomeMessage());
+      }
     }, 2000);
 
     window.Sokol = {
@@ -972,7 +994,11 @@
       bottom: 20px;
       left: 20px;
       z-index: 90;
+      transition: opacity .25s ease, transform .25s ease;
     }
+    /* Пока идёт викторина, значок Сокола уходит в фон: на телефоне он
+       перекрывал варианты ответа и мешал нажимать. */
+    #sokol.is-quiet { opacity: 0; pointer-events: none; transform: translateY(16px); }
     body:not(.unlocked) #sokol { display: none !important; }
     .sokol-wrap {
       display: flex;

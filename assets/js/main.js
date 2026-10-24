@@ -357,68 +357,6 @@
     });
   });
 
-  const QUIZ_TYPES = {
-    fighter: { name: 'ИСТРЕБИТЕЛЬ ЯК-3', desc: 'Ты быстрый, смелый и любишь быть первым! Как легендарный Як-3: вступай в бой первым и побеждай манёвром. Такие пилоты прикрывают друзей и не бросают своих.' },
-    storm: { name: 'ШТУРМОВИК ИЛ-2', desc: 'Ты надёжный боец и настоящий товарищ! Как «летающий танк» Ил-2: идёшь вперёд, защищаешь пехоту и доводишь дело до конца, что бы ни случилось.' },
-    bomber: { name: 'БОМБАРДИРОВЩИК ПЕ-2', desc: 'Ты стратег команды! Как скоростной Пе-2: сначала думаешь, потом действуешь. Точно выполняешь задачу и всегда знаешь план Б.' },
-    scout: { name: 'НОЧНОЙ РАЗВЕДЧИК ПО-2', desc: 'Ты тихий, терпеливый и очень точный! Как По-2 «ночных ведьм»: никто тебя не слышит, а работу ты делаешь идеально. Хитрость и спокойствие — твоё оружие.' }
-  };
-  const QUESTIONS = [
-    { q: 'Задача кажется совсем сложной. Что делаешь?', a: [['Атакую сразу — разберусь на месте!', 'fighter'], ['Иду напролом, я же в броне!', 'storm'], ['Сначала продумаю план действий', 'bomber'], ['Подожду нужный момент и сделаю тихо', 'scout']] },
-    { q: 'Какая роль тебе ближе в команде?', a: [['Защищать друзей', 'fighter'], ['Пробиваться первым и прикрывать всех', 'storm'], ['Придумывать общий план', 'bomber'], ['Разведать и добыть важные сведения', 'scout']] },
-    { q: 'Выбери время для вылета:', a: [['Ясный день — видно всё вокруг!', 'fighter'], ['Мне любое время года — броня держит', 'storm'], ['Рассвет — чтобы успеть до жары', 'bomber'], ['Ночь — моя любимая пора', 'scout']] },
-    { q: 'Что важнее в работе?', a: [['Скорость реакции', 'fighter'], ['Надёжность и сила', 'storm'], ['Точный расчёт', 'bomber'], ['Терпение и точность', 'scout']] },
-    { q: 'Друг попал в трудную ситуацию. Ты…', a: [['Мчусь помогать сразу!', 'fighter'], ['Стану стеной между другом и бедой', 'storm'], ['Быстро придумаю, как выручить', 'bomber'], ['Тихо помогу так, что он даже не заметит', 'scout']] },
-    { q: 'Твоё девиз:', a: [['«Быстрее всех — сильнее всех!»', 'fighter'], ['«Не пройдёшь, пока я стою!»', 'storm'], ['«Семь раз отмерь — один отрежь»', 'bomber'], ['«Тихо едет — далеко увидит»', 'scout']] }
-  ];
-  const quizBox = $('#quizBox');
-  if (quizBox) {
-    let step = 0;
-    const scores = { fighter: 0, storm: 0, bomber: 0, scout: 0 };
-    const renderQ = () => {
-      const item = QUESTIONS[step];
-      quizBox.innerHTML =
-        '<div class="quiz-progress">' +
-        QUESTIONS.map((_, i) => `<i class="${i < step ? 'done' : ''}"></i>`).join('') +
-        '</div>' +
-        `<div class="quiz-q">${item.q}</div>` +
-        '<div class="quiz-answers">' +
-        item.a.map(([text, type], i) =>
-          `<button class="quiz-answer" data-i="${i}">${String.fromCharCode(1040 + i)}) ${text}</button>`
-        ).join('') +
-        '</div>';
-      $$('.quiz-answer', quizBox).forEach(btn =>
-        btn.addEventListener('click', () => {
-          scores[item.a[+btn.dataset.i][1]]++;
-          step++;
-          /* Сброс hover-состояния */
-          quizBox.style.pointerEvents = 'none';
-          requestAnimationFrame(() => {
-            step < QUESTIONS.length ? renderQ() : renderResult();
-            requestAnimationFrame(() => { quizBox.style.pointerEvents = ''; });
-          });
-        })
-      );
-    };
-    const renderResult = () => {
-      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const t = QUIZ_TYPES[winner];
-      quizBox.innerHTML =
-        '<div class="quiz-result">' +
-        '<div class="stamp">ДОПУСК В НЕБО ПОЛУЧЕН</div>' +
-        `<h3>${t.name}</h3>` +
-        `<p>${t.desc}</p>` +
-        '<button class="btn btn-ghost quiz-restart" type="button">ПРОЙТИ ЗАНОВО</button>' +
-        '</div>';
-      $('.quiz-restart', quizBox).addEventListener('click', () => {
-        step = 0;
-        Object.keys(scores).forEach(k => scores[k] = 0);
-        renderQ();
-      });
-    };
-    renderQ();
-  }
-
   const soundToggle = $('#soundToggle');
   const prevTrack = $('#prevTrack');
   const nextTrack = $('#nextTrack');
@@ -621,7 +559,13 @@
     go();
     setTimeout(go, 350);
     setTimeout(go, 900);
+    /* Поздние ленивые картинки выше по странице подгружаются уже после
+       второй проверки и снова сдвигают цель вниз — делаем ещё один
+       проход, чтобы заголовок секции встал под шапку. */
+    setTimeout(go, 1800);
   }
+  /* Панель Сокола тоже прыгает по секциям — отдаём переход наружу */
+  window.MakarJumpTo = jumpTo;
   $$('.wb-jump, .wb-film-links a').forEach(function (a) {
     a.addEventListener('click', function (e) {
       const h = a.getAttribute('href');

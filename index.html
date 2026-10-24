@@ -39,7 +39,7 @@
       <a href="#heroes">Герои</a>
       <a href="#origami">Ангар</a>
       <a href="#anatomy">Самолёт</a>
-      <a href="#quiz">Тест</a>
+      <a href="#quiz">Викторина</a>
       <a href="#training">Тренажёр</a>
     </nav>
     <div class="top-actions">
@@ -83,7 +83,7 @@
         <p class="hero-author">Макар Захаренко, ученик 3 класса<br>МОУ Гимназия № 16 «Интерес»</p>
         <div class="hero-cta">
           <a class="btn btn-accent" href="#briefing">НАЧАТЬ МИССИЮ</a>
-          <a class="btn btn-ghost" href="#quiz">КАКОЙ ТЫ ПИЛОТ?</a>
+          <a class="btn btn-ghost" href="#quiz">ПРОВЕРЬ СЕБЯ</a>
         </div>
       </div>
       <div class="radar" aria-hidden="true"><span></span></div>
@@ -821,11 +821,19 @@
     <section id="quiz">
       <div class="wrap wrap-narrow">
         <header class="sec-head rv">
-          <p class="eyebrow">ИНТЕРАКТИВ ДЛЯ ВСЕХ</p>
-          <h2>КАКОЙ ТЫ ПИЛОТ?</h2>
-          <p class="sec-note">Шесть вопросов — и ты узнаешь свою машину. Сможешь пройти любой посетитель!</p>
+          <p class="eyebrow">ПРОВЕРЬ СЕБЯ</p>
+          <h2>ВИКТОРИНА ЭСКАДРИЛЬИ</h2>
+          <p class="sec-note">Сто вопросов об авиации Великой Отечественной. За каждый правильный ответ — боеприпасы, прогресс сохраняется. Можно пройти заново или повторить только ошибки</p>
         </header>
         <div class="quiz-box panel hud rv" id="quizBox"></div>
+
+        <div class="pilot-quiz panel hud rv">
+          <header class="pilot-quiz-head">
+            <p class="pilot-quiz-eyebrow">А ТЫ КАКОЙ ПИЛОТ?</p>
+            <p class="pilot-quiz-note">Шесть быстрых вопросов — и ты узнаешь свою машину. Для гостей и комиссии</p>
+          </header>
+          <div id="pilotQuizBox"></div>
+        </div>
       </div>
     </section>
 
@@ -1647,6 +1655,8 @@
   <script src="assets/js/toast.js"></script>
   <script src="assets/js/ammo.js"></script>
   <script src="assets/js/squadron.js"></script>
+  <script src="assets/js/quiz.js"></script>
+  <script src="assets/js/pilotquiz.js"></script>
   <script src="assets/js/sokol.js"></script>
   <script src="assets/js/microtasks.js"></script>
   <script src="assets/js/medals.js"></script>
