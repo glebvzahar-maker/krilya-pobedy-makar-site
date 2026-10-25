@@ -83,7 +83,7 @@
     {
       "id": "m13",
       "name": "Моделист",
-      "level": "silver",
+      "level": "gold",
       "sortie": 13
     }
   ],
@@ -91,5 +91,5 @@
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 12,
-  "ammo": 88124
+  "ammo": 91124
 }

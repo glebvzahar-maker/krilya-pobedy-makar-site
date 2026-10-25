@@ -88,7 +88,7 @@
     { id:'m13', name:'Моделист', sortie:13, color:'#f0b23c',
       note:'Собрал модель самолёта (пластик или дерево).',
       silver:'Собрал модель + покрасил / оформил.',
-      gold:'Всё серебро + сфотографировал модель на фоне лендинга.',
+      gold:'Всё серебро + рассказал голосом, что было сложнее всего.',
       img:'assets/img/medals/medal-13.png',
       icon:'<path d="M-12 6 L0 -10 L12 6 Z" fill="none" stroke="#f0b23c" stroke-width="2.4"/><line x1="0" y1="-10" x2="0" y2="6" stroke="#f0b23c" stroke-width="1.5"/>' },
     { id:'m14', name:'Оратор', sortie:14, color:'#5df0b6',

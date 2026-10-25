@@ -19,6 +19,20 @@
     '08': 14   /* Лётчик-ас — 14 медалей + 90% золота */
   };
 
+  /* Звание засчитывается не только по числу медалей, но и по вылетам:
+     «Подполковник» — это вылеты 11 и 12 («Моторист» и «Штурман»).
+     Без «Штурмана» звание не выдаётся, даже если медалей уже двенадцать. */
+  var RANK_SORTIES = {
+    '01': [1],
+    '02': [1, 2],
+    '03': [3, 4],
+    '04': [5, 6],
+    '05': [7, 8],
+    '06': [9, 10],
+    '07': [11, 12],
+    '08': [13, 14, 15]
+  };
+
   /* Названия званий */
   var RANK_NAMES = {
     '01': 'Курсант',
@@ -50,23 +64,36 @@
     return counts;
   }
 
+  /* Название вылета — из карточки медали в сетке наград */
+  function sortieName(sortie){
+    var card = document.querySelector('[data-medal-id="m' + sortie + '"] .medal-name');
+    return card ? card.textContent.trim() : ('вылет № ' + sortie);
+  }
+
   function applyProgress(medals, streak){
     var medalCount = medals ? medals.length : 0;
     var n = 0;
     var nextRank = null;
     var medalsNeeded = 0;
+    var missingFlights = [];
     var aceUnlocked = checkAceCondition(medals);
+
+    /* Какие вылеты закрыты */
+    var closed = {};
+    (medals || []).forEach(function(m){ closed[m.sortie] = true; });
 
     document.querySelectorAll('.rank-card').forEach(function(card){
       var step = card.getAttribute('data-step');
       var threshold = RANK_THRESHOLDS[step] || 0;
+      var need = RANK_SORTIES[step] || [];
+      var missing = need.filter(function(s){ return !closed[s]; });
       var has = false;
 
       if(step === '08'){
         /* Особое условие для Лётчик-аса: 14 медалей + 90% золота */
-        has = aceUnlocked;
+        has = aceUnlocked && missing.length === 0;
       } else {
-        has = medalCount >= threshold;
+        has = medalCount >= threshold && missing.length === 0;
       }
 
       if(has) n++;
@@ -84,6 +111,7 @@
       if(!has && !nextRank){
         nextRank = step;
         medalsNeeded = threshold - medalCount;
+        missingFlights = missing;
       }
     });
 
@@ -107,6 +135,10 @@
         } else {
           nextInfo.textContent = 'Готово к званию «Лётчик-ас»!';
         }
+      } else if(nextRank && missingFlights.length){
+        /* Не хватает вылета — говорим про него, а не про медали */
+        var names = missingFlights.map(function(s){ return '№ ' + s + ' «' + sortieName(s) + '»'; });
+        nextInfo.textContent = 'До звания «' + RANK_NAMES[nextRank] + '» нужен вылет ' + names.join(' и ') + '.';
       } else if(nextRank){
         nextInfo.textContent = 'До звания «' + RANK_NAMES[nextRank] + '» нужно ещё ' + medalsNeeded + ' мед.';
       } else {
