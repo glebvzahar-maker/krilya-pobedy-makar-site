@@ -52,7 +52,7 @@
         var voiceRow = it.voice
           ? '<label class="ck-sub' + (voiceOk ? ' is-done' : '') + '" data-kind="voice" data-id="' + esc(it.id) + '">' +
               '<span class="ck-box"></span>' +
-              '<span class="ck-sub-text">Голос: расскажи, зачем он нужен</span>' +
+              '<span class="ck-sub-text">' + esc(it.voiceWhat || 'Голос: расскажи, зачем он нужен') + '</span>' +
             '</label>'
           : '';
 

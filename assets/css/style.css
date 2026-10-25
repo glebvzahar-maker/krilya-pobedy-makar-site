@@ -1406,3 +1406,37 @@ section[id] { scroll-margin-top: 76px; }
 .mv-src { font-size: .72rem !important; opacity: .72; }
 .mv-foot { margin-top: 20px; text-align: center; color: var(--muted); font-size: .84rem; }
 @media (max-width: 480px) { .mv-card { width: 100%; } }
+
+/* ── Вылет №13 «Моделист»: наградной конструктор Су-57 ── */
+.mdl-grid { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 20px; margin-top: 18px; align-items: start; }
+.mdl-box { margin: 0; padding: 14px; }
+.mdl-box-photo { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #05080c; }
+.mdl-box-photo img { display: block; width: 100%; height: auto; }
+.mdl-box figcaption { padding: 14px 6px 4px; }
+.mdl-box figcaption b { display: block; font-family: var(--font-display); font-size: .92rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 7px; }
+.mdl-box figcaption span { display: block; font-size: .85rem; line-height: 1.5; color: var(--muted); }
+
+.mdl-task { padding: 22px 24px; }
+.mdl-task .col-title { color: var(--hud); font-size: 16px; letter-spacing: .14em; margin-bottom: 16px; }
+.mdl-steps { margin: 0; padding-left: 22px; display: grid; gap: 11px; }
+.mdl-steps li { font-size: .89rem; line-height: 1.55; color: var(--text); }
+.mdl-steps li b { color: var(--gold); font-weight: 700; }
+
+.mdl-levels { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.mdl-levels-title { margin: 0 0 10px; font-size: .74rem; letter-spacing: .12em; color: var(--muted); }
+.mdl-level { font-size: .86rem; line-height: 1.5; color: var(--muted); padding: 6px 0 6px 12px; border-left: 2px solid var(--line); margin-bottom: 6px; }
+.mdl-level b { color: var(--accent); font-weight: 700; margin-right: 8px; }
+.mdl-level:last-child { border-left-color: var(--gold); }
+.mdl-level:last-child b { color: var(--gold); }
+
+.mdl-slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 20px; }
+.mdl-slot { margin: 0; padding: 14px; }
+.mdl-slot .slot { margin: 0; padding: 0; aspect-ratio: 4 / 3; border-style: solid; background: #05080c; }
+.mdl-slot .slot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mdl-slot figcaption { padding: 12px 6px 2px; font-size: .84rem; color: var(--muted); }
+.mdl-slot .slot:not(.photo) { color: var(--accent); font-size: .78rem; letter-spacing: .12em; }
+
+@media (max-width: 860px) {
+  .mdl-grid { grid-template-columns: 1fr; }
+  .mdl-slots { grid-template-columns: 1fr; }
+}

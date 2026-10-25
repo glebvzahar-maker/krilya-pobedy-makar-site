@@ -20,6 +20,13 @@
   // прелоадер и звук двигателя управляются в assets/js/engine.js
 
   const slotPlaceholder = slot => {
+    /* Слот можно подписать своим текстом: data-placeholder="ЖДЁТ ФОТО" */
+    if (slot.dataset.placeholder) {
+      const s1 = document.createElement('span');
+      s1.textContent = slot.dataset.placeholder;
+      slot.append(s1);
+      return;
+    }
     const s1 = document.createElement('span');
     s1.textContent = 'SLOT';
     const s2 = document.createElement('span');
@@ -54,8 +61,9 @@
     slotPlaceholder(slot);
   });
 
-  // в досье героев и в карточках снаряжения показываем настоящее фото
-  $$('.dossier .slot[data-file], .gear-item .slot[data-file]').forEach(slot => {
+  // в досье героев, в карточках снаряжения и в слотах конструктора
+  // показываем настоящее фото (если файла ещё нет — останется заглушка)
+  $$('.dossier .slot[data-file], .gear-item .slot[data-file], .mdl-slot .slot[data-file]').forEach(slot => {
     slotImage(slot, slot.dataset.file, slot.dataset.alt || '');
   });
 
