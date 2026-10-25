@@ -1181,6 +1181,7 @@ html.reticle-on input, html.reticle-on textarea, body.reticle-on input, body.ret
 .radio-side.cmd .radio-bubble{background:rgba(240,178,60,.12);border:1px solid rgba(240,178,60,.45)}
 .radio-side.pilot .radio-bubble{background:rgba(93,240,182,.10);border:1px solid rgba(93,240,182,.45)}
 .radio-bubble audio{width:260px;max-width:100%;margin-top:8px;display:block}
+.radio-bubble video{width:260px;max-width:100%;margin-top:8px;display:block;border:1px solid #2a3849;border-radius:6px;background:#05080c}
 .radio-note{margin:2px 0 10px;font-size:.85rem;line-height:1.5;color:var(--muted)}
 /* Видео в журнале: высота ограничена, чтобы панель управления
    не уезжала за край пузыря, и место резервируется до загрузки метаданных. */
@@ -1439,4 +1440,34 @@ section[id] { scroll-margin-top: 76px; }
 @media (max-width: 860px) {
   .mdl-grid { grid-template-columns: 1fr; }
   .mdl-slots { grid-template-columns: 1fr; }
+}
+
+/* ── Вылет №11 «Моторист»: видео доклада и чужие ролики ── */
+/* Доклад снят на телефон вертикально, поэтому плеер вертикальный */
+.mot-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; margin-top: 18px; align-items: start; }
+.mot-video { margin: 0; padding: 14px; }
+.mot-video video { display: block; width: 100%; aspect-ratio: 9 / 16; background: #05080c; border: 1px solid var(--line); border-radius: 4px; }
+.mot-video figcaption { padding: 14px 6px 4px; }
+.mot-video figcaption b { display: block; font-family: var(--font-display); font-size: .9rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 7px; }
+.mot-video figcaption span { display: block; font-size: .85rem; line-height: 1.5; color: var(--muted); }
+
+.mot-notes { padding: 20px 22px; }
+.mot-notes .col-title { color: var(--hud); font-size: 16px; letter-spacing: .14em; margin-bottom: 16px; }
+.mot-points { list-style: none; display: grid; gap: 10px; margin: 0; padding: 0; }
+.mot-points li { font-size: .88rem; line-height: 1.55; color: var(--text); padding: 11px 14px; border-left: 3px solid var(--gold); background: rgba(255, 255, 255, .02); }
+.mot-points li b { color: var(--gold); font-weight: 700; }
+
+.mot-ref { margin-top: 24px; }
+.mot-ref-title { margin: 0; font-family: var(--font-display); font-size: .9rem; letter-spacing: .14em; color: var(--hud); }
+.mot-ref-note { margin: 8px 0 0; font-size: .85rem; color: var(--muted); }
+.mot-ref-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 16px; }
+.mot-ref-card { margin: 0; padding: 12px; }
+.mot-ref-card video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #05080c; border: 1px solid var(--line); border-radius: 4px; }
+.mot-ref-card figcaption { padding: 12px 4px 2px; }
+.mot-ref-card figcaption b { display: block; font-family: var(--font-display); font-size: .82rem; letter-spacing: .08em; color: var(--gold); margin-bottom: 6px; }
+.mot-ref-card figcaption span { display: block; font-size: .8rem; line-height: 1.45; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .mot-grid { grid-template-columns: 1fr; }
+  .mot-ref-grid { grid-template-columns: 1fr; }
 }

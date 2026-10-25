@@ -9,7 +9,8 @@
     "07",
     "08",
     "09",
-    "10"
+    "10",
+    "11"
   ],
   "medals": [
     {
@@ -71,11 +72,17 @@
       "name": "Мост поколений",
       "level": "gold",
       "sortie": 10
+    },
+    {
+      "id": "m11",
+      "name": "Моторист",
+      "level": "gold",
+      "sortie": 11
     }
   ],
-  "streak": 8,
+  "streak": 9,
   "totalRanks": 8,
   "totalMedals": 15,
-  "nextSortie": 11,
-  "ammo": 68124
+  "nextSortie": 12,
+  "ammo": 78124
 }
