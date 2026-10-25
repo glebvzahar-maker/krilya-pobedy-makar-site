@@ -10,7 +10,8 @@
     "08",
     "09",
     "10",
-    "11"
+    "11",
+    "13"
   ],
   "medals": [
     {
@@ -58,7 +59,7 @@
     {
       "id": "m08",
       "name": "Голос эскадрильи",
-      "level": "silver",
+      "level": "gold",
       "sortie": 8
     },
     {
@@ -78,11 +79,17 @@
       "name": "Моторист",
       "level": "gold",
       "sortie": 11
+    },
+    {
+      "id": "m13",
+      "name": "Моделист",
+      "level": "silver",
+      "sortie": 13
     }
   ],
-  "streak": 9,
+  "streak": 10,
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 12,
-  "ammo": 78124
+  "ammo": 88124
 }

@@ -1471,3 +1471,23 @@ section[id] { scroll-margin-top: 76px; }
   .mot-grid { grid-template-columns: 1fr; }
   .mot-ref-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Песня «Як Истребитель»: дуэт с дядей Глебом (вылет №8) ── */
+.song-card { margin-top: 20px; padding: 18px; display: grid; grid-template-columns: minmax(0, 460px) minmax(0, 1fr); gap: 22px; align-items: center; }
+.song-video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #05080c; border: 1px solid var(--line); border-radius: 4px; }
+.song-body h3 { font-family: var(--font-display); font-size: 1rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 10px; }
+.song-note { font-size: .87rem; line-height: 1.5; color: var(--muted); margin-bottom: 14px; }
+.song-body audio { width: 100%; max-width: 360px; accent-color: var(--accent); }
+.song-medal { margin-top: 16px; padding: 12px 14px; border-left: 3px solid var(--gold); background: rgba(240, 178, 60, .08); font-size: .86rem; line-height: 1.5; color: var(--text); }
+.song-medal b { color: var(--gold); }
+@media (max-width: 860px) { .song-card { grid-template-columns: 1fr; } }
+
+/* ── Голос о сборке и отметки о выполнении (вылет №13) ── */
+.mdl-voice { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.mdl-voice-label { margin: 0 0 8px; font-size: .74rem; letter-spacing: .1em; color: var(--hud); }
+.mdl-voice audio { width: 100%; accent-color: var(--accent); }
+.mdl-voice-note { margin: 10px 0 0; font-size: .84rem; line-height: 1.5; color: var(--muted); }
+.mdl-level.is-done { border-left-color: var(--hud); color: var(--text); }
+.mdl-level.is-done b { color: var(--hud); }
+.mdl-status { margin: 18px 0 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px; font-size: .87rem; line-height: 1.5; color: var(--text); background: rgba(255, 255, 255, .02); }
+.mdl-status b { color: var(--gold); }

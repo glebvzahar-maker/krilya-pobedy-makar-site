@@ -508,7 +508,7 @@
         <header class="sec-head rv">
           <p class="eyebrow">ВЫЛЕТ № 08 · ГОЛОС ЭСКАДРИЛЬИ</p>
           <h2>ГОЛОСА НЕБА</h2>
-          <p class="sec-note">Стихотворение «Военные лётчики» читает сам Макар — по памяти, без бумажки</p>
+          <p class="sec-note">Стихотворение «Военные лётчики» читает сам Макар — по памяти, без бумажки. А песню «Як Истребитель» они поют в дуэте: Макар — голосом, дядя Глеб — на гитаре</p>
         </header>
         <div class="voice-poem panel hud rv">
           <div class="voice-poem-head">
@@ -528,19 +528,21 @@
           <div class="voice-poem-player">
             <p class="voice-poem-label">Читает Макар наизусть · вылет № 8 · 22 секунды</p>
             <audio controls preload="none" src="assets/media/stihi-makar.mp3"></audio>
-            <p class="voice-poem-note">Серебро за медаль «Голос эскадрильи» засчитано: Макар выучил стих и рассказал его наизусть, без бумажки. До золота — добавить песню в дуэте с дядей Глебом.</p>
+            <p class="voice-poem-note">Серебро было засчитано за стих наизусть. Золото Макар добрал песней в дуэте с дядей Глебом — она ниже.</p>
           </div>
         </div>
-        <div class="grid-2">
-          <div class="voice panel hud rv">
-            <h3>ПЕСНЯ С ДЯДЕЙ ГЛЕБОМ</h3>
-            <p class="voice-goal">Ещё не записана. Это последнее, что нужно для золотой медали «Голос эскадрильи»: спеть дуэтом с дядей Глебом.</p>
-            <small>Слот · assets/media/pesnya-makar.mp3</small>
+        <div class="song-card panel hud rv">
+          <div class="song-video">
+            <video controls preload="none" playsinline
+                   poster="assets/img/pesnya-yak-istrebitel.webp"
+                   src="assets/media/video/makar-pesnya-yak-istrebitel.mp4"
+                   aria-label="Песня «Як Истребитель» — Макар поёт, дядя Глеб играет на гитаре"></video>
           </div>
-          <div class="voice panel hud rv">
-            <h3>ЧТО ДАЁТ ЗОЛОТО</h3>
-            <p class="voice-goal">Стих уже выучен наизусть — осталась одна ступень: спеть рядом с дядей Глебом в дуэте. Тогда медаль «Голос эскадрильи» станет золотой.</p>
-            <small>Цель на золото</small>
+          <div class="song-body">
+            <h3>ПЕСНЯ «ЯК ИСТРЕБИТЕЛЬ»</h3>
+            <p class="song-note">Дуэт: Макар поёт два куплета, дядя Глеб играет на гитаре. 35 секунд.</p>
+            <audio controls preload="none" src="assets/media/pesnya-makar.mp3"></audio>
+            <p class="song-medal">🏅 Медаль «Голос эскадрильи» — <b>золото</b>. Стих наизусть дал серебро, песня с дядей Глебом — золото. Задание выполнено целиком</p>
           </div>
         </div>
       </div>
@@ -955,7 +957,7 @@
         <header class="sec-head rv">
           <p class="eyebrow">ВЫЛЕТ № 13 · МОДЕЛИСТ</p>
           <h2>СОБЕРИ СУ-57</h2>
-          <p class="sec-note">Наградной конструктор Су-57 ждёт своего инженера. Собери модель, доведи её до ума и поставь в экспозицию — на фоне нашего сайта</p>
+          <p class="sec-note">Наградной конструктор Су-57 уже собран. Осталось поставить модель в экспозицию — сфотографировать её на фоне нашего сайта</p>
         </header>
 
         <div class="mdl-grid">
@@ -977,19 +979,25 @@
               <li><b>Сними её.</b> Сфотографируй собранную модель, а потом поставь её рядом с нашим сайтом — на экране или рядом с распечатанной страницей</li>
               <li><b>Доложи.</b> Пришли фото и коротко расскажи голосом, что оказалось сложнее всего</li>
             </ol>
+            <div class="mdl-voice">
+              <p class="mdl-voice-label">ГОЛОС МАКАРА О СБОРКЕ · 30 СЕКУНД</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet13-sborka.mp3"></audio>
+              <p class="mdl-voice-note">Самое сложное — корпус и кабина: с кабиной они мучились очень долго, пока не разобрались, как её поставить</p>
+            </div>
             <div class="mdl-levels">
               <p class="mdl-levels-title">УРОВНИ МЕДАЛИ</p>
-              <div class="mdl-level"><b>Бронза</b> модель собрана</div>
-              <div class="mdl-level"><b>Серебро</b> модель собрана и покрашена</div>
-              <div class="mdl-level"><b>Золото</b> всё это плюс фото модели на фоне нашего сайта</div>
+              <div class="mdl-level is-done"><b>Бронза</b> модель собрана — сделано</div>
+              <div class="mdl-level is-done"><b>Серебро</b> модель собрана и покрашена — сделано</div>
+              <div class="mdl-level"><b>Золото</b> всё это плюс фото модели на фоне нашего сайта — осталось одно фото</div>
             </div>
+            <p class="mdl-status">🏅 Задание выполнено на <b>серебро</b>. До золота — одно фото: поставь модель рядом с нашим сайтом (на экране или рядом с распечатанной страницей)</p>
           </div>
         </div>
 
         <div class="mdl-slots">
           <figure class="mdl-slot panel hud rv">
-            <div class="slot" data-file="assets/img/modelist/su57-model.jpg" data-alt="Собранный конструктор Су-57" data-placeholder="ЖДЁТ ФОТО МОДЕЛИ"></div>
-            <figcaption>Фото собранной модели</figcaption>
+            <div class="slot" data-file="assets/img/modelist/su57-model.jpg" data-alt="Собранный конструктор Су-57 на рабочем столе" data-placeholder="ЖДЁТ ФОТО МОДЕЛИ"></div>
+            <figcaption>Собранная модель — Макар прислал фото со своего стола</figcaption>
           </figure>
           <figure class="mdl-slot panel hud rv">
             <div class="slot" data-file="assets/img/modelist/su57-na-fone.jpg" data-alt="Конструктор Су-57 на фоне сайта «Крылья Победы»" data-placeholder="ЖДЁТ ФОТО НА ФОНЕ"></div>
@@ -1717,6 +1725,45 @@
                 <p class="radio-title">Задание принято — медаль «Моторист», золото</p>
                 <p class="radio-text">Радиограмма без голоса, записана штабом 25 октября 2026.</p>
                 <p class="radio-note">Макар записал восемь с половиной минут видео и разобрал, как устроены оба двигателя: поршневой двенадцатицилиндровый мотор Ил-2 с поршнями, коленвалом и винтом — и реактивный мотор Су-57, где винта нет вовсе, а самолёт толкает поток газа. Он объяснил ход поршня, работу реактивной тяги, заводские испытания моторов на огне и на воде, сравнил скорости и цены с американскими и китайскими самолётами и ответил на вопросы про экологичные двигатели будущего. Задание было объяснить, как работает двигатель, — он объяснил и показал схемами. Золото. Начислено 10 000 боеприпасов.</p>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Песня «Як Истребитель» — дуэт с дядей Глебом, 35 секунд</p>
+                <video controls preload="none" playsinline poster="assets/img/pesnya-yak-istrebitel.webp" src="assets/media/video/makar-pesnya-yak-istrebitel.mp4"></video>
+                <audio controls preload="none" src="assets/media/pesnya-makar.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side staff">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Медаль «Голос эскадрильи» повышена до золота</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 25 октября 2026.</p>
+                <p class="radio-note">Песня «Як Истребитель» записана: Макар поёт два куплета, дядя Глеб играет на гитаре. Стих наизусть дал серебро, песня с дядей — золото, как и было в задании. Добавлено 3 000 боеприпасов (разница между серебром и золотом).</p>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side pilot">
+              <span class="radio-who">МАКАР</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Отчёт по сборке конструктора: самое сложное — кабина</p>
+                <audio controls preload="none" src="assets/media/voice/makar-vylet13-sborka.mp3"></audio>
+              </div>
+            </div>
+          </article>
+          <article class="radio-entry">
+            <div class="radio-side staff">
+              <span class="radio-who">ШТАБ</span>
+              <div class="radio-bubble">
+                <p class="radio-title">Задание принято — медаль «Моделист», серебро</p>
+                <p class="radio-text">Радиограмма без голоса, записана штабом 25 октября 2026.</p>
+                <p class="radio-note">Конструктор Су-57 собран, модель покрашена, и Макар записал две части рассказа о том, что оказалось сложнее всего — корпус и кабина. Собрана и покрашена — это серебро. До золота осталось одно действие: поставить модель рядом с нашим сайтом и прислать фото. Начислено 7 000 боеприпасов.</p>
               </div>
             </div>
           </article>

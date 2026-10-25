@@ -97,8 +97,14 @@
         {
           "id": "pesnya",
           "title": "Спой песню с дядей Глебой",
-          "what": "Дуэтом: ты и дядя Глеб",
+          "what": "Дуэтом: ты и дядя Глеб. Спой два куплета «Як Истребитель»",
           "probe": "assets/media/pesnya-makar.mp3"
+        },
+        {
+          "id": "pesnya-video",
+          "title": "Песня на видео",
+          "what": "Дуэтом с дядей Глебом: ты поёшь, он играет на гитаре",
+          "probe": "assets/media/video/makar-pesnya-yak-istrebitel.mp4"
         }
       ]
     },
