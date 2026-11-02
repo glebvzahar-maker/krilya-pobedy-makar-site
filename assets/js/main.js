@@ -114,7 +114,7 @@
     else cio.observe(el);
   });
 
-  function drawSky(canvas, opts) {
+  function drawSky(canvas, opts = {}) {
     const ctx = canvas.getContext('2d');
     let w, h, stars = [], meteors = [];
     const resize = () => {
@@ -538,7 +538,7 @@
   const FLIGHT_SECTIONS = {
     1: 'chronicle', 2: 'chronicle', 3: 'origami', 4: 'heroes',
     5: 'cinema', 6: 'anatomy', 7: 'gear', 8: 'voices',
-    9: 'exhibits', 10: 'expedition', 11: 'motorist', 12: 'quiz',
+    9: 'exhibits', 10: 'expedition', 11: 'motorist', 12: 'sturman',
     13: null, 14: 'training', 15: 'finale'
   };
   $$('.ft-item').forEach(item => {

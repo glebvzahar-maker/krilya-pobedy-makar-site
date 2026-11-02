@@ -1442,6 +1442,11 @@ section[id] { scroll-margin-top: 76px; }
   .mdl-slots { grid-template-columns: 1fr; }
 }
 
+/* ── Вылет №12 «Штурман»: план доклада и репетиция ── */
+.sturman-wait { margin-top: 20px; padding: 18px 22px; border-style: dashed; text-align: center; }
+.sturman-wait-title { margin: 0 0 6px; font-family: var(--font-display); font-size: .92rem; letter-spacing: .12em; color: var(--gold); }
+.sturman-wait-note { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--muted); }
+
 /* ── Вылет №11 «Моторист»: видео доклада и чужие ролики ── */
 /* Доклад снят на телефон вертикально, поэтому плеер вертикальный */
 .mot-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 20px; margin-top: 18px; align-items: start; }

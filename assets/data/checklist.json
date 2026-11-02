@@ -178,6 +178,39 @@
           "probe": "assets/media/video/makar-vylet11-motorist.mp4"
         }
       ]
+    },
+    {
+      "id": "sturman",
+      "sortie": 12,
+      "title": "ШТУРМАН · ПЛАН ДОКЛАДА",
+      "subtitle": "Вылет № 12 · Доклад голосом",
+      "lead": "Макар выстроил план доклада из семи частей и наговорил его голосом в двух частях — от вступления до вывода. Осталось видео полного доклада: один дубль подряд, как для комиссии. Это золото.",
+      "items": [
+        {
+          "id": "plan",
+          "title": "План доклада от руки",
+          "what": "Тетрадь: семь пунктов плана и пометка «5–7 мин — всё»",
+          "probe": "assets/img/sturman/plan-doklada.webp"
+        },
+        {
+          "id": "doklad1",
+          "title": "Репетиция, часть 1",
+          "what": "Вступление, Ил-2, «Ночные ведьмы» — 7 минут 5 секунд",
+          "probe": "assets/media/voice/makar-vylet12-doklad-1.mp3"
+        },
+        {
+          "id": "doklad2",
+          "title": "Репетиция, часть 2",
+          "what": "Герои неба, Су-57, вывод — 5 минут 7 секунд",
+          "probe": "assets/media/voice/makar-vylet12-doklad-2.mp3"
+        },
+        {
+          "id": "video",
+          "title": "Видео доклада — золото",
+          "what": "Один дубль всего доклада подряд, как для комиссии",
+          "probe": "assets/media/video/makar-vylet12-doklad.mp4"
+        }
+      ]
     }
   ]
 }

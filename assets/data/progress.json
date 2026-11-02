@@ -11,6 +11,7 @@
     "09",
     "10",
     "11",
+    "12",
     "13"
   ],
   "medals": [
@@ -81,15 +82,21 @@
       "sortie": 11
     },
     {
+      "id": "m12",
+      "name": "Штурман",
+      "level": "silver",
+      "sortie": 12
+    },
+    {
       "id": "m13",
       "name": "Моделист",
       "level": "gold",
       "sortie": 13
     }
   ],
-  "streak": 10,
+  "streak": 11,
   "totalRanks": 8,
   "totalMedals": 15,
-  "nextSortie": 12,
+  "nextSortie": 14,
   "ammo": 91124
 }

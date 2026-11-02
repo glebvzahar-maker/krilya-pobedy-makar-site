@@ -23,7 +23,7 @@
 
   fetch('assets/data/facts.json').then(function(r){ return r.json(); }).then(function(sets){
     if(!sets || !sets.length) return;
-    var idx = getFactSetIndex(sets);
+    var idx = getFactSetIndex(sets.length);
     var factSet = sets[idx];
     var stats = factSet.stats;
     var statEls = document.querySelectorAll('.stat');
