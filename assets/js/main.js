@@ -542,7 +542,7 @@
     1: 'chronicle', 2: 'chronicle', 3: 'origami', 4: 'heroes',
     5: 'cinema', 6: 'anatomy', 7: 'gear', 8: 'voices',
     9: 'exhibits', 10: 'expedition', 11: 'motorist', 12: 'sturman',
-    13: null, 14: 'training', 15: 'finale'
+    13: 'modelist', 14: 'squadron', 15: 'finale'
   };
   $$('.ft-item').forEach(item => {
     item.addEventListener('click', () => {
@@ -550,10 +550,25 @@
       const sectionId = FLIGHT_SECTIONS[flight];
       if (sectionId) {
         const sec = document.getElementById(sectionId);
-        if (sec) sec.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        /* Как и в jumpTo: плавная прокрутка промахивается мимо цели,
+           пока ленивые картинки выше подгружаются. Считаем позицию сами
+           и делаем несколько проходов. */
+        if (sec) jumpToElement(sec);
       }
     });
   });
+
+  /* Прокрутка к элементу с несколькими проходами — цель не уезжает */
+  function jumpToElement(target) {
+    const go = function () {
+      const top = target.getBoundingClientRect().top + window.scrollY - 76;
+      window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+    go();
+    setTimeout(go, 350);
+    setTimeout(go, 900);
+    setTimeout(go, 1800);
+  }
 
   /* ── «Где был Макар»: переходы по карточкам ──
      Нативный переход по якорю здесь промахивается: пока идёт плавная

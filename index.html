@@ -39,8 +39,8 @@
       <a href="#heroes">Герои</a>
       <a href="#origami">Ангар</a>
       <a href="#anatomy">Самолёт</a>
-      <a href="#quiz">Викторина</a>
       <a href="#training">Тренажёр</a>
+      <a href="#quiz">Викторина</a>
     </nav>
     <div class="top-actions">
       <div id="miniPlayer" class="mini-player">
@@ -68,6 +68,7 @@
   </header>
 
   <main>
+
 
     <section id="hero">
       <canvas id="skyFx" aria-hidden="true"></canvas>
@@ -624,38 +625,96 @@
       </div>
     </section>
 
-    <section id="whereabouts">
+<section id="expedition">
       <div class="wrap">
         <header class="sec-head rv">
-          <p class="eyebrow">ГДЕ БЫЛ МАКАР</p>
-          <h2>МАРШРУТЫ И ФИЛЬМЫ</h2>
-          <p class="sec-note">Всё, где Макар побывал и что он посмотрел. Нажми на карточку — лендинг покажет подробности</p>
+          <p class="eyebrow">ВЫЛЕТ № 10 · МОСТ ПОКОЛЕНИЙ</p>
+          <h2>СРАВНЕНИЕ ЭПОХ</h2>
+          <p class="sec-note">Макар сравнил Ил-2 и Су-57 — как авиация изменилась за восемьдесят лет. Вот его доклад и его таблица</p>
         </header>
-        <div class="wb-grid">
-          <a class="wb-card panel hud rv wb-jump" href="#exhibits">
-            <span class="wb-photo">
-              <img src="assets/img/places/hram-kubinka.webp" alt="Главный храм Вооружённых сил в Кубинке на закате" loading="lazy">
-            </span>
-            <span class="wb-body">
-              <b>ХРАМ ВООРУЖЁННЫХ СИЛ, КУБИНКА</b>
-              <span>3 октября 2026 · реконструкция обороны Москвы, экспонаты техники и подлинные архивы</span>
-              <span class="wb-go">МУЗЕЙНЫЙ РЕЙД · ВЫЛЕТ № 9 →</span>
-            </span>
-          </a>
-          <div class="wb-card panel hud rv wb-films">
-            <span class="wb-body">
-              <b>КИНОАРХИВ ПРОЕКТА</b>
-              <span>Четыре фильма о войне и лётчиках. Нажми — лендинг покажет, что Макар узнал</span>
-              <span class="wb-film-links">
-                <a href="#cinema">Повесть о настоящем человеке</a>
-                <a href="#cinema">В бой идут одни «старики»</a>
-                <a href="#cinema">Лётчик</a>
-                <a href="#cinema">Есть только МиГ</a>
-              </span>
-              <span class="wb-go">НЕБО В КИНО · ВЫЛЕТ № 5 →</span>
-            </span>
+
+        <div class="exp-report panel hud rv">
+          <div class="exp-report-head">
+            <p class="exp-report-title">ДОКЛАД МАКАРА</p>
+            <p class="exp-report-note">Две части: сначала про эпохи, потом разбор параметров по пунктам</p>
+          </div>
+          <div class="exp-report-audio">
+            <div class="exp-part">
+              <p class="exp-part-label">ЧАСТЬ 1 · ЭПОХИ</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet10-doklad-1.mp3"></audio>
+            </div>
+            <div class="exp-part">
+              <p class="exp-part-label">ЧАСТЬ 2 · ПАРАМЕТРЫ</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet10-doklad-2.mp3"></audio>
+            </div>
           </div>
         </div>
+
+        <div class="gen-grid">
+          <div class="gen-col gen-il2">
+            <h3 class="col-title rv">ИЛ-2 · 1942</h3>
+            <div class="gen-slot panel hud rv">
+              <div class="slot">
+                <img loading="lazy" src="assets/img/expedition/il2-compare.jpg" alt="Штурмовик Ил-2 на земле, тёмный зелёный камуфляж">
+              </div>
+              <p class="gen-slot-hint">Летающий танк Великой Отечественной</p>
+            </div>
+            <ul class="gen-points rv">
+              <li><b>Эпоха</b> Великая Отечественная война</li>
+              <li><b>Класс</b> штурмовик</li>
+              <li><b>Скорость</b> 400–414 км/ч</li>
+              <li><b>Вес</b> 4242 кг</li>
+              <li><b>Длина</b> 11,6 м</li>
+              <li><b>Броня</b> 4–5 мм</li>
+              <li><b>Экипаж</b> 1–2 человека</li>
+              <li><b>Вооружение</b> пушки, пулемёты, бомбы, реактивные снаряды</li>
+            </ul>
+          </div>
+          <div class="gen-col gen-su57">
+            <h3 class="col-title rv">СУ-57 · ПЯТОЕ ПОКОЛЕНИЕ</h3>
+            <div class="gen-slot panel hud rv">
+              <div class="slot">
+                <img loading="lazy" src="assets/img/expedition/su57-compare.jpg" alt="Истребитель Су-57 в полёте, вид снизу">
+              </div>
+              <p class="gen-slot-hint">Сверхзвуковой истребитель сегодняшнего дня</p>
+            </div>
+            <ul class="gen-points rv">
+              <li><b>Эпоха</b> современная</li>
+              <li><b>Класс</b> истребитель</li>
+              <li><b>Скорость</b> 2000 км/ч</li>
+              <li><b>Вес</b> 18 500 кг</li>
+              <li><b>Длина</b> 19,7 м</li>
+              <li><b>Броня</b> нет брони</li>
+              <li><b>Экипаж</b> 1 человек</li>
+              <li><b>Вооружение</b> высокоточные ракеты «Воздух-воздух» и «Воздух-поверхность», пушка 30-мм</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="gen-vs panel hud rv">
+          <h3 class="col-title">ЧЕМ ОНИ РАЗНЫЕ</h3>
+          <p class="gen-vs-note">Пять различий, которые назвал Макар в своём докладе</p>
+          <div class="gen-vs-rows">
+            <div class="gen-vs-row"><span class="gen-vs-num">01</span><p><b>Скорость.</b> Ил-2 — 400–414 км/ч, Су-57 — 2000 км/ч. Современный истребитель летит почти в пять раз быстрее</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">02</span><p><b>Назначение.</b> Ил-2 — штурмовик, он летел на танки и на пехоту. Су-57 — истребитель, он сбивает самолёты в воздухе</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">03</span><p><b>Вооружение.</b> У Ил-2 пушки, пулемёты, бомбы и реактивные снаряды. У Су-57 высокоточные ракеты «Воздух-воздух», «Воздух-поверхность» и пушка 30-мм</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">04</span><p><b>Броня.</b> У Ил-2 4–5 мм брони — поэтому его звали летающим танком. У Су-57 брони нет совсем, зато есть ракеты и скорость</p></div>
+            <div class="gen-vs-row"><span class="gen-vs-num">05</span><p><b>Размер и вес.</b> Ил-2 — 4242 кг и 11,6 м, экипаж 1–2 человека. Су-57 — 18 500 кг и 19,7 м, экипаж один</p></div>
+          </div>
+        </div>
+
+        <figure class="exp-journal panel hud rv">
+          <div class="exp-journal-photo">
+            <img loading="lazy" src="assets/img/expedition/zhurnal-makar.webp" alt="Страница лётной книжки Макара «Мои заметки пилота» с таблицей сравнения Ил-2 и Су-57">
+          </div>
+          <figcaption>
+            <b>ЗАМЕТКИ ПИЛОТА</b>
+            <span>Так Макар записал сравнение в лётной книжке: восемь параметров в двух колонках — своими словами и своими цифрами</span>
+            <span class="exp-journal-note">ФОТО ИЗ ЛЁТНОЙ КНИЖКИ МАКАРА</span>
+          </figcaption>
+        </figure>
+
+        <p class="gen-foot rv">Задание вылета выполнено целиком: сравнение, пять различий с объяснением и наглядная таблица из лётной книжки. Медаль «Мост поколений» — золото</p>
       </div>
     </section>
 
@@ -802,6 +861,96 @@
       </div>
     </section>
 
+    <section id="modelist">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ВЫЛЕТ № 13 · МОДЕЛИСТ</p>
+          <h2>СОБЕРИ СУ-57</h2>
+          <p class="sec-note">Наградной конструктор Су-57 собран и покрашен. Макар засчитал это задание целиком — а модель в экспозиции, рядом с нашим сайтом, останется бонусом</p>
+        </header>
+
+        <div class="mdl-grid">
+          <figure class="mdl-box panel hud rv">
+            <div class="mdl-box-photo">
+              <img loading="lazy" src="assets/img/modelist/konstruktor-su57.webp" alt="Обложка коробки наградного конструктора Су-57 проекта «Крылья Победы»">
+            </div>
+            <figcaption>
+              <b>НАГРАДНОЙ КОНСТРУКТОР СУ-57</b>
+              <span>Коробка с обложкой проекта: звезда, портреты в званиях, чертёж Су-57 и подпись «Слава инженерам, создавшим крылья Победы». Внутри — пятигенератор: фюзеляж, крылья, двигатели, кабина и шасси</span>
+            </figcaption>
+          </figure>
+
+          <div class="mdl-task panel hud rv">
+            <h3 class="col-title">ЗАДАНИЕ</h3>
+            <ol class="mdl-steps">
+              <li><b>Разбери коробку.</b> Собери Су-57 по схеме: фюзеляж, крылья, двигатели, кабина, шасси</li>
+              <li><b>Доведи модель до ума.</b> Проверь, что всё встало на место, и подкрась, если нужно</li>
+              <li><b>Сними её.</b> Сфотографируй собранную модель, а потом поставь её рядом с нашим сайтом — на экране или рядом с распечатанной страницей</li>
+              <li><b>Доложи.</b> Пришли фото и коротко расскажи голосом, что оказалось сложнее всего</li>
+            </ol>
+            <div class="mdl-voice">
+              <p class="mdl-voice-label">ГОЛОС МАКАРА О СБОРКЕ · 30 СЕКУНД</p>
+              <audio controls preload="none" src="assets/media/voice/makar-vylet13-sborka.mp3"></audio>
+              <p class="mdl-voice-note">Самое сложное — корпус и кабина: с кабиной они мучились очень долго, пока не разобрались, как её поставить</p>
+            </div>
+            <div class="mdl-levels">
+              <p class="mdl-levels-title">УРОВНИ МЕДАЛИ</p>
+              <div class="mdl-level is-done"><b>Бронза</b> модель собрана — сделано</div>
+              <div class="mdl-level is-done"><b>Серебро</b> модель собрана и покрашена — сделано</div>
+              <div class="mdl-level is-done"><b>Золото</b> задание выполнено целиком — сделано</div>
+            </div>
+            <p class="mdl-status">🏅 Задание выполнено полностью — <b>золото</b>. Модель собрана, покрашена и засчитана по фото. Фото модели в экспозиции — рядом с нашим сайтом — останется бонусом, на золото оно не влияет</p>
+          </div>
+        </div>
+
+        <div class="mdl-slots">
+          <figure class="mdl-slot panel hud rv">
+            <div class="slot" data-file="assets/img/modelist/su57-model.jpg" data-alt="Собранный конструктор Су-57 на рабочем столе" data-placeholder="ЖДЁТ ФОТО МОДЕЛИ"></div>
+            <figcaption>Собранная модель — Макар прислал фото со своего стола</figcaption>
+          </figure>
+          <figure class="mdl-slot panel hud rv">
+            <div class="slot" data-file="assets/img/modelist/su57-na-fone.jpg" data-alt="Конструктор Су-57 на фоне сайта «Крылья Победы»" data-placeholder="ЖДЁТ ФОТО НА ФОНЕ"></div>
+            <figcaption>Бонус: модель в экспозиции, на фоне нашего сайта</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="whereabouts">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <p class="eyebrow">ГДЕ БЫЛ МАКАР</p>
+          <h2>МАРШРУТЫ И ФИЛЬМЫ</h2>
+          <p class="sec-note">Всё, где Макар побывал и что он посмотрел. Нажми на карточку — лендинг покажет подробности</p>
+        </header>
+        <div class="wb-grid">
+          <a class="wb-card panel hud rv wb-jump" href="#exhibits">
+            <span class="wb-photo">
+              <img src="assets/img/places/hram-kubinka.webp" alt="Главный храм Вооружённых сил в Кубинке на закате" loading="lazy">
+            </span>
+            <span class="wb-body">
+              <b>ХРАМ ВООРУЖЁННЫХ СИЛ, КУБИНКА</b>
+              <span>3 октября 2026 · реконструкция обороны Москвы, экспонаты техники и подлинные архивы</span>
+              <span class="wb-go">МУЗЕЙНЫЙ РЕЙД · ВЫЛЕТ № 9 →</span>
+            </span>
+          </a>
+          <div class="wb-card panel hud rv wb-films">
+            <span class="wb-body">
+              <b>КИНОАРХИВ ПРОЕКТА</b>
+              <span>Четыре фильма о войне и лётчиках. Нажми — лендинг покажет, что Макар узнал</span>
+              <span class="wb-film-links">
+                <a href="#cinema">Повесть о настоящем человеке</a>
+                <a href="#cinema">В бой идут одни «старики»</a>
+                <a href="#cinema">Лётчик</a>
+                <a href="#cinema">Есть только МиГ</a>
+              </span>
+              <span class="wb-go">НЕБО В КИНО · ВЫЛЕТ № 5 →</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="makarVideos">
       <div class="wrap">
         <header class="sec-head rv">
@@ -911,154 +1060,6 @@
       </div>
     </section>
 
-<section id="expedition">
-      <div class="wrap">
-        <header class="sec-head rv">
-          <p class="eyebrow">ВЫЛЕТ № 10 · МОСТ ПОКОЛЕНИЙ</p>
-          <h2>СРАВНЕНИЕ ЭПОХ</h2>
-          <p class="sec-note">Макар сравнил Ил-2 и Су-57 — как авиация изменилась за восемьдесят лет. Вот его доклад и его таблица</p>
-        </header>
-
-        <div class="exp-report panel hud rv">
-          <div class="exp-report-head">
-            <p class="exp-report-title">ДОКЛАД МАКАРА</p>
-            <p class="exp-report-note">Две части: сначала про эпохи, потом разбор параметров по пунктам</p>
-          </div>
-          <div class="exp-report-audio">
-            <div class="exp-part">
-              <p class="exp-part-label">ЧАСТЬ 1 · ЭПОХИ</p>
-              <audio controls preload="none" src="assets/media/voice/makar-vylet10-doklad-1.mp3"></audio>
-            </div>
-            <div class="exp-part">
-              <p class="exp-part-label">ЧАСТЬ 2 · ПАРАМЕТРЫ</p>
-              <audio controls preload="none" src="assets/media/voice/makar-vylet10-doklad-2.mp3"></audio>
-            </div>
-          </div>
-        </div>
-
-        <div class="gen-grid">
-          <div class="gen-col gen-il2">
-            <h3 class="col-title rv">ИЛ-2 · 1942</h3>
-            <div class="gen-slot panel hud rv">
-              <div class="slot">
-                <img loading="lazy" src="assets/img/expedition/il2-compare.jpg" alt="Штурмовик Ил-2 на земле, тёмный зелёный камуфляж">
-              </div>
-              <p class="gen-slot-hint">Летающий танк Великой Отечественной</p>
-            </div>
-            <ul class="gen-points rv">
-              <li><b>Эпоха</b> Великая Отечественная война</li>
-              <li><b>Класс</b> штурмовик</li>
-              <li><b>Скорость</b> 400–414 км/ч</li>
-              <li><b>Вес</b> 4242 кг</li>
-              <li><b>Длина</b> 11,6 м</li>
-              <li><b>Броня</b> 4–5 мм</li>
-              <li><b>Экипаж</b> 1–2 человека</li>
-              <li><b>Вооружение</b> пушки, пулемёты, бомбы, реактивные снаряды</li>
-            </ul>
-          </div>
-          <div class="gen-col gen-su57">
-            <h3 class="col-title rv">СУ-57 · ПЯТОЕ ПОКОЛЕНИЕ</h3>
-            <div class="gen-slot panel hud rv">
-              <div class="slot">
-                <img loading="lazy" src="assets/img/expedition/su57-compare.jpg" alt="Истребитель Су-57 в полёте, вид снизу">
-              </div>
-              <p class="gen-slot-hint">Сверхзвуковой истребитель сегодняшнего дня</p>
-            </div>
-            <ul class="gen-points rv">
-              <li><b>Эпоха</b> современная</li>
-              <li><b>Класс</b> истребитель</li>
-              <li><b>Скорость</b> 2000 км/ч</li>
-              <li><b>Вес</b> 18 500 кг</li>
-              <li><b>Длина</b> 19,7 м</li>
-              <li><b>Броня</b> нет брони</li>
-              <li><b>Экипаж</b> 1 человек</li>
-              <li><b>Вооружение</b> высокоточные ракеты «Воздух-воздух» и «Воздух-поверхность», пушка 30-мм</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="gen-vs panel hud rv">
-          <h3 class="col-title">ЧЕМ ОНИ РАЗНЫЕ</h3>
-          <p class="gen-vs-note">Пять различий, которые назвал Макар в своём докладе</p>
-          <div class="gen-vs-rows">
-            <div class="gen-vs-row"><span class="gen-vs-num">01</span><p><b>Скорость.</b> Ил-2 — 400–414 км/ч, Су-57 — 2000 км/ч. Современный истребитель летит почти в пять раз быстрее</p></div>
-            <div class="gen-vs-row"><span class="gen-vs-num">02</span><p><b>Назначение.</b> Ил-2 — штурмовик, он летел на танки и на пехоту. Су-57 — истребитель, он сбивает самолёты в воздухе</p></div>
-            <div class="gen-vs-row"><span class="gen-vs-num">03</span><p><b>Вооружение.</b> У Ил-2 пушки, пулемёты, бомбы и реактивные снаряды. У Су-57 высокоточные ракеты «Воздух-воздух», «Воздух-поверхность» и пушка 30-мм</p></div>
-            <div class="gen-vs-row"><span class="gen-vs-num">04</span><p><b>Броня.</b> У Ил-2 4–5 мм брони — поэтому его звали летающим танком. У Су-57 брони нет совсем, зато есть ракеты и скорость</p></div>
-            <div class="gen-vs-row"><span class="gen-vs-num">05</span><p><b>Размер и вес.</b> Ил-2 — 4242 кг и 11,6 м, экипаж 1–2 человека. Су-57 — 18 500 кг и 19,7 м, экипаж один</p></div>
-          </div>
-        </div>
-
-        <figure class="exp-journal panel hud rv">
-          <div class="exp-journal-photo">
-            <img loading="lazy" src="assets/img/expedition/zhurnal-makar.webp" alt="Страница лётной книжки Макара «Мои заметки пилота» с таблицей сравнения Ил-2 и Су-57">
-          </div>
-          <figcaption>
-            <b>ЗАМЕТКИ ПИЛОТА</b>
-            <span>Так Макар записал сравнение в лётной книжке: восемь параметров в двух колонках — своими словами и своими цифрами</span>
-            <span class="exp-journal-note">ФОТО ИЗ ЛЁТНОЙ КНИЖКИ МАКАРА</span>
-          </figcaption>
-        </figure>
-
-        <p class="gen-foot rv">Задание вылета выполнено целиком: сравнение, пять различий с объяснением и наглядная таблица из лётной книжки. Медаль «Мост поколений» — золото</p>
-      </div>
-    </section>
-
-    <section id="modelist">
-      <div class="wrap">
-        <header class="sec-head rv">
-          <p class="eyebrow">ВЫЛЕТ № 13 · МОДЕЛИСТ</p>
-          <h2>СОБЕРИ СУ-57</h2>
-          <p class="sec-note">Наградной конструктор Су-57 собран и покрашен. Макар засчитал это задание целиком — а модель в экспозиции, рядом с нашим сайтом, останется бонусом</p>
-        </header>
-
-        <div class="mdl-grid">
-          <figure class="mdl-box panel hud rv">
-            <div class="mdl-box-photo">
-              <img loading="lazy" src="assets/img/modelist/konstruktor-su57.webp" alt="Обложка коробки наградного конструктора Су-57 проекта «Крылья Победы»">
-            </div>
-            <figcaption>
-              <b>НАГРАДНОЙ КОНСТРУКТОР СУ-57</b>
-              <span>Коробка с обложкой проекта: звезда, портреты в званиях, чертёж Су-57 и подпись «Слава инженерам, создавшим крылья Победы». Внутри — пятигенератор: фюзеляж, крылья, двигатели, кабина и шасси</span>
-            </figcaption>
-          </figure>
-
-          <div class="mdl-task panel hud rv">
-            <h3 class="col-title">ЗАДАНИЕ</h3>
-            <ol class="mdl-steps">
-              <li><b>Разбери коробку.</b> Собери Су-57 по схеме: фюзеляж, крылья, двигатели, кабина, шасси</li>
-              <li><b>Доведи модель до ума.</b> Проверь, что всё встало на место, и подкрась, если нужно</li>
-              <li><b>Сними её.</b> Сфотографируй собранную модель, а потом поставь её рядом с нашим сайтом — на экране или рядом с распечатанной страницей</li>
-              <li><b>Доложи.</b> Пришли фото и коротко расскажи голосом, что оказалось сложнее всего</li>
-            </ol>
-            <div class="mdl-voice">
-              <p class="mdl-voice-label">ГОЛОС МАКАРА О СБОРКЕ · 30 СЕКУНД</p>
-              <audio controls preload="none" src="assets/media/voice/makar-vylet13-sborka.mp3"></audio>
-              <p class="mdl-voice-note">Самое сложное — корпус и кабина: с кабиной они мучились очень долго, пока не разобрались, как её поставить</p>
-            </div>
-            <div class="mdl-levels">
-              <p class="mdl-levels-title">УРОВНИ МЕДАЛИ</p>
-              <div class="mdl-level is-done"><b>Бронза</b> модель собрана — сделано</div>
-              <div class="mdl-level is-done"><b>Серебро</b> модель собрана и покрашена — сделано</div>
-              <div class="mdl-level is-done"><b>Золото</b> задание выполнено целиком — сделано</div>
-            </div>
-            <p class="mdl-status">🏅 Задание выполнено полностью — <b>золото</b>. Модель собрана, покрашена и засчитана по фото. Фото модели в экспозиции — рядом с нашим сайтом — останется бонусом, на золото оно не влияет</p>
-          </div>
-        </div>
-
-        <div class="mdl-slots">
-          <figure class="mdl-slot panel hud rv">
-            <div class="slot" data-file="assets/img/modelist/su57-model.jpg" data-alt="Собранный конструктор Су-57 на рабочем столе" data-placeholder="ЖДЁТ ФОТО МОДЕЛИ"></div>
-            <figcaption>Собранная модель — Макар прислал фото со своего стола</figcaption>
-          </figure>
-          <figure class="mdl-slot panel hud rv">
-            <div class="slot" data-file="assets/img/modelist/su57-na-fone.jpg" data-alt="Конструктор Су-57 на фоне сайта «Крылья Победы»" data-placeholder="ЖДЁТ ФОТО НА ФОНЕ"></div>
-            <figcaption>Бонус: модель в экспозиции, на фоне нашего сайта</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
     <section id="training">
       <div class="wrap">
         <header class="sec-head rv">
@@ -1085,13 +1086,17 @@
           <p class="sec-note">Сто вопросов об авиации Великой Отечественной. За каждый правильный ответ — боеприпасы, прогресс сохраняется. Можно пройти заново или повторить только ошибки</p>
         </header>
         <div class="quiz-box panel hud rv" id="quizBox"></div>
+      </div>
+    </section>
 
+    <section id="pilotquiz">
+      <div class="wrap wrap-narrow">
+        <header class="sec-head rv">
+          <p class="eyebrow">ИНТЕРАКТИВ 3 · ДЛЯ ВСЕХ</p>
+          <h2>А ТЫ КАКОЙ ПИЛОТ?</h2>
+          <p class="sec-note">Шесть быстрых вопросов — и ты узнаешь свою машину. Этот тест проходил сам Макар: попробуй и ты</p>
+        </header>
         <div class="pilot-quiz panel hud rv">
-          <header class="pilot-quiz-head">
-            <p class="pilot-quiz-tag">ИНТЕРАКТИВ 3 · ДЛЯ ГОСТЕЙ И КОМИССИИ</p>
-            <p class="pilot-quiz-eyebrow">А ТЫ КАКОЙ ПИЛОТ?</p>
-            <p class="pilot-quiz-note">Шесть быстрых вопросов — и ты узнаешь свою машину. Этот тест проходил сам Макар — и комиссия может пройти его тоже</p>
-          </header>
           <div id="pilotQuizBox"></div>
         </div>
       </div>
