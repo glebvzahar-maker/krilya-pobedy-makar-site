@@ -214,32 +214,32 @@
     const pct = Math.round((done / total) * 100);
     const need = prize.progress || 0;
 
+    /* reasons — все невыполненные условия сразу, для шкалы призов */
+    const reasons = [];
+
     if (prize.requiresFinal) {
       const finalNum = total;
       const finalDone = earned.some(n => +n === finalNum);
       if (!finalDone) {
-        return {
-          locked: true,
-          pct,
-          reason: 'только после финального вылета №' + finalNum,
-        };
+        reasons.push('только после финального вылета №' + finalNum);
       }
     }
     if (need && pct < need) {
-      return {
-        locked: true,
-        pct,
-        reason: 'откроется при ' + need + '% вылетов (сейчас ' + pct + '%)',
-      };
+      reasons.push('откроется при ' + need + '% вылетов (сейчас ' + pct + '%)');
     }
     if ((prize.unlock || 0) > done) {
+      reasons.push('откроется на вылете ' + prize.unlock);
+    }
+
+    if (reasons.length) {
       return {
         locked: true,
         pct,
-        reason: 'откроется на вылете ' + prize.unlock,
+        reason: reasons[0],
+        reasons,
       };
     }
-    return { locked: false, pct, reason: '' };
+    return { locked: false, pct, reason: '', reasons: [] };
   }
 
   function toggleCart(prize) {
@@ -982,7 +982,9 @@
       refresh: loadProgress,
       getTimeOfDay: getTimeOfDay,
       getDaysSinceLastVisit: getDaysSinceLastVisit,
-      getAmmoBalance: getAmmoBalance
+      getAmmoBalance: getAmmoBalance,
+      getProgress: getProgress,
+      prizeGate: prizeGate
     };
   }
 

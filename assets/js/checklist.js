@@ -86,17 +86,61 @@
       '<div class="ck-total panel hud ck-in">' +
         '<span class="ck-total-num" id="ckTotalNum">0</span>' +
         '<span class="ck-total-den">/ ' + total + '</span>' +
-        '<span class="ck-total-text">пунктов уже на сайте. Остальные — твоя следующая цель.</span>' +
+        '<span class="ck-total-text">пунктов уже на сайте. Ниже — только то, что ещё не доделано.</span>' +
         '<div class="ck-bar"><i id="ckBar"></i></div>' +
       '</div>' +
+      '<p class="ck-hidden-note" hidden></p>' +
       '<div class="ck-grid">' + blocks.join('') + '</div>';
+  }
+
+  /* Макар закрыл группу целиком — прячем её: в листе остаётся невыполненное.
+     Счётчики считаем по тому, что видно, а закрытые группы считаем отдельно. */
+  function hideDoneGroups() {
+    var hidden = 0;
+    var shownItems = 0;
+    root.querySelectorAll('.ck-group').forEach(function (gsec) {
+      var boxes = gsec.querySelectorAll('.ck-title, .ck-sub');
+      if (!boxes.length) return;
+      var done = gsec.querySelectorAll('.ck-title.is-done, .ck-sub.is-done').length;
+      if (done === boxes.length) {
+        gsec.classList.add('is-hidden-done');
+        hidden++;
+      } else {
+        gsec.classList.remove('is-hidden-done');
+        shownItems += boxes.length;
+      }
+    });
+
+    var note = root.querySelector('.ck-hidden-note');
+    if (note) {
+      note.hidden = !hidden;
+      note.textContent = hidden
+        ? 'Спрятано ' + hidden + ' ' + plural(hidden, 'группа', 'группы', 'групп') + ' — Макар закрыл их полностью.'
+        : '';
+    }
+
+    var den = root.querySelector('.ck-total-den');
+    if (den) den.textContent = '/ ' + shownItems;
+    var num = document.getElementById('ckTotalNum');
+    if (num) {
+      var totalVisible = root.querySelectorAll('.ck-group:not(.is-hidden-done) .ck-title, .ck-group:not(.is-hidden-done) .ck-sub').length;
+      var doneVisible = root.querySelectorAll('.ck-group:not(.is-hidden-done) .ck-title.is-done, .ck-group:not(.is-hidden-done) .ck-sub.is-done').length;
+      num.textContent = totalVisible - doneVisible;
+    }
+  }
+
+  function plural(n, one, few, many) {
+    var n10 = n % 10, n100 = n % 100;
+    if (n10 === 1 && n100 !== 11) return one;
+    if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return few;
+    return many;
   }
 
   function recount() {
     /* Считаем не группы, а подпункты: у предмета их два — фото и голос.
        Иначе галочка «сделал фото» не двигает счётчик и выглядит как баг. */
-    var boxes = root.querySelectorAll('.ck-title, .ck-sub');
-    var ticked = root.querySelectorAll('.ck-title.is-done, .ck-sub.is-done');
+    var boxes = root.querySelectorAll('.ck-group:not(.is-hidden-done) .ck-title, .ck-group:not(.is-hidden-done) .ck-sub');
+    var ticked = root.querySelectorAll('.ck-group:not(.is-hidden-done) .ck-title.is-done, .ck-group:not(.is-hidden-done) .ck-sub.is-done');
     var num = document.getElementById('ckTotalNum');
     var bar = document.getElementById('ckBar');
     var den = document.querySelector('.ck-total-den');
@@ -139,6 +183,7 @@
           : 'ждём фото';
       }
     }
+    hideDoneGroups();
     recount();
     if (typeof window.showToast === 'function') {
       window.showToast(
@@ -193,7 +238,10 @@
           var el = e.target.closest('[data-kind]');
           if (el && root.contains(el)) toggle(el);
         });
-        return autoFill(data);
+        return autoFill(data).then(function () {
+          hideDoneGroups();
+          recount();
+        });
       })
       .catch(function (e) {
         root.innerHTML = '<p class="ck-error">Лист заданий не загрузился.</p>';

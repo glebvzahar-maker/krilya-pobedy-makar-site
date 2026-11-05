@@ -401,16 +401,12 @@
         <header class="sec-head rv">
           <p class="eyebrow">ВЫЛЕТ № 05 · КИНОАРХИВИСТ</p>
           <h2>НЕБО В КИНО</h2>
-          <p class="sec-note">Макар смотрит фильмы о войне и заполняет киноархив проекта</p>
+          <p class="sec-note">Макар смотрит фильмы о войне и заполняет киноархив проекта. Нажми на карточку — и Макар расскажет, что он узнал: у «Лётчика» голос идёт двумя частями подряд</p>
         </header>
         <div class="cinema-grid">
-          <figure class="clip panel hud rv film-card" data-film="Лётчик" data-voice="assets/media/voice/makar-vylet5-otchet-1.mp3">
+          <figure class="clip panel hud rv film-card" data-film="Лётчик" data-voice="assets/media/voice/makar-vylet5-otchet-1.mp3" data-voice2="assets/media/voice/makar-vylet5-otchet-2.mp3">
             <div class="film-poster"><img src="assets/img/films/letchik.webp" alt="Постер фильма «Лётчик»" loading="lazy"><span class="film-year">2021</span></div>
-            <figcaption><b>Лётчик</b><span>О лётчике-штурмовике, попавшем к немцам</span><span class="film-note">Просмотрен · голос Макара</span></figcaption>
-          </figure>
-          <figure class="clip panel hud rv film-card" data-film="В бой идут одни старики" data-voice="assets/media/voice/makar-vylet5-otchet-2.mp3">
-            <div class="film-poster"><img src="assets/img/films/stariki.webp" alt="Постер фильма «В бой идут одни старики»" loading="lazy"><span class="film-year">1974</span></div>
-            <figcaption><b>В бой идут одни «старики»</b><span>Леонид Быков — о летчиках-истребителях</span><span class="film-note">Просмотрен · голос Макара</span></figcaption>
+            <figcaption><b>Лётчик</b><span>О лётчике-штурмовике, попавшем к немцам</span><span class="film-note">Просмотрен · голос Макара, две части</span></figcaption>
           </figure>
           <figure class="clip panel hud rv film-card" data-film="Повесть о настоящем человеке" data-voice="assets/media/voice/makar-vylet5-otchet-3.mp3">
             <div class="film-poster"><img src="assets/img/films/povest.webp" alt="Постер фильма «Повесть о настоящем человеке»" loading="lazy"><span class="film-year">1948</span></div>
@@ -1007,25 +1003,6 @@
       </div>
     </section>
 
-    <section id="quiz">
-      <div class="wrap wrap-narrow">
-        <header class="sec-head rv">
-          <p class="eyebrow">ПРОВЕРЬ СЕБЯ</p>
-          <h2>ВИКТОРИНА ЭСКАДРИЛЬИ</h2>
-          <p class="sec-note">Сто вопросов об авиации Великой Отечественной. За каждый правильный ответ — боеприпасы, прогресс сохраняется. Можно пройти заново или повторить только ошибки</p>
-        </header>
-        <div class="quiz-box panel hud rv" id="quizBox"></div>
-
-        <div class="pilot-quiz panel hud rv">
-          <header class="pilot-quiz-head">
-            <p class="pilot-quiz-eyebrow">А ТЫ КАКОЙ ПИЛОТ?</p>
-            <p class="pilot-quiz-note">Шесть быстрых вопросов — и ты узнаешь свою машину. Для гостей и комиссии</p>
-          </header>
-          <div id="pilotQuizBox"></div>
-        </div>
-      </div>
-    </section>
-
     <section id="modelist">
       <div class="wrap">
         <header class="sec-head rv">
@@ -1084,7 +1061,7 @@
     <section id="training">
       <div class="wrap">
         <header class="sec-head rv">
-          <p class="eyebrow">ИНТЕРАКТИВ ДЛЯ ВСЕХ</p>
+          <p class="eyebrow">ИНТЕРАКТИВ 1 · ДЛЯ ВСЕХ</p>
           <h2>ПОРАЗИ ВРАГА</h2>
           <p class="sec-note">Немецкий истребитель Messerschmitt. Наводи прицел и бей — звучат очереди и остаются пробоины. Сможет любой посетитель!</p>
         </header>
@@ -1095,6 +1072,26 @@
             <p>Отличная стрельба, лётчик «Сокол» — враг обезврежен.</p>
             <button class="btn btn-accent" id="trainReset" type="button">ЕЩЁ РАЗ</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="wrap wrap-narrow">
+        <header class="sec-head rv">
+          <p class="eyebrow">ИНТЕРАКТИВ 2 · ДЛЯ ВСЕХ</p>
+          <h2>ВИКТОРИНА ЭСКАДРИЛЬИ</h2>
+          <p class="sec-note">Сто вопросов об авиации Великой Отечественной. За каждый правильный ответ — боеприпасы, прогресс сохраняется. Можно пройти заново или повторить только ошибки</p>
+        </header>
+        <div class="quiz-box panel hud rv" id="quizBox"></div>
+
+        <div class="pilot-quiz panel hud rv">
+          <header class="pilot-quiz-head">
+            <p class="pilot-quiz-tag">ИНТЕРАКТИВ 3 · ДЛЯ ГОСТЕЙ И КОМИССИИ</p>
+            <p class="pilot-quiz-eyebrow">А ТЫ КАКОЙ ПИЛОТ?</p>
+            <p class="pilot-quiz-note">Шесть быстрых вопросов — и ты узнаешь свою машину. Этот тест проходил сам Макар — и комиссия может пройти его тоже</p>
+          </header>
+          <div id="pilotQuizBox"></div>
         </div>
       </div>
     </section>
@@ -1964,6 +1961,20 @@
           <h2>ЧТО ОСТАЛОСЬ СОБРАТЬ</h2>
           <p class="sec-note">Лендинг растёт вместе с проектом: каждый твой материал занимает своё место. Зелёная галочка значит, что материал уже на сайте</p>
         </header>
+
+        <div class="prize-scale panel hud rv" id="prizeScale">
+          <div class="prize-scale-head">
+            <p class="prize-scale-title">ГОТОВНОСТЬ ПРОЕКТА</p>
+            <p class="prize-scale-note">От нуля до главного приза. Подарки стоят на шкале по своей цене: сначала дешёвые, потом серьёзнее, в конце — наушники. Наведи на подарок — покажет, можно его взять или что ещё надо доделать</p>
+          </div>
+          <div class="prize-scale-track">
+            <div class="prize-scale-fill"></div>
+            <div class="prize-scale-badge">0 <span>✦</span></div>
+          </div>
+          <div class="prize-scale-axis"></div>
+          <p class="prize-scale-status"></p>
+        </div>
+
         <div id="checklistBody" class="checklist-wrap"></div>
       </div>
     </section>
@@ -2046,6 +2057,7 @@
   <script src="assets/js/quiz.js"></script>
   <script src="assets/js/pilotquiz.js"></script>
   <script src="assets/js/sokol.js"></script>
+  <script src="assets/js/prizebar.js"></script>
   <script src="assets/js/microtasks.js"></script>
   <script src="assets/js/medals.js"></script>
   <script src="assets/js/ranks.js"></script>

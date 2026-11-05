@@ -98,10 +98,13 @@
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       cio.unobserve(e.target);
-      const target = +e.target.dataset.count;
       const t0 = performance.now();
       const dur = 1400;
       (function step(now) {
+        /* Цель читаем каждый кадр: facts.js мог подменить число, когда
+           JSON уже загрузился. Иначе анимация допишет старое значение,
+           а подпись останется от новой — число и текст разойдутся. */
+        const target = +e.target.dataset.count;
         const k = Math.min(1, (now - t0) / dur);
         const eased = 1 - Math.pow(1 - k, 3);
         e.target.textContent = fmt(Math.round(target * eased));

@@ -17,6 +17,8 @@
   /* Плеер и индикатор */
   var player = null;
   var src = '';
+  var queue = [];         /* дорожки, которые пойдут одна за другой */
+  var activeKey = '';
   var holder = null;       /* элемент, у которого показан индикатор */
   var indicator = null;
   var stopBtn = null;
@@ -67,6 +69,8 @@
       try { player.pause(); } catch (e) { /* Safari */ }
       try { player.currentTime = 0; } catch (e) { /* Safari */ }
     }
+    queue = [];
+    activeKey = '';
     hideIndicator();
     duckOff();
   }
@@ -77,23 +81,24 @@
     player.preload = 'none';
     player.volume = VOLUME;
     player.addEventListener('ended', function () {
+      /* Дальше по очереди: например, у фильма две части голоса */
+      if (queue.length) {
+        startFile(queue.shift());
+        return;
+      }
       hideIndicator();
       duckOff();
     });
     return player;
   }
 
-  /* Запустить дорожку. card — элемент, у которого показать индикатор. */
-  function play(file, card) {
+  /* Запуск одной дорожки — с индикатором и приглушением музыки */
+  function startFile(file) {
     if (!file) return;
-    if (player && src === file) { stop(); return; }  /* повторный клик — пауза */
-
-    stop();
     src = file;
     var p = ensurePlayer();
     p.src = file;
     try { p.currentTime = 0; } catch (e) { /* Safari */ }
-    showIndicator(card);
     var started = p.play();
     if (started && started.catch) {
       started.catch(function () {
@@ -105,13 +110,30 @@
     }
   }
 
-  /* Навешиваем обработчик на все [data-voice] внутри контейнера */
+  /* Запустить дорожку или очередь дорожек. card — элемент, где показать индикатор. */
+  function play(file, card) {
+    var files = Array.isArray(file) ? file.filter(Boolean) : [file];
+    if (!files.length) return;
+    var key = files.join('|');
+
+    if (player && activeKey === key && !player.paused) { stop(); return; }  /* повторный клик — пауза */
+
+    stop();
+    activeKey = key;
+    queue = files.slice(1);
+    showIndicator(card);
+    startFile(files[0]);
+  }
+
+  /* Навешиваем обработчик на все [data-voice] внутри контейнера.
+     Если у элемента есть data-voice2 / data-voice3 — голоса идут по очереди. */
   function bind(root) {
     (root || document).querySelectorAll('[data-voice]').forEach(function (el) {
       if (el.dataset.voiceBound) return;
       el.dataset.voiceBound = '1';
       el.addEventListener('click', function () {
-        play(el.dataset.voice, el);
+        var files = [el.dataset.voice, el.dataset.voice2, el.dataset.voice3].filter(Boolean);
+        play(files, el);
       });
     });
   }

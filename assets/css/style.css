@@ -591,8 +591,26 @@ body.menu-open #burger span:nth-child(3) { transform: translateY(-7px) rotate(-4
 .quiz-restart { margin-top: 26px; }
 
 /* Тест «Какой ты пилот?» — отдельной карточкой под основной викториной */
-.pilot-quiz { margin-top: 22px; padding: 22px 24px 24px; }
+/* Третий интерактив — отделён рамкой и полосой сверху, чтобы не слипался с викториной */
+.pilot-quiz {
+  margin-top: 34px;
+  padding: 26px 26px 28px;
+  border-top: 3px solid var(--gold);
+  background: rgba(255, 255, 255, .035);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .45);
+}
 .pilot-quiz-head { margin-bottom: 18px; }
+.pilot-quiz-tag {
+  margin: 0 0 10px;
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--gold);
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  color: var(--gold);
+}
 .pilot-quiz-eyebrow { font-family: var(--font-display); font-size: .95rem; letter-spacing: .12em; color: var(--gold); }
 .pilot-quiz-note { margin-top: 7px; font-size: .84rem; line-height: 1.5; color: var(--muted); }
 
@@ -1255,6 +1273,9 @@ html.reticle-on input, html.reticle-on textarea, body.reticle-on input, body.ret
 
 .ck-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .ck-group{padding:18px 20px}
+/* Группа, которую Макар закрыл полностью, в лист не показываем */
+.ck-group.is-hidden-done{display:none}
+.ck-hidden-note{margin:0 0 16px;padding:10px 14px;border:1px dashed var(--line);border-radius:4px;font-size:.84rem;color:var(--muted)}
 .ck-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
 .ck-group-title{font-family:var(--font-display);font-weight:400;font-size:1rem;letter-spacing:.06em;color:var(--text);margin:0}
 .ck-group-sub{margin:3px 0 0;font-size:.7rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
@@ -1503,3 +1524,132 @@ section[id] { scroll-margin-top: 76px; }
 .mdl-level.is-done b { color: var(--hud); }
 .mdl-status { margin: 18px 0 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px; font-size: .87rem; line-height: 1.5; color: var(--text); background: rgba(255, 255, 255, .02); }
 .mdl-status b { color: var(--gold); }
+
+/* ── Шкала готовности проекта: от нуля до главного приза ── */
+/* clip-path у HUD-панелей срезает углы и обрезает всплывающие подсказки —
+   для шкалы его отключаем, подсказка должна вылезать наружу */
+.prize-scale { margin-bottom: 22px; padding: 20px 24px 18px; clip-path: none; position: relative; z-index: 20; }
+.prize-scale-head { margin-bottom: 18px; }
+.prize-scale-title { margin: 0 0 6px; font-family: var(--font-display); font-size: .92rem; letter-spacing: .14em; color: var(--gold); }
+.prize-scale-note { margin: 0; font-size: .84rem; line-height: 1.5; color: var(--muted); max-width: 62ch; }
+
+.prize-scale-track {
+  position: relative;
+  height: 12px;
+  margin: 62px 0 26px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid var(--line);
+}
+.prize-scale-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 168, 61, .55), var(--gold));
+  transition: width .6s ease;
+}
+.prize-scale-badge {
+  position: absolute;
+  top: -30px;
+  transform: translateX(-50%);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #10131a;
+  font-family: var(--font-display);
+  font-size: .74rem;
+  letter-spacing: .06em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.prize-scale-badge span { opacity: .75; }
+
+/* подарки на шкале */
+.prize-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px; height: 34px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #0c1118;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.prize-marker-icon { font-size: 17px; line-height: 1; filter: grayscale(.5); }
+.prize-marker.is-open { border-color: var(--hud); box-shadow: 0 0 0 3px rgba(93, 240, 182, .18); }
+.prize-marker.is-open .prize-marker-icon { filter: none; }
+.prize-marker.is-pending { border-color: var(--gold); }
+.prize-marker.is-pending .prize-marker-icon { filter: none; }
+.prize-marker.is-locked { border-color: var(--line); opacity: .62; }
+.prize-marker:hover, .prize-marker:focus-visible { transform: translate(-50%, -50%) scale(1.18); z-index: 5; outline: none; }
+
+/* всплывающая плашка с условиями */
+/* плашка появляется под шкалой: так она не лезет под обрез панели */
+.prize-tip {
+  position: absolute;
+  top: calc(100% + 34px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  width: 236px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: rgba(8, 12, 18, .97);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .6);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  max-height: 240px;
+  overflow-y: auto;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 6;
+}
+/* у краёв шкалы плашка прижимается к краю, чтобы не обрезаться */
+/* маркер на краю шкалы вылезает за её пределы на половину кружка —
+   поэтому плашку сдвигаем внутрь, иначе её срежет обрез панели */
+.prize-marker.is-edge-left .prize-tip { left: 12px; right: auto; transform: translateY(-6px); }
+.prize-marker.is-edge-right .prize-tip { right: 22px; left: auto; transform: translateY(-6px); }
+.prize-marker:hover .prize-tip,
+.prize-marker:focus-visible .prize-tip { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.prize-marker.is-edge-left:hover .prize-tip,
+.prize-marker.is-edge-left:focus-visible .prize-tip,
+.prize-marker.is-edge-right:hover .prize-tip,
+.prize-marker.is-edge-right:focus-visible .prize-tip { transform: translateY(0); }
+.pt-name { display: block; font-family: var(--font-display); font-size: .88rem; color: var(--text); }
+.pt-cost { display: block; margin-top: 3px; font-size: .76rem; color: var(--gold); font-variant-numeric: tabular-nums; }
+.pt-line { display: block; margin-top: 8px; font-size: .8rem; line-height: 1.45; color: var(--muted); }
+.pt-line b { color: var(--text); }
+.pt-ok { display: block; margin-top: 9px; font-family: var(--font-display); font-size: .76rem; letter-spacing: .1em; color: var(--hud); }
+.pt-locked { display: block; margin-top: 9px; font-family: var(--font-display); font-size: .76rem; letter-spacing: .1em; color: var(--accent); }
+.pt-hero { display: block; margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--line); font-size: .76rem; line-height: 1.45; color: var(--muted); font-style: italic; }
+
+/* подписи оси */
+.prize-scale-axis { position: relative; height: 18px; }
+.prize-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: .68rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.prize-tick:first-child { transform: none; }
+.prize-tick:last-child { transform: translateX(-100%); }
+.prize-scale-status { margin: 14px 0 0; font-size: .86rem; line-height: 1.5; color: var(--muted); }
+.prize-scale-status b { color: var(--gold); }
+
+@media (max-width: 700px) {
+  .prize-scale { padding: 16px 16px 14px; }
+  .prize-scale-track { margin-top: 42px; }
+  .prize-marker { width: 30px; height: 30px; }
+  .prize-marker-icon { font-size: 15px; }
+  .prize-tip { width: 210px; }
+  .prize-scale-note { font-size: .8rem; }
+}
