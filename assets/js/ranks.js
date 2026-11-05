@@ -54,6 +54,14 @@
     return ratio >= 0.9;
   }
 
+  /* Русские числительные: 1 задание, 2 задания, 5 заданий */
+  function plural(n, one, few, many) {
+    var n10 = n % 10, n100 = n % 100;
+    if (n10 === 1 && n100 !== 11) return one;
+    if (n10 >= 2 && n10 <= 4 && (n100 < 10 || n100 >= 20)) return few;
+    return many;
+  }
+
   /* Подсчёт медалей по уровням */
   function countByLevel(medals){
     var counts = {bronze:0, silver:0, gold:0};
@@ -131,7 +139,8 @@
         var counts = countByLevel(medals);
         var goldNeeded = Math.ceil(medalCount * 0.9) - counts.gold;
         if(goldNeeded > 0){
-          nextInfo.textContent = 'До «Лётчик-аса»: перевыполни ' + goldNeeded + ' заданий на золото!';
+          nextInfo.textContent = 'До «Лётчика-аса»: перевыполни ' + goldNeeded +
+            ' ' + plural(goldNeeded, 'задание', 'задания', 'заданий') + ' на золото!';
         } else {
           nextInfo.textContent = 'Готово к званию «Лётчик-ас»!';
         }

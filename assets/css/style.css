@@ -1693,3 +1693,19 @@ section[id] { scroll-margin-top: 76px; }
   .prize-row-state.is-pending { background: var(--gold); color: #171104; }
   .prize-row-state.is-locked { border: 1px solid var(--line); color: var(--muted); }
 }
+
+/* Выступление Макара — вертикальное видео, по центру */
+.sturman-video { margin-top: 20px; padding: 18px 20px 20px; }
+.sturman-video-title { margin: 0 0 12px; font-family: var(--font-display); font-size: .9rem; letter-spacing: .12em; color: var(--hud); }
+.sturman-video video {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background: #05080c;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.sturman-video-note { margin: 12px 0 0; font-size: .86rem; line-height: 1.5; color: var(--muted); text-align: center; }
+.sturman-next-list li.is-done { color: var(--muted); }
+.sturman-next-list li.is-done b { color: var(--hud); }
