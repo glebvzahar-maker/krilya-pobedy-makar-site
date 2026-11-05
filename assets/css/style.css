@@ -1653,3 +1653,43 @@ section[id] { scroll-margin-top: 76px; }
   .prize-tip { width: 210px; }
   .prize-scale-note { font-size: .8rem; }
 }
+
+/* Список подарков — только для узких экранов: на телефоне кружки слипаются */
+.prize-list { display: none; }
+
+@media (max-width: 700px) {
+  .prize-scale-track .prize-marker { display: none; }
+  .prize-scale-axis { display: none; }
+  .prize-scale-track { margin-top: 26px; }
+  .prize-list {
+    display: grid;
+    gap: 8px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .prize-row {
+    display: grid;
+    grid-template-columns: 30px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .02);
+  }
+  .prize-row-icon { font-size: 18px; line-height: 1; }
+  .prize-row-main b { display: block; font-size: .86rem; color: var(--text); font-weight: 600; }
+  .prize-row-cost { display: block; margin-top: 2px; font-size: .72rem; color: var(--muted); }
+  .prize-row-state {
+    font-family: var(--font-display);
+    font-size: .64rem;
+    letter-spacing: .08em;
+    padding: 4px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .prize-row-state.is-open { background: var(--hud); color: #08150f; }
+  .prize-row-state.is-pending { background: var(--gold); color: #171104; }
+  .prize-row-state.is-locked { border: 1px solid var(--line); color: var(--muted); }
+}

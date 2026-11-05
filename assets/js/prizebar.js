@@ -111,6 +111,28 @@
       });
     }
 
+    /* список подарков — для телефона: на узком экране кружки слипаются,
+       поэтому там показываем каждый подарок отдельной строкой */
+    var list = root.querySelector('.prize-list');
+    if (list) {
+      list.innerHTML = prizes.map(function (p) {
+        var g = gate(p, progress);
+        var can = !g.locked && ammo >= p.cost;
+        var cls = can ? 'is-open' : (g.locked ? 'is-locked' : 'is-pending');
+        var state = can
+          ? 'МОЖНО'
+          : (g.locked ? 'НЕЛЬЗЯ' : 'ЕЩЁ ' + fmt(lack(p, ammo)));
+        var why = g.locked ? g.reasons[0] : (can ? '' : 'не хватает ' + fmt(lack(p, ammo)) + ' боеприпасов');
+        return '<li class="prize-row ' + cls + '">' +
+          '<span class="prize-row-icon">' + esc(p.icon) + '</span>' +
+          '<span class="prize-row-main"><b>' + esc(p.name) + '</b>' +
+            '<span class="prize-row-cost">' + fmt(p.cost) + ' боеприпасов' +
+            (why ? ' · ' + esc(why) : '') + '</span></span>' +
+          '<span class="prize-row-state ' + cls + '">' + state + '</span>' +
+        '</li>';
+      }).join('');
+    }
+
     /* подписи оси — настоящие боеприпасы на своей warped-позиции */
     var axis = root.querySelector('.prize-scale-axis');
     if (axis) {
