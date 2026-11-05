@@ -85,6 +85,13 @@
 
   $('#burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
   $$('#mainNav a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+  /* Меню закрывается по Escape и само, если окно сделали широким */
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.body.classList.remove('menu-open');
+  });
+  addEventListener('resize', () => {
+    if (innerWidth > 1020) document.body.classList.remove('menu-open');
+  });
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
