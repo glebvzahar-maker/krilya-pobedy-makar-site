@@ -94,7 +94,7 @@
     { id:'m14', name:'Оратор', sortie:14, color:'#5df0b6',
       note:'Отрепетировал доклад перед «комиссией».',
       silver:'Отрепетировал + выучил вступление наизусть.',
-      gold:'Всё серебро + сделал репетицию перед зеркалом или на видео.',
+      gold:'Всё серебро + видео выступления, уложившись в 5–7 минут.',
       img:'assets/img/medals/medal-14.png',
       icon:'<circle r="6" fill="none" stroke="#5df0b6" stroke-width="2"/><path d="M-6 6 Q0 14 6 6" fill="none" stroke="#5df0b6" stroke-width="2"/>' },
     { id:'m15', name:'Золотая звезда', sortie:15, color:'#ffd23c',

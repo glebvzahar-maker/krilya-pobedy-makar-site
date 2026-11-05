@@ -97,7 +97,7 @@
     {
       "id": "m14",
       "name": "Оратор",
-      "level": "gold",
+      "level": "silver",
       "sortie": 14
     }
   ],
@@ -105,5 +105,5 @@
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 15,
-  "ammo": 111124
+  "ammo": 108124
 }
