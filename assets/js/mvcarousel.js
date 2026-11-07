@@ -66,6 +66,36 @@
     prev.addEventListener('click', function () { go(-1); });
     next.addEventListener('click', function () { go(1); });
 
+    /* Клик по любой части плашки запускает видео.
+       В браузере клик по самому ролику ничего не делает — играть надо
+       только кнопкой Play, а она мелкая на телефоне. Нижние 46 px
+       (панель управления) не трогаем: там своя кнопка Play. */
+    cards.forEach(function (card) {
+      var video = card.querySelector('video');
+      if (!video) return;
+      card.classList.add('mv-playable');
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        var r = video.getBoundingClientRect();
+        /* Панель управления — только нижние 46 px САМОГО видео */
+        var inControls = e.clientY > r.bottom - 46 && e.clientY <= r.bottom &&
+                         e.clientX > r.left && e.clientX < r.right;
+        if (inControls) return;
+        e.preventDefault();
+        if (video.paused) {
+          /* Одновременно пусть играет только один ролик */
+          cards.forEach(function (other) {
+            var ov = other.querySelector('video');
+            if (ov && ov !== video && !ov.paused) ov.pause();
+          });
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
+    });
+
     track.addEventListener('scroll', function () {
       window.clearTimeout(track._mvT);
       track._mvT = window.setTimeout(update, 90);
