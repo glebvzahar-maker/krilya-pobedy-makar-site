@@ -29,14 +29,16 @@
           "title": "Пистолет ТТ",
           "what": "Найди фото и объясни, зачем пилоту личное оружие",
           "probe": "assets/img/gear/pistolet.jpg",
-          "voice": "assets/media/voice/makar-gear-pistolet.mp3"
+          "voice": "assets/media/voice/makar-gear-pistolet.mp3",
+          "voiceWhat": "Голос: зачем лётчику личный пистолет"
         },
         {
           "id": "nz",
           "title": "НЗ — неприкосновенный запас",
           "what": "Найди фото и объясни, что клали в НЗ и на сколько дней",
           "probe": "assets/img/gear/nz.jpg",
-          "voice": "assets/media/voice/makar-gear-nz.mp3"
+          "voice": "assets/media/voice/makar-gear-nz.mp3",
+          "voiceWhat": "Голос: что клали в неприкосновенный запас"
         },
         {
           "id": "shlem",
@@ -51,6 +53,14 @@
           "what": "Найди фото и объясни, почему парашют называют последним другом",
           "probe": "assets/img/gear/parashut.jpg",
           "voice": "assets/media/voice/makar-gear-parashut.mp3"
+        },
+        {
+          "id": "pistolet-atribytika",
+          "title": "Пистолет ТТ — два ствола",
+          "what": "Ещё одно фото пистолета и рассказ про атрибутику: автоматы лётчики не брали",
+          "probe": "assets/img/gear/pistolet-atribytika.jpg",
+          "voice": "assets/media/voice/makar-gear-pistolet-atribytika.mp3",
+          "voiceWhat": "Голос: про пистолет и его атрибутику"
         }
       ]
     },
@@ -64,20 +74,26 @@
         {
           "id": "pe2",
           "title": "Фото По-2",
-          "what": "Поищи самолёт, на котором летал Похмельцев",
-          "probe": "assets/img/chronicle/pe2.jpg"
+          "what": "Учебный У-2 — «небесный тихоход» из фанеры",
+          "probe": "assets/img/chronicle/po2-makar.jpg",
+          "voice": "assets/media/voice/makar-chronicle-po2.mp3",
+          "voiceWhat": "Голос: рассказ о По-2"
         },
         {
           "id": "tu160",
           "title": "Фото Ту-160 «Белый лебедь»",
-          "what": "Самый большой боевой самолёт, который летает сегодня",
-          "probe": "assets/img/chronicle/tu160.jpg"
+          "what": "Самый большой сверхзвуковой бомбардировщик в мире",
+          "probe": "assets/img/chronicle/tu160.jpg",
+          "voice": "assets/media/voice/makar-chronicle-tu160.mp3",
+          "voiceWhat": "Голос: «Белый лебедь», экипаж, первый полёт"
         },
         {
           "id": "su57",
           "title": "Фото Су-57",
-          "what": "Главный герой проекта — и точка, к которой мы летим от Ил-2",
-          "probe": "assets/img/chronicle/su57.jpg"
+          "what": "Наш главный реактивный истребитель, невидимый для радаров",
+          "probe": "assets/img/chronicle/su57.jpg",
+          "voice": "assets/media/voice/makar-chronicle-su57.mp3",
+          "voiceWhat": "Голос: рассказ о Су-57"
         }
       ]
     },
