@@ -1,5 +1,5 @@
 (function(){
-  var FALLBACK_CODE = '89169985727';
+  var FALLBACK_CODE = '1945';
   var gate = document.getElementById('gate');
   var input = document.getElementById('gateCode');
   var btn = document.getElementById('gateBtn');
