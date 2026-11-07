@@ -278,10 +278,6 @@
             <div class="tl-card panel hud"><h3>ЯК-3 — ЛЮБИМЕЦ ЛЁТЧИКОВ</h3><p>Лёгкий юркий истребитель. На Як-3 воевал ас № 1 Александр Покрышкин. Немцам приказывали не вступать в бой с «яками» без крайней нужды.</p><img class="tl-img" src="assets/img/chronicle/yak3.jpg" alt="Истребитель Як-3" loading="lazy"></div>
           </li>
           <li class="tl-item rv">
-            <div class="tl-year">1945</div>
-            <div class="tl-card panel hud"><h3>ПЕ-2 И ТУ-2 — ДО БЕРЛИНА</h3><p>Скоростные бомбардировщики прокладывали дорогу танкам и пехоте, разбомбив укрепления врага до самого Берлина.</p><span class="slot" data-file="assets/img/chronicle/pe2.jpg" data-alt="Бомбардировщик ПЕ-2" data-placeholder="ЖДЁТ ФОТО ПЕ-2"></span></div>
-          </li>
-          <li class="tl-item rv">
             <div class="tl-year">Сегодня</div>
             <div class="tl-card panel hud tl-voice" tabindex="0" role="button" data-voice="assets/media/voice/makar-chronicle-tu160.mp3" aria-label="Послушать рассказ Макара о Ту-160"><h3>ТУ-160 «БЕЛЫЙ ЛЕБЕДЬ»</h3><p>Самый большой сверхзвуковой бомбардировщик в мире. Его полёт — это гарантия, что войну к нам не принесут.</p><img class="tl-img" src="assets/img/chronicle/tu160.jpg" alt="Ту-160 «Белый лебедь» в полёте" loading="lazy"><img class="tl-img" src="assets/img/chronicle/tu160-2.jpg" alt="Ту-160 со сложенными крыльями — фотография Макара" loading="lazy"><small class="tl-voice-hint">🎙 Фото Макара · нажми и послушай рассказ</small></div>
           </li>
@@ -958,7 +954,9 @@
           <h2>ВИДЕО ОТ МАКАРА</h2>
           <p class="sec-note">Макар присылает ролики — колонка растёт. Нажми на видео, чтобы смотреть</p>
         </header>
-        <div class="mv-grid" id="mvGrid">
+        <div class="mv-carousel" id="mvCarousel">
+          <button class="mv-arrow mv-prev" type="button" aria-label="Предыдущее видео" disabled>&#8249;</button>
+          <div class="mv-track" id="mvGrid" tabindex="0" aria-label="Видео от Макара — листайте стрелками">
           <figure class="mv-card panel hud rv">
             <video controls preload="none" playsinline
                    poster="assets/img/korishony-poster.webp"
@@ -1055,7 +1053,10 @@
               <span class="mv-src">Источник: клип VK, канал «Sky Artist»</span>
             </figcaption>
           </figure>
+          </div>
+          <button class="mv-arrow mv-next" type="button" aria-label="Следующее видео">&#8250;</button>
         </div>
+        <p class="mv-counter rv" id="mvCounter" aria-live="polite">1 / 8</p>
         <p class="mv-foot rv">Сюда попадают видео, которые Макар присылает для проекта. Следующий ролик появится здесь.</p>
       </div>
     </section>
@@ -2142,6 +2143,7 @@
   <script src="assets/js/engine.js"></script>
   <script src="assets/js/gate.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/mvcarousel.js"></script>
   <script src="assets/js/voice.js"></script>
   <script src="assets/js/checklist.js"></script>
   <script src="assets/js/toast.js"></script>
