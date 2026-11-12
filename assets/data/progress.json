@@ -31,7 +31,7 @@
     {
       "id": "m03",
       "name": "Бумажный ас",
-      "level": "silver",
+      "level": "gold",
       "sortie": 3
     },
     {
@@ -105,5 +105,5 @@
   "totalRanks": 8,
   "totalMedals": 15,
   "nextSortie": 15,
-  "ammo": 121624
+  "ammo": 124624
 }

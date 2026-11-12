@@ -1455,8 +1455,8 @@ section[id] { scroll-margin-top: 76px; }
   scroll-snap-align: start;
   transition: transform .2s, border-color .2s;
 }
-.mv-card.mv-playable { cursor: pointer; }
-.mv-card.mv-playable:hover { border-color: var(--accent); }
+.play-on-click { cursor: pointer; }
+.play-on-click:hover { border-color: var(--accent); }
 .mv-arrow {
   position: absolute;
   top: 42%;

@@ -141,6 +141,10 @@
         if(goldNeeded > 0){
           nextInfo.textContent = 'До «Лётчика-аса»: перевыполни ' + goldNeeded +
             ' ' + plural(goldNeeded, 'задание', 'задания', 'заданий') + ' на золото!';
+        } else if(missingFlights.length){
+          /* Золота хватает, но финальный вылет ещё не закрыт */
+          var names = missingFlights.map(function(s){ return '№ ' + s + ' «' + sortieName(s) + '»'; });
+          nextInfo.textContent = 'До звания «Лётчик-ас» нужен вылет ' + names.join(' и ') + '.';
         } else {
           nextInfo.textContent = 'Готово к званию «Лётчик-ас»!';
         }

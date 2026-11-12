@@ -68,6 +68,37 @@
   });
 
 
+  /* ── Ролики Макара: играют по клику в любом месте блока ──
+     В браузере клик по самому видео ничего не делает — играть надо
+     только кнопкой Play, а на телефоне она мелкая. Нижние 46 px
+     самого видео не трогаем: там своя панель управления. */
+  function bindPlayOnClick(boxes) {
+    boxes.forEach(function (box) {
+      var video = box.querySelector('video');
+      if (!video) return;
+      box.classList.add('play-on-click');
+      box.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return;
+        var r = video.getBoundingClientRect();
+        var inControls = e.clientY > r.bottom - 46 && e.clientY <= r.bottom &&
+                         e.clientX > r.left && e.clientX < r.right;
+        if (inControls) return;
+        e.preventDefault();
+        if (video.paused) {
+          /* Одновременно играет только один ролик */
+          $$('video').forEach(function (other) {
+            if (other !== video && !other.paused) other.pause();
+          });
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
+    });
+  }
+  bindPlayOnClick($$('.mv-card, .makar-report, .sturman-video'));
+
   const topbar = $('#topbar');
   const scrollbarSpan = $('#scrollbar span');
   const onScroll = () => {
