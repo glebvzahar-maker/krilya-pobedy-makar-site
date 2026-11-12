@@ -63,7 +63,7 @@
 
   // в досье героев, в карточках снаряжения и в слотах конструктора
   // показываем настоящее фото (если файла ещё нет — останется заглушка)
-  $$('.dossier .slot[data-file], .gear-item .slot[data-file], .mdl-slot .slot[data-file], .tl-card .slot[data-file]').forEach(slot => {
+  $$('.dossier .slot[data-file], .gear-item .slot[data-file], .mdl-slot .slot[data-file], .tl-card .slot[data-file], .exhibit .slot[data-file]').forEach(slot => {
     slotImage(slot, slot.dataset.file, slot.dataset.alt || '');
   });
 
